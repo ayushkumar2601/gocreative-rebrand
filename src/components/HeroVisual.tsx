@@ -95,41 +95,38 @@ export default function HeroVisual() {
       <div className="absolute right-[2%] bottom-[28%] w-4 h-4 rounded-full bg-[#00B4FF] shadow-[0_0_15px_#00B4FF] z-10" />
 
       {/* ========================================================= */}
-      {/* FLOATING CARD 1: LEFT REELS/CREATOR CARD */}
+      {/* FLOATING CARD 1: LEFT REELS/CREATOR MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute left-[3%] sm:left-[5%] top-[34%] w-[145px] sm:w-[165px] h-[220px] sm:h-[250px] bg-[#1E1C1F] rounded-2xl shadow-xl overflow-hidden border-2 border-white/80 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-        {/* Video Creator Visual */}
-        <div className="relative w-full h-full bg-gradient-to-b from-[#3B2940] via-[#2A1D30] to-[#141216] flex flex-col justify-between p-3 text-white">
-          {/* Creator face mockup illustration */}
-          <div className="absolute inset-0 opacity-90 flex items-center justify-center">
-            <div className="w-full h-full relative flex flex-col items-center justify-center">
-              {/* Stylized Creator Portrait */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#FF1493] via-[#4B00B5] to-[#00B4FF] border-2 border-white/30 shadow-md mb-2 relative overflow-hidden flex items-center justify-center">
-                <div className="w-full h-full bg-[#8D6B5A] relative">
-                  <div className="absolute top-3 left-3 right-3 h-8 bg-[#4A3228] rounded-t-full" />
-                  <div className="absolute bottom-4 left-5 w-2 h-2 rounded-full bg-white/80" />
-                  <div className="absolute bottom-4 right-5 w-2 h-2 rounded-full bg-white/80" />
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="absolute left-[3%] sm:left-[5%] top-[34%] w-[145px] sm:w-[165px] h-[220px] sm:h-[250px] bg-[#1E1C1F] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/80 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
+        {/* Live Video Background in Mockup */}
+        <video
+          src="/hero-reel.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Subtle gradient overlay for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-1 pointer-events-none" />
 
-          {/* Top Live / Badge */}
-          <div className="relative z-10 flex justify-between items-center">
-            <span className="gocreative-gradient-bg backdrop-blur-sm text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded text-white shadow">
+        {/* Overlays */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-between p-3 text-white pointer-events-none">
+          {/* Top Badge */}
+          <div className="flex justify-between items-center">
+            <span className="gocreative-gradient-bg backdrop-blur-md text-[8.5px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded text-white shadow-md border border-white/20">
               GO CREATIVE AD
             </span>
           </div>
 
-          {/* Bottom Caption & Poker Badge */}
-          <div className="relative z-10 flex flex-col items-center gap-1.5 pb-1">
-            <div className="bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-center shadow border border-white/10">
-              <p className="text-[10px] sm:text-[11px] font-semibold leading-tight text-white">
+          {/* Bottom Caption & ROAS Chip */}
+          <div className="flex flex-col items-center gap-1.5 pb-1">
+            <div className="bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-lg text-center shadow border border-white/15">
+              <p className="text-[10px] sm:text-[11px] font-bold leading-tight text-white">
                 Data-backed creative scaling
               </p>
             </div>
-            {/* Poker chip emblem */}
-            <div className="w-6 h-6 rounded-full bg-[#00B4FF] border border-white flex items-center justify-center text-[6.5px] font-bold uppercase shadow">
+            <div className="w-6 h-6 rounded-full bg-[#00B4FF] border border-white flex items-center justify-center text-[6.5px] font-black uppercase shadow-lg text-[#0A1F44]">
               ROAS
             </div>
           </div>
@@ -173,7 +170,7 @@ export default function HeroVisual() {
           </div>
 
           {/* Floating Purple Crosshair Target Stamp (Top Left Inside Screen, subtle overlay) */}
-          <div className="absolute top-10 left-2 z-30 transform -rotate-12 scale-75 sm:scale-85 pointer-events-none opacity-85">
+          <div className="absolute top-10 left-2 z-30 transform -rotate-12 scale-75 sm:scale-85 pointer-events-none opacity-90">
             <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#0A1F44]/90 border-2 border-[#FF1493] flex items-center justify-center relative shadow-xl">
               {/* Rotating outer circle text */}
               <div className="absolute inset-1 rounded-full border border-dashed border-[#00B4FF]/40 animate-spin-slow" />
@@ -193,7 +190,7 @@ export default function HeroVisual() {
                   letterSpacing="1.2"
                 >
                   <textPath href="#circlePath">
-                    GOCREATIVE AI GROWTH ENGINE •
+                    DATA BACKED CREATIVE PRODUCTION •
                   </textPath>
                 </text>
               </svg>
@@ -247,24 +244,32 @@ export default function HeroVisual() {
       </div>
 
       {/* ========================================================= */}
-      {/* FLOATING CARD 2: TOP-RIGHT PRODUCTION STUDIO CARD */}
+      {/* FLOATING CARD 2: TOP-RIGHT PRODUCTION STUDIO MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute right-[2%] sm:right-[4%] top-[14%] w-[125px] sm:w-[145px] h-[180px] sm:h-[210px] bg-[#0A1F44] rounded-2xl shadow-xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300">
-        <div className="relative w-full h-full bg-gradient-to-b from-[#1E2E5C] to-[#0A1F44] p-2 flex flex-col justify-between text-white">
-          <div className="absolute inset-0 flex items-center justify-center opacity-85">
-            <div className="relative w-full h-full flex items-center justify-center">
-              <div className="w-14 h-14 rounded-full border-4 border-white/60 flex items-center justify-center shadow-lg">
-                <div className="w-6 h-6 rounded-full bg-[#00B4FF] shadow-[0_0_10px_#00B4FF]" />
-              </div>
-            </div>
-          </div>
-          <div className="relative z-10">
-            <span className="bg-black/60 text-[8px] font-bold px-1.5 py-0.5 rounded text-[#00B4FF] uppercase border border-[#00B4FF]/30">
+      <div className="absolute right-[2%] sm:right-[4%] top-[14%] w-[125px] sm:w-[145px] h-[180px] sm:h-[210px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300 group">
+        {/* Live Video Background in Mockup */}
+        <video
+          src="/hero-reel.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/75 z-1 pointer-events-none" />
+
+        {/* Overlays */}
+        <div className="relative z-10 w-full h-full p-2.5 flex flex-col justify-between text-white pointer-events-none">
+          <div className="flex justify-end">
+            <span className="bg-black/75 backdrop-blur-md text-[8px] font-extrabold px-2 py-0.5 rounded text-[#00B4FF] uppercase border border-[#00B4FF]/40 shadow">
               SHOOT DAY
             </span>
           </div>
-          <div className="relative z-10 text-[9px] font-semibold text-white/90 bg-black/60 px-2 py-1 rounded">
-            Studio Production
+          <div>
+            <div className="text-[9.5px] font-bold text-white bg-black/75 backdrop-blur-md px-2 py-1 rounded shadow border border-white/15 inline-block">
+              Studio Production
+            </div>
           </div>
         </div>
       </div>
@@ -278,25 +283,30 @@ export default function HeroVisual() {
       </div>
 
       {/* ========================================================= */}
-      {/* FLOATING CARD 3: BOTTOM-RIGHT SWIMWEAR AD CARD */}
+      {/* FLOATING CARD 3: BOTTOM-RIGHT BRAND MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute right-[4%] sm:right-[6%] bottom-[14%] w-[130px] sm:w-[150px] h-[175px] sm:h-[200px] bg-[#F5EFE6] rounded-2xl shadow-xl overflow-hidden border-2 border-white/90 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 p-2 flex flex-col justify-between">
-        <div className="flex justify-between items-center text-[7.5px] font-extrabold uppercase tracking-tight text-[#6B5A4B] border-b border-[#E3D9CC] pb-1">
-          <span>OFFICE / SWIMWEAR BRAND</span>
-          <span>STYLED</span>
-        </div>
-        {/* Two Model Comparison Panels */}
-        <div className="grid grid-cols-2 gap-1.5 h-full pt-1.5 pb-1">
-          <div className="bg-[#E4DACB] rounded-lg overflow-hidden relative flex flex-col items-center justify-end p-1">
-            <div className="w-8 h-16 bg-[#3B424C] rounded-t-lg" />
-            <span className="text-[7px] font-bold text-[#4E443B] mt-1">
-              DAY
-            </span>
+      <div className="absolute right-[4%] sm:right-[6%] bottom-[14%] w-[130px] sm:w-[150px] h-[175px] sm:h-[200px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/90 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
+        {/* Live Video Background in Mockup */}
+        <video
+          src="/hero-reel.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/80 z-1 pointer-events-none" />
+
+        {/* Overlays */}
+        <div className="relative z-10 w-full h-full p-2.5 flex flex-col justify-between text-white pointer-events-none">
+          <div className="flex justify-between items-center text-[7.5px] font-extrabold uppercase tracking-tight bg-black/75 backdrop-blur-md px-2 py-1 rounded text-[#FF1493] border border-white/20 shadow">
+            <span>BRAND STYLED</span>
+            <span>AD 01</span>
           </div>
-          <div className="bg-[#E4DACB] rounded-lg overflow-hidden relative flex flex-col items-center justify-end p-1">
-            <div className="w-8 h-16 bg-[#1A1A1A] rounded-t-lg" />
-            <span className="text-[7px] font-bold text-[#4E443B] mt-1">
-              NIGHT
+          <div className="flex justify-between items-center gap-1">
+            <span className="text-[8.5px] font-bold text-white bg-black/75 backdrop-blur-md px-2 py-1 rounded border border-white/15 w-full text-center">
+              Day / Night Scaling
             </span>
           </div>
         </div>
