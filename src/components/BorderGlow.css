@@ -103,9 +103,11 @@
   z-index: 1;
 
   mask-image:
+    radial-gradient(ellipse at center, black 45%, transparent 80%),
     conic-gradient(
       from var(--cursor-angle) at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%
     );
+  mask-composite: intersect;
 
   opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
   mix-blend-mode: plus-lighter;
@@ -123,20 +125,22 @@
     inset 0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
     inset 0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
     inset 0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
-    inset 0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%)),
+    inset 0 0 40px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%)),
     0 0 1px 0 var(--glow-color-60, hsl(40deg 80% 80% / 60%)),
     0 0 3px 0 var(--glow-color-50, hsl(40deg 80% 80% / 50%)),
     0 0 6px 0 var(--glow-color-40, hsl(40deg 80% 80% / 40%)),
     0 0 15px 0 var(--glow-color-30, hsl(40deg 80% 80% / 30%)),
     0 0 25px 2px var(--glow-color-20, hsl(40deg 80% 80% / 20%)),
-    0 0 50px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%));
+    0 0 40px 2px var(--glow-color-10, hsl(40deg 80% 80% / 10%));
 }
 
 .border-glow-inner {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  border-radius: inherit;
   z-index: 1;
   height: 100%;
+  width: 100%;
 }

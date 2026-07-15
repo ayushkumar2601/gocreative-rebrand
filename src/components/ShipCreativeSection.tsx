@@ -7,49 +7,53 @@ import BorderGlow from "./BorderGlow";
 export default function ShipCreativeSection() {
   const cards = [
     {
-      bgColor: "#8C0D52",
+      bgGradient: "bg-gradient-to-br from-[#3B0A3D] via-[#2A093D] to-[#1E0B38]",
+      bgColor: "#3B0A3D",
       textColor: "text-white",
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
       glowColor: "330 96% 70%",
-      colors: ["#FF1493", "#FC68B3", "#D5D5F1"],
+      colors: ["#FF1493", "#C084FC", "#D5D5F1"],
       title: "AI & Research\nDriven Strategy",
       description:
         "We turn performance data and audience psychology into creative hypotheses that scale exponentially with AI insights.",
     },
     {
-      bgColor: "#0A5D76",
+      bgGradient: "bg-gradient-to-br from-[#2A093D] via-[#1E0E45] to-[#141242]",
+      bgColor: "#2A093D",
       textColor: "text-white",
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "181 100% 62%",
-      colors: ["#3DFDFF", "#00B4FF", "#D5D5F1"],
+      glowColor: "270 96% 70%",
+      colors: ["#C084FC", "#6035D0", "#3DFDFF"],
       title: "Hybrid\nProduction\nModel",
       description:
         "High-polish studio content for brand authority combined with authentic creator-led videos for platform-native virality.",
     },
     {
-      bgColor: "#A33608",
+      bgGradient: "bg-gradient-to-br from-[#1E0E45] via-[#12164A] to-[#0A1D4E]",
+      bgColor: "#1E0E45",
       textColor: "text-white",
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "22 100% 64%",
-      colors: ["#FF8A48", "#FF1493", "#F5DF4D"],
+      glowColor: "240 96% 70%",
+      colors: ["#6035D0", "#00B4FF", "#3DFDFF"],
       title: "Omnichannel\nPaid Media",
       description:
         "Strategic campaign management and continuous algorithmic optimization across Meta, TikTok, YouTube, and connected TV.",
     },
     {
-      bgColor: "#146108",
+      bgGradient: "bg-gradient-to-br from-[#12164A] via-[#0A2252] to-[#06305C]",
+      bgColor: "#12164A",
       textColor: "text-white",
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "111 87% 41%",
-      colors: ["#2AC20E", "#3DFDFF", "#F5DF4D"],
+      glowColor: "190 100% 62%",
+      colors: ["#00B4FF", "#3DFDFF", "#D5D5F1"],
       title: "AI-Powered\nPost-Production",
       description:
         "Proprietary AI workflows for rapid iteration, smart captioning, dynamic localizations, and high-converting ad hooks.",
@@ -105,7 +109,7 @@ export default function ShipCreativeSection() {
                 glowColor={card.glowColor}
                 backgroundColor={card.bgColor}
                 borderRadius={36}
-                glowRadius={60}
+                glowRadius={50}
                 glowIntensity={1.5}
                 coneSpread={42}
                 animated={true}
@@ -113,7 +117,7 @@ export default function ShipCreativeSection() {
               >
                 {/* Inner Card Content */}
                 <div
-                  className={`${card.textColor} p-8 sm:p-9 flex flex-col justify-between h-full relative z-10`}
+                  className={`${card.bgGradient} ${card.textColor} p-8 sm:p-9 flex flex-col justify-between h-full relative z-10`}
                 >
                   {/* Subtle top glare highlight inside card */}
                   <div className="absolute top-0 right-0 w-48 h-48 bg-white/15 rounded-full blur-2xl transform translate-x-12 -translate-y-12 pointer-events-none" />
