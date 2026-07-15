@@ -12,7 +12,7 @@
   isolation: isolate;
   transform: translate3d(0, 0, 0.01px);
   display: grid;
-  border: 1px solid rgb(255 255 255 / 15%);
+  border: 2px solid rgb(255 255 255 / 15%);
   background: var(--card-bg, #120F17);
   overflow: visible;
   box-shadow:
@@ -44,7 +44,7 @@
 
 /* colored mesh-gradient border */
 .border-glow-card::before {
-  border: 1px solid transparent;
+  border: 3px solid transparent;
   background:
     linear-gradient(var(--card-bg, #120F17) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,

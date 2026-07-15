@@ -7,11 +7,11 @@ import BorderGlow from "./BorderGlow";
 export default function ShipCreativeSection() {
   const cards = [
     {
-      bgColor: "#FC68B3",
-      textColor: "text-[#060B18]",
-      descColor: "text-[#060B18]/90",
-      iconBg: "bg-[#060B18]",
-      iconColor: "text-[#FC68B3]",
+      bgColor: "#8C0D52",
+      textColor: "text-white",
+      descColor: "text-white/90",
+      iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
+      iconColor: "text-white",
       glowColor: "330 96% 70%",
       colors: ["#FF1493", "#FC68B3", "#D5D5F1"],
       title: "AI & Research\nDriven Strategy",
@@ -19,11 +19,11 @@ export default function ShipCreativeSection() {
         "We turn performance data and audience psychology into creative hypotheses that scale exponentially with AI insights.",
     },
     {
-      bgColor: "#3DFDFF",
-      textColor: "text-[#060B18]",
-      descColor: "text-[#060B18]/90",
-      iconBg: "bg-[#060B18]",
-      iconColor: "text-[#3DFDFF]",
+      bgColor: "#0A5D76",
+      textColor: "text-white",
+      descColor: "text-white/90",
+      iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
+      iconColor: "text-white",
       glowColor: "181 100% 62%",
       colors: ["#3DFDFF", "#00B4FF", "#D5D5F1"],
       title: "Hybrid\nProduction\nModel",
@@ -31,11 +31,11 @@ export default function ShipCreativeSection() {
         "High-polish studio content for brand authority combined with authentic creator-led videos for platform-native virality.",
     },
     {
-      bgColor: "#FF8A48",
-      textColor: "text-[#060B18]",
-      descColor: "text-[#060B18]/90",
-      iconBg: "bg-[#060B18]",
-      iconColor: "text-[#FF8A48]",
+      bgColor: "#A33608",
+      textColor: "text-white",
+      descColor: "text-white/90",
+      iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
+      iconColor: "text-white",
       glowColor: "22 100% 64%",
       colors: ["#FF8A48", "#FF1493", "#F5DF4D"],
       title: "Omnichannel\nPaid Media",
@@ -43,11 +43,11 @@ export default function ShipCreativeSection() {
         "Strategic campaign management and continuous algorithmic optimization across Meta, TikTok, YouTube, and connected TV.",
     },
     {
-      bgColor: "#2AC20E",
-      textColor: "text-[#060B18]",
-      descColor: "text-[#060B18]/90",
-      iconBg: "bg-[#060B18]",
-      iconColor: "text-[#2AC20E]",
+      bgColor: "#146108",
+      textColor: "text-white",
+      descColor: "text-white/90",
+      iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
+      iconColor: "text-white",
       glowColor: "111 87% 41%",
       colors: ["#2AC20E", "#3DFDFF", "#F5DF4D"],
       title: "AI-Powered\nPost-Production",
@@ -101,13 +101,13 @@ export default function ShipCreativeSection() {
             >
               <BorderGlow
                 className="w-full h-full min-h-[410px] sm:min-h-[440px] shadow-2xl transition-shadow duration-300"
-                edgeSensitivity={35}
+                edgeSensitivity={45}
                 glowColor={card.glowColor}
                 backgroundColor={card.bgColor}
                 borderRadius={36}
-                glowRadius={45}
-                glowIntensity={1.3}
-                coneSpread={28}
+                glowRadius={60}
+                glowIntensity={1.5}
+                coneSpread={42}
                 animated={true}
                 colors={card.colors}
               >
@@ -116,14 +116,14 @@ export default function ShipCreativeSection() {
                   className={`${card.textColor} p-8 sm:p-9 flex flex-col justify-between h-full relative z-10`}
                 >
                   {/* Subtle top glare highlight inside card */}
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full blur-2xl transform translate-x-12 -translate-y-12 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-white/15 rounded-full blur-2xl transform translate-x-12 -translate-y-12 pointer-events-none" />
 
                   {/* Top Section: Play Button & Title */}
                   <div className="relative z-10">
                     {/* Circle Play Button Icon */}
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: 10 }}
-                      className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-black/10`}
+                      className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7`}
                     >
                       <svg
                         viewBox="0 0 24 24"
