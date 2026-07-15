@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #FAF8F3;
+    --foreground: #111827;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit), var(--font-jakarta), sans-serif;
+}
+
+/* Precise grid background with dotted intersection feel like Fieldtrip / Creative Milkshake */
+.bg-grid-pattern {
+  background-color: #FAF8F3;
+  background-image: 
+    radial-gradient(circle at 1px 1px, #D1C9B8 1px, transparent 0),
+    linear-gradient(to right, rgba(230, 224, 212, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 224, 212, 0.45) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 32px 32px;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #D4F252;
+  color: #111827;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-shine:hover::after {
+  transform: translateX(250%);
+}
+
+
+
