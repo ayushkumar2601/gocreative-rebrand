@@ -24,40 +24,27 @@ export default function Footer() {
           {/* LEFT COLUMN: Brand & Newsletter Form */}
           <div className="lg:col-span-5 flex flex-col">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#6035D0] shadow-sm">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.5 4H16.5C17.0523 4 17.5 4.44772 17.5 5V9C17.5 12.0376 15.0376 14.5 12 14.5C8.96243 14.5 6.5 12.0376 6.5 9V5C6.5 4.44772 6.94772 4 7.5 4Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M11 16.5H13V19H15.5C16.0523 19 16.5 19.4477 16.5 20C16.5 20.5523 16.0523 21 15.5 21H8.5C7.94772 21 7.5 20.5523 7.5 20C7.5 19.4477 7.94772 19 8.5 19H11V16.5Z"
-                    fill="currentColor"
-                  />
-                  <path d="M12 1.5L14.5 4H10L12 1.5Z" fill="currentColor" />
-                  <circle cx="12" cy="9" r="1.5" fill="white" />
-                </svg>
+            <a href="#" className="flex items-center gap-3 group">
+              <div className="flex items-center justify-center bg-white p-1 rounded-full shadow-md group-hover:rotate-6 transition-transform">
+                <img
+                  src="/logo.png"
+                  alt="GoCreative Logo"
+                  className="h-9 w-auto object-contain"
+                />
               </div>
-              <span className="font-extrabold text-lg sm:text-xl tracking-tight lowercase">
-                creative milkshake
-              </span>
+              <div className="flex items-center gap-1 font-black text-xl sm:text-2xl tracking-[-0.03em] uppercase">
+                <span className="text-white">GO</span>
+                <span className="bg-gradient-to-r from-[#FF1493] via-[#00B4FF] to-[#F3F0FF] bg-clip-text text-transparent">CREATIVE</span>
+              </div>
             </a>
 
             {/* Tagline */}
-            <p className="text-white/70 text-xs sm:text-sm mt-3.5 max-w-[330px] leading-relaxed">
-              We create data-driven ads that convert, and that&apos;s just the
-              start.
+            <p className="text-white/75 text-xs sm:text-sm mt-4 max-w-[340px] leading-relaxed">
+              GoCreative main colors are vibrant, modern, and tech-inspired, reflecting creativity, innovation, and trust. We create data-driven ads that scale.
             </p>
 
             {/* Divider Line */}
-            <div className="border-b border-white/15 my-6 max-w-[330px]" />
+            <div className="border-b border-white/15 my-6 max-w-[340px]" />
 
             {/* Newsletter Heading */}
             <h4 className="font-extrabold text-base sm:text-lg text-white mb-4">
@@ -67,7 +54,7 @@ export default function Footer() {
             {/* Newsletter Subscription Form */}
             <form
               onSubmit={handleSubscribe}
-              className="flex flex-col gap-3 max-w-[330px]"
+              className="flex flex-col gap-3 max-w-[340px]"
             >
               <input
                 type="text"
@@ -75,7 +62,7 @@ export default function Footer() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="bg-[#FAF8F3] text-[#111827] placeholder:text-gray-400 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#6035D0]"
+                className="bg-[#0A1F44] text-white placeholder:text-gray-400 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold border border-white/20 outline-none focus:ring-2 focus:ring-[#00B4FF]"
               />
               <input
                 type="email"
@@ -83,11 +70,11 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-[#FAF8F3] text-[#111827] placeholder:text-gray-400 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#6035D0]"
+                className="bg-[#0A1F44] text-white placeholder:text-gray-400 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold border border-white/20 outline-none focus:ring-2 focus:ring-[#00B4FF]"
               />
               <button
                 type="submit"
-                className="bg-[#EBE7FC] hover:bg-white text-[#6035D0] font-black text-xs sm:text-sm uppercase tracking-wider rounded-full px-5 py-3 transition-colors shadow-md active:scale-[0.98]"
+                className="gocreative-gradient-bg hover:opacity-90 text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-full px-5 py-3 transition-all shadow-lg active:scale-[0.98]"
               >
                 {subscribed ? "SUBSCRIBED ✓" : "SUBSCRIBE"}
               </button>
@@ -98,14 +85,14 @@ export default function Footer() {
           <div className="lg:col-span-4 flex flex-col">
             {/* ABOUT US */}
             <div className="mb-8">
-              <h5 className="text-[#D4F252] font-extrabold text-xs uppercase tracking-wider mb-3">
+              <h5 className="text-[#00B4FF] font-extrabold text-xs uppercase tracking-wider mb-3">
                 ABOUT US
               </h5>
               <ul className="flex flex-col gap-2.5 text-white/80 text-xs sm:text-sm">
                 <li>
                   <a
                     href="#process"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     Our Process
                   </a>
@@ -113,7 +100,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#portfolio"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     Creative Portfolio
                   </a>
@@ -121,7 +108,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#case-studies"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     Case Studies
                   </a>
@@ -131,19 +118,19 @@ export default function Footer() {
 
             {/* SERVICES */}
             <div className="mb-8">
-              <h5 className="text-[#D4F252] font-extrabold text-xs uppercase tracking-wider mb-3">
+              <h5 className="text-[#00B4FF] font-extrabold text-xs uppercase tracking-wider mb-3">
                 SERVICES
               </h5>
               <ul className="flex flex-col gap-2.5 text-white/80 text-xs sm:text-sm">
                 <li>
-                  <a href="#meta" className="hover:text-white transition-colors">
+                  <a href="#meta" className="hover:text-[#FF1493] transition-colors">
                     META Ads
                   </a>
                 </li>
                 <li>
                   <a
                     href="#tiktok"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     TikTok Ads
                   </a>
@@ -151,7 +138,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#youtube"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     YouTube Ads &amp; CTV
                   </a>
@@ -159,7 +146,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#measurement"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#FF1493] transition-colors"
                   >
                     Paid Media &amp; Measurement
                   </a>
@@ -173,7 +160,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="TikTok"
-                className="w-7 h-7 rounded-md bg-white text-[#181818] flex items-center justify-center hover:scale-110 transition-transform"
+                className="w-8 h-8 rounded-full bg-[#0A1F44] border border-white/20 text-white flex items-center justify-center hover:scale-110 hover:border-[#FF1493] transition-all"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                   <path d="M19.59 6.69A4.83 4.83 0 0 1 15.47 4.17V15.11A5.11 5.11 0 1 1 10.36 10a5.08 5.08 0 0 1 1.13.13V12.8A2.56 2.56 0 1 0 13 15.34V2.17h2.47A4.84 4.84 0 0 0 18 5.34v2.5a7.31 7.31 0 0 1 1.59-.15z" />
@@ -183,7 +170,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="w-7 h-7 rounded-md bg-white text-[#181818] flex items-center justify-center hover:scale-110 transition-transform"
+                className="w-8 h-8 rounded-full bg-[#0A1F44] border border-white/20 text-white flex items-center justify-center hover:scale-110 hover:border-[#FF1493] transition-all"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -201,7 +188,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="w-7 h-7 rounded-md bg-white text-[#181818] flex items-center justify-center hover:scale-110 transition-transform"
+                className="w-8 h-8 rounded-full bg-[#0A1F44] border border-white/20 text-white flex items-center justify-center hover:scale-110 hover:border-[#FF1493] transition-all"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" />
@@ -212,14 +199,14 @@ export default function Footer() {
 
           {/* RIGHT COLUMN: INDUSTRIES */}
           <div className="lg:col-span-3 flex flex-col">
-            <h5 className="text-[#D4F252] font-extrabold text-xs uppercase tracking-wider mb-3">
+            <h5 className="text-[#00B4FF] font-extrabold text-xs uppercase tracking-wider mb-3">
               INDUSTRIES
             </h5>
             <ul className="flex flex-col gap-2.5 text-white/80 text-xs sm:text-sm">
               <li>
                 <a
                   href="#gaming"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#FF1493] transition-colors"
                 >
                   Gaming Lab
                 </a>
@@ -227,7 +214,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#finance"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#FF1493] transition-colors"
                 >
                   Finance
                 </a>
@@ -235,13 +222,13 @@ export default function Footer() {
               <li>
                 <a
                   href="#ecommerce"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#FF1493] transition-colors"
                 >
                   E-commerce
                 </a>
               </li>
               <li>
-                <a href="#saas" className="hover:text-white transition-colors">
+                <a href="#saas" className="hover:text-[#FF1493] transition-colors">
                   Saas &amp; Apps
                 </a>
               </li>
@@ -250,9 +237,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal Copyright Bar */}
-        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between text-white/50 text-[11px] sm:text-xs gap-4">
+        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between text-white/60 text-[11px] sm:text-xs gap-4">
           <span>
-            9490-4943 Québec inc DBA Creative Milkshake • © All Rights Reserved
+            GoCreative Inc. • © 2026 All Rights Reserved • Vibrant, Tech-Inspired Growth Systems
           </span>
           <div className="flex items-center gap-6">
             <a href="#cookies" className="hover:text-white transition-colors">
@@ -260,13 +247,13 @@ export default function Footer() {
             </a>
             <a
               href="#terms"
-              className="text-[#9D83F7] hover:text-[#BAA6F9] transition-colors"
+              className="text-[#00B4FF] hover:text-[#FF1493] transition-colors"
             >
               Terms of Service
             </a>
             <a
               href="#privacy"
-              className="text-[#9D83F7] hover:text-[#BAA6F9] transition-colors"
+              className="text-[#00B4FF] hover:text-[#FF1493] transition-colors"
             >
               Privacy Policy
             </a>

@@ -15,9 +15,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "creative milkshake | We Build Creative Systems That Drive Profitable Growth",
+  title: "GoCreative | We Build Creative Systems That Drive Profitable Growth",
   description:
-    "Lower your CPA with direct response ads. From research to production, media buying to optimization, we build complete systems that scale ad spend profitably.",
+    "GoCreative main colors are vibrant, modern, and tech-inspired, reflecting creativity, innovation, and trust. We build complete data-driven creative and paid media systems that scale ad spend profitably.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#FAF8F3] text-[#111827] selection:bg-[#6236D4] selection:text-white">
+      <body className="min-h-full flex flex-col font-sans bg-[#F3F0FF] text-[#0A1F44] selection:bg-[#FF1493] selection:text-white">
         {children}
       </body>
     </html>

@@ -11,84 +11,69 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="w-full pt-4 pb-2 px-4 sm:px-6 lg:px-8 flex justify-center sticky top-2 z-40"
     >
-      <nav className="w-full max-w-[1260px] bg-[#6035D0] text-white rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-xl shadow-[#6035D0]/20 border border-white/10 transition-all">
+      <nav className="w-full max-w-[1280px] bg-[#0A1F44]/90 backdrop-blur-xl text-white rounded-full px-5 sm:px-7 py-3 flex items-center justify-between shadow-[0_15px_40px_-10px_rgba(75,0,181,0.45)] border border-white/20 transition-all">
         {/* Left Logo */}
         <motion.a
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           href="#"
           className="flex items-center gap-3 group"
         >
-          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#6035D0] shadow-sm group-hover:rotate-6 transition-transform">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.5 4H16.5C17.0523 4 17.5 4.44772 17.5 5V9C17.5 12.0376 15.0376 14.5 12 14.5C8.96243 14.5 6.5 12.0376 6.5 9V5C6.5 4.44772 6.94772 4 7.5 4Z"
-                fill="currentColor"
-              />
-              <path
-                d="M11 16.5H13V19H15.5C16.0523 19 16.5 19.4477 16.5 20C16.5 20.5523 16.0523 21 15.5 21H8.5C7.94772 21 7.5 20.5523 7.5 20C7.5 19.4477 7.94772 19 8.5 19H11V16.5Z"
-                fill="currentColor"
-              />
-              {/* Straw or bubbles */}
-              <path
-                d="M12 1.5L14.5 4H10L12 1.5Z"
-                fill="currentColor"
-              />
-              <circle cx="12" cy="9" r="1.5" fill="white" />
-            </svg>
+          <div className="flex items-center justify-center bg-white/90 p-1 rounded-full shadow-md group-hover:rotate-6 transition-transform">
+            <img
+              src="/logo.png"
+              alt="GoCreative Logo"
+              className="h-8 sm:h-9 w-auto object-contain"
+            />
           </div>
-          <span className="font-extrabold text-lg sm:text-xl tracking-[-0.03em] lowercase">
-            creative milkshake
-          </span>
+          <div className="flex items-center gap-1 font-black text-xl sm:text-2xl tracking-[-0.03em] uppercase">
+            <span className="text-white">GO</span>
+            <span className="bg-gradient-to-r from-[#FF1493] via-[#00B4FF] to-[#F3F0FF] bg-clip-text text-transparent">CREATIVE</span>
+          </div>
         </motion.a>
 
         {/* Center Nav Links */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-8 text-[11px] font-bold uppercase tracking-[0.12em] text-white/95">
+        <div className="hidden lg:flex items-center gap-7 xl:gap-9 text-xs font-extrabold uppercase tracking-[0.14em] text-white/90">
           <motion.a
-            whileHover={{ y: -1 }}
+            whileHover={{ y: -1.5, color: "#00B4FF" }}
             href="#services"
-            className="hover:text-white hover:opacity-100 opacity-90 transition-opacity"
+            className="hover:opacity-100 transition-colors"
           >
             SERVICES
           </motion.a>
           <motion.a
-            whileHover={{ y: -1 }}
+            whileHover={{ y: -1.5, color: "#FF1493" }}
             href="#industries"
-            className="hover:text-white hover:opacity-100 opacity-90 transition-opacity"
+            className="hover:opacity-100 transition-colors"
           >
             INDUSTRIES
           </motion.a>
           <motion.a
-            whileHover={{ y: -1 }}
+            whileHover={{ y: -1.5, color: "#00B4FF" }}
             href="#our-work"
-            className="hover:text-white hover:opacity-100 opacity-90 transition-opacity"
+            className="hover:opacity-100 transition-colors"
           >
             OUR WORK
           </motion.a>
           <motion.a
-            whileHover={{ y: -1 }}
+            whileHover={{ y: -1.5, color: "#FF1493" }}
             href="#apply"
-            className="hover:text-white hover:opacity-100 opacity-90 transition-opacity"
+            className="hover:opacity-100 transition-colors"
           >
-            APPLY AS A CREATOR
+            CREATOR SYSTEM
           </motion.a>
         </div>
 
         {/* Right CTA Button */}
         <div className="flex items-center gap-3">
           <motion.a
-            whileHover={{ scale: 1.04 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255,20,147,0.6)" }}
             whileTap={{ scale: 0.97 }}
             href="#book"
-            className="bg-white text-[#6035D0] hover:bg-[#F3F0FF] font-extrabold text-[11px] sm:text-xs uppercase tracking-wider px-5 sm:px-6 py-2.5 rounded-full shadow-sm transition-all duration-200"
+            className="gocreative-gradient-bg text-white font-extrabold text-xs uppercase tracking-wider px-6 sm:px-7 py-3 rounded-full shadow-lg border border-white/25 transition-all duration-300 relative overflow-hidden group"
           >
-            BOOK A CALL
+            <span className="relative z-10">BOOK A STRATEGY CALL</span>
+            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </motion.a>
         </div>
       </nav>

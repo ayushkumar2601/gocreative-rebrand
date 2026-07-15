@@ -2,8 +2,13 @@
 
 @layer base {
   :root {
-    --background: #FAF8F3;
-    --foreground: #111827;
+    --background: #F3F0FF;
+    --foreground: #0A1F44;
+    --primary-pink: #FF1493;
+    --primary-purple: #4B00B5;
+    --primary-blue: #00B4FF;
+    --deep-navy: #0A1F44;
+    --light-lavender: #F3F0FF;
   }
 }
 
@@ -13,15 +18,29 @@
   --font-sans: var(--font-outfit), var(--font-jakarta), sans-serif;
 }
 
-/* Precise grid background with dotted intersection feel like Fieldtrip / Creative Milkshake */
+/* Precise tech-inspired grid background with subtle purple/blue intersection feel for GoCreative */
 .bg-grid-pattern {
-  background-color: #FAF8F3;
+  background-color: #F3F0FF;
   background-image: 
-    radial-gradient(circle at 1px 1px, #D1C9B8 1px, transparent 0),
-    linear-gradient(to right, rgba(230, 224, 212, 0.45) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(230, 224, 212, 0.45) 1px, transparent 1px);
+    radial-gradient(circle at 1px 1px, rgba(75, 0, 181, 0.15) 1px, transparent 0),
+    linear-gradient(to right, rgba(75, 0, 181, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 180, 255, 0.05) 1px, transparent 1px);
   background-size: 32px 32px, 32px 32px, 32px 32px;
   background-position: 0 0, 0 0, 0 0;
+}
+
+.gocreative-gradient-text {
+  background: linear-gradient(135deg, #FF1493 0%, #4B00B5 50%, #00B4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gocreative-gradient-bg {
+  background: linear-gradient(135deg, #FF1493 0%, #4B00B5 50%, #00B4FF 100%);
+}
+
+.gocreative-gradient-border {
+  border-image: linear-gradient(135deg, #FF1493 0%, #4B00B5 50%, #00B4FF 100%) 1;
 }
 
 @keyframes float-slow {
@@ -74,12 +93,53 @@
 
 .animate-marquee {
   display: flex;
-  width: 200%;
-  animation: marquee 25s linear infinite;
+  width: max-content;
+  animation: marquee 28s linear infinite;
 }
 
-.animate-marquee:hover {
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-slow:hover {
   animation-play-state: paused;
+}
+
+/* Circuit laser pulse stick flow animations */
+@keyframes circuit-flow {
+  0% {
+    stroke-dashoffset: 240;
+  }
+  100% {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes circuit-flow-reverse {
+  0% {
+    stroke-dashoffset: -240;
+  }
+  100% {
+    stroke-dashoffset: 240;
+  }
+}
+
+.animate-circuit-stick {
+  stroke-dasharray: 60 180;
+  animation: circuit-flow 2.2s linear infinite;
+}
+
+.animate-circuit-stick-slow {
+  stroke-dasharray: 80 220;
+  animation: circuit-flow 3s linear infinite;
+}
+
+.animate-circuit-stick-reverse {
+  stroke-dasharray: 60 180;
+  animation: circuit-flow-reverse 2.5s linear infinite;
 }
 
 html {
@@ -87,8 +147,8 @@ html {
 }
 
 ::selection {
-  background: #D4F252;
-  color: #111827;
+  background: #FF1493;
+  color: #FFFFFF;
 }
 
 @keyframes shimmer {

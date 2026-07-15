@@ -46,10 +46,10 @@ export default function HeroVisual() {
       {/* FLOATING DECORATIVE DOTS & PLATFORM CIRCLES */}
       {/* ========================================================= */}
 
-      {/* Top Meta Icon inside lime circle */}
+      {/* Top Meta Icon inside electric blue circle */}
       <div className="absolute top-[8%] left-[45%] sm:left-[48%] z-20 flex items-center gap-2 animate-float-slow">
-        <div className="w-4 h-4 rounded-full bg-[#D4F252] shadow-sm" />
-        <div className="w-10 h-10 rounded-full bg-[#EDE8FC] border-2 border-[#D4F252] flex items-center justify-center text-[#6236D4] shadow-md">
+        <div className="w-4 h-4 rounded-full bg-[#00B4FF] shadow-[0_0_12px_#00B4FF]" />
+        <div className="w-10 h-10 rounded-full bg-[#0A1F44] border-2 border-[#00B4FF] flex items-center justify-center text-white shadow-xl shadow-[#00B4FF]/30">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -58,15 +58,15 @@ export default function HeroVisual() {
           >
             <path
               d="M18.8 8C17.3 8 16 8.7 14.8 10.1C13.5 11.8 12.4 13.8 11.1 13.8C9.8 13.8 8.7 11.8 7.4 10.1C6.2 8.7 4.9 8 3.4 8C1.1 8 -0.7 9.8 -0.7 12.2C-0.7 14.6 1.1 16.4 3.4 16.4C4.9 16.4 6.2 15.7 7.4 14.3C8.7 12.6 9.8 10.6 11.1 10.6C12.4 10.6 13.5 12.6 14.8 14.3C16 15.7 17.3 16.4 18.8 16.4C21.1 16.4 22.9 14.6 22.9 12.2C22.9 9.8 21.1 8 18.8 8Z"
-              fill="#6236D4"
+              fill="#00B4FF"
             />
           </svg>
         </div>
       </div>
 
-      {/* Left YouTube Icon inside light lavender circle */}
+      {/* Left YouTube Icon inside glowing purple circle */}
       <div className="absolute left-[1%] sm:left-[4%] bottom-[32%] z-20 animate-float-medium">
-        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#E9E3FD] border border-purple-200 flex items-center justify-center text-[#6236D4] shadow-lg">
+        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0A1F44] border-2 border-[#FF1493] flex items-center justify-center text-[#FF1493] shadow-xl shadow-[#FF1493]/25">
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -77,9 +77,9 @@ export default function HeroVisual() {
         </div>
       </div>
 
-      {/* Bottom-right TikTok Icon inside light lavender circle */}
+      {/* Bottom-right TikTok Icon inside glowing gradient circle */}
       <div className="absolute right-[6%] sm:right-[10%] bottom-[12%] z-20 animate-float-slow">
-        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#E9E3FD] border border-purple-200 flex items-center justify-center text-[#6236D4] shadow-lg">
+        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0A1F44] border-2 border-[#00B4FF] flex items-center justify-center text-[#00B4FF] shadow-xl shadow-[#00B4FF]/25">
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -90,9 +90,9 @@ export default function HeroVisual() {
         </div>
       </div>
 
-      {/* Decorative Lime Yellow Circles */}
-      <div className="absolute bottom-[18%] left-[45%] w-5 h-5 rounded-full bg-[#D4F252] shadow-sm z-10" />
-      <div className="absolute right-[2%] bottom-[28%] w-4 h-4 rounded-full bg-[#D4F252] shadow-sm z-10" />
+      {/* Decorative Vibrant Pink & Electric Blue Circles */}
+      <div className="absolute bottom-[18%] left-[45%] w-5 h-5 rounded-full bg-[#FF1493] shadow-[0_0_15px_#FF1493] z-10" />
+      <div className="absolute right-[2%] bottom-[28%] w-4 h-4 rounded-full bg-[#00B4FF] shadow-[0_0_15px_#00B4FF] z-10" />
 
       {/* ========================================================= */}
       {/* FLOATING CARD 1: LEFT REELS/CREATOR CARD */}
@@ -104,7 +104,7 @@ export default function HeroVisual() {
           <div className="absolute inset-0 opacity-90 flex items-center justify-center">
             <div className="w-full h-full relative flex flex-col items-center justify-center">
               {/* Stylized Creator Portrait */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-amber-700 via-amber-600 to-amber-400 border-2 border-white/20 shadow-md mb-2 relative overflow-hidden flex items-center justify-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#FF1493] via-[#4B00B5] to-[#00B4FF] border-2 border-white/30 shadow-md mb-2 relative overflow-hidden flex items-center justify-center">
                 <div className="w-full h-full bg-[#8D6B5A] relative">
                   <div className="absolute top-3 left-3 right-3 h-8 bg-[#4A3228] rounded-t-full" />
                   <div className="absolute bottom-4 left-5 w-2 h-2 rounded-full bg-white/80" />
@@ -116,21 +116,21 @@ export default function HeroVisual() {
 
           {/* Top Live / Badge */}
           <div className="relative z-10 flex justify-between items-center">
-            <span className="bg-black/40 backdrop-blur-sm text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded text-white/90">
-              REELS AD
+            <span className="gocreative-gradient-bg backdrop-blur-sm text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded text-white shadow">
+              GO CREATIVE AD
             </span>
           </div>
 
           {/* Bottom Caption & Poker Badge */}
           <div className="relative z-10 flex flex-col items-center gap-1.5 pb-1">
-            <div className="bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-lg text-center shadow">
+            <div className="bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-center shadow border border-white/10">
               <p className="text-[10px] sm:text-[11px] font-semibold leading-tight text-white">
-                I love the sounds of poker
+                Data-backed creative scaling
               </p>
             </div>
             {/* Poker chip emblem */}
-            <div className="w-6 h-6 rounded-full bg-blue-600 border border-white flex items-center justify-center text-[7px] font-bold uppercase shadow">
-              POKER
+            <div className="w-6 h-6 rounded-full bg-[#00B4FF] border border-white flex items-center justify-center text-[6.5px] font-bold uppercase shadow">
+              ROAS
             </div>
           </div>
         </div>
@@ -139,17 +139,17 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* FLOATING PILL BADGE 1: 30% DROP IN CPAs */}
       {/* ========================================================= */}
-      <div className="absolute left-[10%] sm:left-[12%] top-[26%] z-30 bg-white border border-purple-100 shadow-lg rounded-full px-3.5 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-extrabold tracking-tight">
-        <span className="text-[#6236D4]">30%</span>
-        <span className="text-[#4B5563] font-bold">DROP IN CPAs</span>
+      <div className="absolute left-[10%] sm:left-[12%] top-[26%] z-30 bg-white/95 backdrop-blur-md border border-[#FF1493]/30 shadow-xl shadow-black/10 rounded-full px-4 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-black tracking-tight transform hover:scale-105 transition-transform">
+        <span className="gocreative-gradient-text font-black">30%</span>
+        <span className="text-[#0A1F44] font-extrabold">DROP IN CPAs</span>
       </div>
 
       {/* ========================================================= */}
       {/* CENTER SMARTPHONE MOCKUP (MAIN CREATIVE SHOWCASE) */}
       {/* ========================================================= */}
-      <div className="relative z-20 w-[235px] sm:w-[265px] h-[485px] sm:h-[545px] bg-white rounded-[38px] sm:rounded-[44px] p-2 sm:p-2.5 shadow-[0_25px_60px_-15px_rgba(98,54,212,0.22)] border border-purple-100 flex flex-col justify-between">
+      <div className="relative z-20 w-[235px] sm:w-[265px] h-[485px] sm:h-[545px] bg-white rounded-[38px] sm:rounded-[44px] p-2 sm:p-2.5 shadow-[0_25px_60px_-15px_rgba(75,0,181,0.3)] border border-[#4B00B5]/20 flex flex-col justify-between">
         {/* Phone Screen Container */}
-        <div className="relative w-full h-full bg-[#1A2518] rounded-[30px] sm:rounded-[36px] overflow-hidden flex flex-col justify-between">
+        <div className="relative w-full h-full bg-[#0A1F44] rounded-[30px] sm:rounded-[36px] overflow-hidden flex flex-col justify-between">
           {/* Top Notch / Status Bar */}
           <div className="relative z-30 w-full pt-3 px-6 flex items-center justify-between text-white text-[10px] font-semibold">
             <span>9:41</span>
@@ -160,13 +160,12 @@ export default function HeroVisual() {
             </div>
           </div>
 
-          {/* Main Video Background (Creator in green top) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#31482E] via-[#3E5C39] to-[#1E2E1B] flex flex-col items-center justify-center">
+          {/* Main Video Background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141E38] via-[#2D164E] to-[#0A1F44] flex flex-col items-center justify-center">
             {/* Simulated vibrant video visual */}
             <div className="absolute inset-0 opacity-90">
-              {/* Creator portrait styling */}
               <div className="w-full h-full relative flex flex-col items-center justify-center">
-                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-[#69E076] to-[#4CE861] border-4 border-white/20 shadow-2xl relative overflow-hidden flex items-center justify-center">
+                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-[#FF1493] via-[#4B00B5] to-[#00B4FF] border-4 border-white/20 shadow-2xl relative overflow-hidden flex items-center justify-center">
                   <div className="w-full h-full bg-[#A37B62] relative flex flex-col items-center justify-center">
                     <div className="w-16 h-8 bg-[#1F1E1D] rounded-full mb-3" />
                     <div className="flex gap-4">
@@ -183,9 +182,9 @@ export default function HeroVisual() {
 
           {/* Floating Purple Crosshair Target Stamp (Top Left Inside Screen) */}
           <div className="absolute top-10 left-3 z-30 transform -rotate-12 scale-90 sm:scale-100">
-            <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#EDE8FC]/95 border-2 border-[#6236D4] flex items-center justify-center relative shadow-lg">
+            <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#0A1F44]/95 border-2 border-[#FF1493] flex items-center justify-center relative shadow-xl">
               {/* Rotating outer circle text */}
-              <div className="absolute inset-1 rounded-full border border-dashed border-[#6236D4]/40 animate-spin-slow" />
+              <div className="absolute inset-1 rounded-full border border-dashed border-[#00B4FF]/40 animate-spin-slow" />
               <svg
                 viewBox="0 0 100 100"
                 className="absolute inset-0 w-full h-full animate-spin-slow"
@@ -198,16 +197,16 @@ export default function HeroVisual() {
                 <text
                   fontSize="8.5"
                   fontWeight="800"
-                  fill="#6236D4"
+                  fill="#00B4FF"
                   letterSpacing="1.2"
                 >
                   <textPath href="#circlePath">
-                    DATA BACKED CREATIVE PRODUCTION •
+                    GOCREATIVE AI GROWTH ENGINE •
                   </textPath>
                 </text>
               </svg>
               {/* Center Crosshair Icon */}
-              <div className="w-8 h-8 rounded-full bg-[#6236D4] text-white flex items-center justify-center shadow">
+              <div className="w-8 h-8 rounded-full gocreative-gradient-bg text-white flex items-center justify-center shadow">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -228,86 +227,63 @@ export default function HeroVisual() {
           {/* Subtitle Sticker Overlay */}
           <div className="relative z-30 mb-14 px-4 flex flex-col items-center gap-1.5 text-center">
             <div className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl shadow-lg border border-black/5">
-              <p className="text-[11px] sm:text-xs font-black uppercase tracking-tight text-[#111827] leading-tight">
-                HER SECRET TO STAYING FIT
+              <p className="text-[11px] sm:text-xs font-black uppercase tracking-tight text-[#0A1F44] leading-tight">
+                THE SECRET TO PROVEN ROI
                 <br />
-                IS NOT WHAT I EXPECTED...
+                IS HYBRID CREATIVE...
               </p>
             </div>
-            <div className="bg-white/95 backdrop-blur-md px-3 py-0.5 rounded-lg shadow-md">
-              <span className="text-xs font-black uppercase tracking-wide text-[#111827]">
-                HEY
+            <div className="gocreative-gradient-bg px-3 py-0.5 rounded-lg shadow-md">
+              <span className="text-xs font-black uppercase tracking-wide text-white">
+                WOW
               </span>
             </div>
           </div>
 
           {/* Phone Bottom Navigation Bar */}
-          <div className="relative z-30 w-full pb-3 pt-2 px-6 bg-black/40 backdrop-blur-md flex items-center justify-between text-white">
-            {/* Home */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
+          <div className="relative z-30 w-full pb-3 pt-2 px-6 bg-black/50 backdrop-blur-md flex items-center justify-between text-white">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
               <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" />
             </svg>
-            {/* Search */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              className="w-5 h-5"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5">
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21L16.65 16.65" />
             </svg>
-            {/* Plus / Create */}
-            <div className="w-8 h-5 rounded-md bg-gradient-to-r from-cyan-400 to-pink-500 flex items-center justify-center">
+            <div className="w-8 h-5 rounded-md gocreative-gradient-bg flex items-center justify-center shadow">
               <div className="w-6 h-5 bg-white text-black rounded-[4px] flex items-center justify-center font-bold text-xs">
                 +
               </div>
             </div>
-            {/* Inbox */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="w-5 h-5"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
               <path d="M21 15A2 2 0 0 1 19 17H7L3 21V5A2 2 0 0 1 5 3H19A2 2 0 0 1 21 5V15Z" />
             </svg>
-            {/* Profile */}
             <div className="w-5 h-5 rounded-full bg-white/30 border border-white" />
           </div>
         </div>
       </div>
 
       {/* ========================================================= */}
-      {/* FLOATING PILL BADGE 2: 20% CRV BOOST */}
+      {/* FLOATING PILL BADGE 2: 20% CVR BOOST */}
       {/* ========================================================= */}
-      <div className="absolute right-[12%] sm:right-[15%] top-[19%] z-30 bg-white border border-purple-100 shadow-lg rounded-full px-3.5 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-extrabold tracking-tight">
-        <span className="text-[#6236D4]">20%</span>
-        <span className="text-[#4B5563] font-bold">CRV BOOST</span>
+      <div className="absolute right-[12%] sm:right-[15%] top-[19%] z-30 bg-white/95 backdrop-blur-md border border-[#00B4FF]/30 shadow-xl shadow-black/10 rounded-full px-4 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-black tracking-tight transform hover:scale-105 transition-transform">
+        <span className="gocreative-gradient-text font-black">20%</span>
+        <span className="text-[#0A1F44] font-extrabold">CVR BOOST</span>
       </div>
 
       {/* ========================================================= */}
       {/* FLOATING CARD 2: TOP-RIGHT PRODUCTION STUDIO CARD */}
       {/* ========================================================= */}
-      <div className="absolute right-[2%] sm:right-[4%] top-[14%] w-[125px] sm:w-[145px] h-[180px] sm:h-[210px] bg-[#2E2C33] rounded-2xl shadow-xl overflow-hidden border-2 border-white/80 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300">
-        <div className="relative w-full h-full bg-gradient-to-b from-[#3E3845] to-[#1F1B24] p-2 flex flex-col justify-between text-white">
-          {/* Production Studio Visual Mockup */}
+      <div className="absolute right-[2%] sm:right-[4%] top-[14%] w-[125px] sm:w-[145px] h-[180px] sm:h-[210px] bg-[#0A1F44] rounded-2xl shadow-xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300">
+        <div className="relative w-full h-full bg-gradient-to-b from-[#1E2E5C] to-[#0A1F44] p-2 flex flex-col justify-between text-white">
           <div className="absolute inset-0 flex items-center justify-center opacity-85">
-            {/* Studio lighting & camera illustration */}
             <div className="relative w-full h-full flex items-center justify-center">
               <div className="w-14 h-14 rounded-full border-4 border-white/60 flex items-center justify-center shadow-lg">
-                <div className="w-6 h-6 rounded-full bg-amber-400 shadow-inner" />
+                <div className="w-6 h-6 rounded-full bg-[#00B4FF] shadow-[0_0_10px_#00B4FF]" />
               </div>
             </div>
           </div>
           <div className="relative z-10">
-            <span className="bg-black/50 text-[8px] font-bold px-1.5 py-0.5 rounded text-white/90 uppercase">
+            <span className="bg-black/60 text-[8px] font-bold px-1.5 py-0.5 rounded text-[#00B4FF] uppercase border border-[#00B4FF]/30">
               SHOOT DAY
             </span>
           </div>
@@ -320,9 +296,9 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* FLOATING PILL BADGE 3: 3X AVERAGE ROI */}
       {/* ========================================================= */}
-      <div className="absolute right-[10%] sm:right-[13%] top-[51%] z-30 bg-white border border-purple-100 shadow-lg rounded-full px-3.5 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-extrabold tracking-tight">
-        <span className="text-[#6236D4]">3X</span>
-        <span className="text-[#4B5563] font-bold">AVERAGE ROI</span>
+      <div className="absolute right-[10%] sm:right-[13%] top-[51%] z-30 bg-white/95 backdrop-blur-md border border-[#4B00B5]/30 shadow-xl shadow-black/10 rounded-full px-4 py-1.5 flex items-center gap-1.5 text-xs sm:text-[13px] font-black tracking-tight transform hover:scale-105 transition-transform">
+        <span className="gocreative-gradient-text font-black">3X</span>
+        <span className="text-[#0A1F44] font-extrabold">AVERAGE ROI</span>
       </div>
 
       {/* ========================================================= */}

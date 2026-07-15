@@ -1,108 +1,113 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function BottomCTASection() {
   return (
-    <section className="w-full bg-[#FAF8F3] py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden select-none">
-      <div className="max-w-[860px] mx-auto text-center relative z-10">
-        {/* Decorative Top-Left Clapperboard Icon */}
-        <div className="absolute -top-6 left-[10%] sm:left-[15%] text-[#8D6CEB] transform -rotate-12 animate-float-slow hidden sm:block">
-          <svg
-            viewBox="0 0 32 32"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            className="w-10 h-10"
-          >
-            <path d="M4 10h24v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10Z" />
-            <path d="M4 10l5-6h6l-5 6" />
-            <path d="M15 10l5-6h6l-5 6" />
-          </svg>
-        </div>
+    <section className="w-full bg-[#060B18] py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden select-none border-t border-white/15">
+      {/* Ambient Glowing Orbs */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF1493]/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#00B4FF]/15 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-[900px] mx-auto text-center relative z-10">
+        {/* Decorative Top-Left Sparkle */}
+        <motion.div
+          animate={{ y: [0, -12, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-6 left-[8%] sm:left-[12%] text-[#FF1493] hidden sm:block"
+        >
+          <div className="w-12 h-12 rounded-2xl bg-[#FF1493]/20 border border-[#FF1493]/40 flex items-center justify-center shadow-[0_0_25px_rgba(255,20,147,0.5)] text-xl">
+            🚀
+          </div>
+        </motion.div>
 
         {/* Decorative Top-Right Sparkles */}
-        <div className="absolute -top-4 right-[12%] sm:right-[18%] text-[#6035D0] animate-float-medium">
-          <svg
-            viewBox="0 0 32 32"
-            fill="currentColor"
-            className="w-8 h-8"
-          >
-            <path d="M16 2l3.5 9.5L29 15l-9.5 3.5L16 28l-3.5-9.5L3 15l9.5-3.5L16 2Z" />
-          </svg>
-        </div>
+        <motion.div
+          animate={{ y: [0, 12, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-4 right-[10%] sm:right-[15%] text-[#00B4FF]"
+        >
+          <div className="w-10 h-10 rounded-2xl bg-[#00B4FF]/20 border border-[#00B4FF]/40 flex items-center justify-center shadow-[0_0_25px_rgba(0,180,255,0.5)] text-lg">
+            ⚡
+          </div>
+        </motion.div>
 
         {/* Decorative Bottom-Left Sparkle */}
-        <div className="absolute bottom-4 left-[15%] sm:left-[22%] text-[#6035D0] animate-float-slow">
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-6 h-6"
-          >
-            <path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2Z" />
-          </svg>
-        </div>
+        <motion.div
+          animate={{ y: [0, -10, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-6 left-[12%] sm:left-[18%] text-[#00B4FF]"
+        >
+          <div className="w-9 h-9 rounded-full bg-[#4B00B5]/40 border border-white/30 flex items-center justify-center text-sm shadow">
+            ✨
+          </div>
+        </motion.div>
 
-        {/* Decorative Bottom-Right Camera Icon */}
-        <div className="absolute bottom-2 right-[14%] sm:right-[18%] text-[#8D6CEB] transform rotate-12 animate-float-medium hidden sm:block">
-          <svg
-            viewBox="0 0 32 32"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            className="w-9 h-9"
-          >
-            <rect x="4" y="9" width="24" height="18" rx="3" />
-            <circle cx="16" cy="18" r="5" />
-            <path d="M10 9l2-4h8l2 4" />
-          </svg>
-        </div>
+        {/* Decorative Bottom-Right Icon */}
+        <motion.div
+          animate={{ y: [0, 10, 0], rotate: [12, 22, 12] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-4 right-[12%] sm:right-[16%] hidden sm:block"
+        >
+          <div className="w-12 h-12 rounded-2xl bg-[#FF1493]/20 border border-[#FF1493]/40 flex items-center justify-center shadow-[0_0_25px_rgba(255,20,147,0.5)] text-xl">
+            📈
+          </div>
+        </motion.div>
 
         {/* Main Headline */}
-        <div className="relative inline-block">
-          <h2 className="text-[#6035D0] font-black text-3xl sm:text-5xl lg:text-[54px] leading-[1.08] tracking-tight">
-            Lower your CAC
-            <br />
-            with data-driven ads
-          </h2>
-          {/* Hand-drawn underline graphic */}
-          <div className="flex justify-center mt-1">
-            <svg
-              width="260"
-              height="12"
-              viewBox="0 0 260 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-48 sm:w-64"
-            >
-              <path
-                d="M3 8.5C64 3.5 186 1.5 257 6.5"
-                stroke="#C3B2FA"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative inline-block"
+        >
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#FF1493] mb-5 border border-[#FF1493]/30">
+            <span>SCALE PROFITABLY WITH AI</span>
           </div>
-        </div>
+          <h2 className="text-white font-black text-3xl sm:text-5xl lg:text-[60px] leading-[1.08] tracking-tight uppercase">
+            LOWER YOUR CAC WITH <br />
+            <span className="gocreative-gradient-text">AI PERFORMANCE ADS</span>
+          </h2>
+          {/* Glowing underline graphic */}
+          <div className="flex justify-center mt-3">
+            <div className="w-48 sm:w-72 h-1.5 gocreative-gradient-bg rounded-full shadow-[0_0_20px_rgba(255,20,147,0.8)]" />
+          </div>
+        </motion.div>
 
         {/* Subtitle */}
-        <p className="text-[#111827] font-black text-base sm:text-lg lg:text-xl mt-5 tracking-tight">
-          Build a growth creative system that scales your revenue
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-white/80 font-bold text-base sm:text-lg lg:text-xl mt-6 tracking-tight max-w-xl mx-auto"
+        >
+          Build a high-velocity AI creative system that scales your revenue and outperforms competitors on Meta & TikTok.
+        </motion.p>
 
         {/* CTA Button */}
-        <div className="mt-8">
-          <a
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-10"
+        >
+          <motion.a
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
             href="#contact"
-            className="inline-flex items-center gap-2.5 bg-[#1D1D1B] hover:bg-[#2B2B28] text-white rounded-full px-8 py-4 text-sm sm:text-base font-semibold shadow-xl shadow-black/15 transition-all duration-200 group"
+            className="inline-flex items-center gap-3.5 gocreative-gradient-bg text-white rounded-full px-10 py-5 text-base sm:text-lg font-black shadow-[0_0_40px_rgba(255,20,147,0.6)] transition-all duration-200 group border border-white/20 cursor-pointer"
           >
-            <span className="text-[#D4F252] font-bold">Let&apos;s Do This</span>
+            <span>START YOUR GROWTH SYSTEM</span>
             <svg
-              className="w-4 h-4 text-[#D4F252] transform group-hover:translate-x-1 transition-transform"
+              className="w-5 h-5 text-white transform group-hover:translate-x-1 transition-transform"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth="2.5"
+              strokeWidth="3"
             >
               <path
                 strokeLinecap="round"
@@ -110,8 +115,8 @@ export default function BottomCTASection() {
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </svg>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,139 +1,204 @@
 import React from "react";
 
 export default function ClientTicker() {
-  return (
-    <section className="w-full bg-[#181818] py-8 sm:py-10 border-t border-white/10 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col gap-6 sm:gap-8">
-        {/* Row 1 Logos */}
-        <div className="flex flex-wrap items-center justify-around gap-x-8 gap-y-6 sm:gap-x-12 opacity-80 hover:opacity-100 transition-opacity">
-          {/* nectar */}
-          <div className="flex items-center gap-1.5 text-white/80 font-bold text-lg sm:text-xl tracking-tight lowercase">
-            <span>nectar</span>
-            <div className="w-2.5 h-2.5 bg-white/80 rounded-xs transform rotate-45" />
-          </div>
+  const row1Logos = [
+    { name: "nectar", type: "nectar" },
+    { name: "UBISOFT", type: "ubisoft" },
+    { name: "BEN&JERRY'S", type: "benjerry" },
+    { name: "COACH", type: "coach" },
+    { name: "SkinnyFit", type: "skinnyfit" },
+    { name: "Deutsche Bank", type: "deutsche" },
+    { name: "fiverr.", type: "fiverr" },
+    { name: "elementor", type: "elementor" },
+    { name: "VSHRED", type: "vshred" },
+    { name: "IL MAKIAGE", type: "ilmakiage" },
+  ];
 
-          {/* UBISOFT */}
-          <div className="flex items-center gap-1.5 text-white/80 font-black text-lg sm:text-xl tracking-wider uppercase">
+  const row2Logos = [
+    { name: "loop", type: "loop" },
+    { name: "PLEO", type: "pleo" },
+    { name: "FUTURE PLAY", type: "futureplay" },
+    { name: "NAVAN", type: "navan" },
+    { name: "MIXTILES", type: "mixtiles" },
+    { name: "Flying Tiger", type: "flyingtiger" },
+    { name: "Allianz", type: "allianz" },
+    { name: "amazon", type: "amazon" },
+    { name: "Johnson&Johnson", type: "johnson" },
+    { name: "TRUE CLASSIC", type: "trueclassic" },
+  ];
+
+  // Duplicate arrays for seamless 100% infinite marquee loops
+  const duplicatedRow1 = [...row1Logos, ...row1Logos, ...row1Logos];
+  const duplicatedRow2 = [...row2Logos, ...row2Logos, ...row2Logos];
+
+  const renderLogo = (item: { name: string; type: string }, idx: number) => {
+    switch (item.type) {
+      case "nectar":
+        return (
+          <div key={idx} className="flex items-center gap-1.5 text-white/85 font-bold text-xl sm:text-2xl tracking-tight lowercase shrink-0">
+            <span>nectar</span>
+            <div className="w-2.5 h-2.5 bg-[#00B4FF] rounded-xs transform rotate-45 shadow-[0_0_8px_rgba(0,180,255,0.6)]" />
+          </div>
+        );
+      case "ubisoft":
+        return (
+          <div key={idx} className="flex items-center gap-1.5 text-white/85 font-black text-xl sm:text-2xl tracking-wider uppercase shrink-0">
             <span>UBISOFT</span>
           </div>
-
-          {/* BEN & JERRY'S */}
-          <div className="font-extrabold text-base sm:text-lg tracking-normal text-white/80 uppercase font-serif">
+        );
+      case "benjerry":
+        return (
+          <div key={idx} className="font-extrabold text-lg sm:text-xl tracking-normal text-white/85 uppercase font-serif shrink-0">
             BEN&JERRY&apos;S
           </div>
-
-          {/* COACH & ELEGANT emblem */}
-          <div className="w-9 h-9 rounded-full border border-white/70 flex items-center justify-center text-[8px] font-bold text-white/80 uppercase text-center leading-tight">
+        );
+      case "coach":
+        return (
+          <div key={idx} className="w-10 h-10 rounded-full border border-white/70 flex items-center justify-center text-[9px] font-bold text-white/85 uppercase text-center leading-tight shrink-0">
             COACH
           </div>
-
-          {/* SkinnyFit */}
-          <div className="flex items-center gap-1 font-bold text-lg sm:text-xl text-white/80 tracking-tight">
+        );
+      case "skinnyfit":
+        return (
+          <div key={idx} className="flex items-center gap-1 font-bold text-xl sm:text-2xl text-white/85 tracking-tight shrink-0">
             <span>SkinnyFit</span>
-            <span className="text-sm">♡</span>
+            <span className="text-base text-[#FF1493]">♡</span>
           </div>
-
-          {/* Deutsche Bank */}
-          <div className="flex items-center gap-2 font-semibold text-base sm:text-lg text-white/80">
+        );
+      case "deutsche":
+        return (
+          <div key={idx} className="flex items-center gap-2 font-semibold text-lg sm:text-xl text-white/85 shrink-0">
             <span>Deutsche Bank</span>
-            <div className="w-4 h-4 border border-white/80 flex items-center justify-center">
-              <div className="w-2.5 h-0.5 bg-white/80 transform -rotate-45" />
+            <div className="w-4 h-4 border border-[#00B4FF] flex items-center justify-center">
+              <div className="w-2.5 h-0.5 bg-[#00B4FF] transform -rotate-45" />
             </div>
           </div>
-
-          {/* fiverr. */}
-          <div className="font-black text-xl sm:text-2xl text-white/80 tracking-tighter lowercase">
-            fiverr<span className="text-green-500">.</span>
+        );
+      case "fiverr":
+        return (
+          <div key={idx} className="font-black text-2xl sm:text-3xl text-white/85 tracking-tighter lowercase shrink-0">
+            fiverr<span className="text-[#00B4FF]">.</span>
           </div>
-
-          {/* elementor */}
-          <div className="flex items-center gap-1.5 font-bold text-lg sm:text-xl text-white/80 lowercase">
-            <div className="w-4 h-4 rounded-full border-2 border-white/80 flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-white/80 rounded-full" />
+        );
+      case "elementor":
+        return (
+          <div key={idx} className="flex items-center gap-1.5 font-bold text-xl sm:text-2xl text-white/85 lowercase shrink-0">
+            <div className="w-4 h-4 rounded-full border-2 border-[#FF1493] flex items-center justify-center">
+              <div className="w-1.5 h-1.5 bg-[#FF1493] rounded-full" />
             </div>
             <span>elementor</span>
           </div>
-
-          {/* VSHRED */}
-          <div className="font-black text-lg sm:text-xl text-white/80 italic tracking-wider uppercase">
+        );
+      case "vshred":
+        return (
+          <div key={idx} className="font-black text-xl sm:text-2xl text-white/85 italic tracking-wider uppercase shrink-0">
             VSHRED
           </div>
-
-          {/* IL MAKIAGE */}
-          <div className="flex flex-col items-center leading-none text-white/80">
-            <span className="font-serif font-bold text-base sm:text-lg tracking-[0.18em] uppercase">
+        );
+      case "ilmakiage":
+        return (
+          <div key={idx} className="flex flex-col items-center leading-none text-white/85 shrink-0">
+            <span className="font-serif font-bold text-lg sm:text-xl tracking-[0.18em] uppercase">
               IL MAKIAGE
             </span>
-            <span className="text-[7px] tracking-[0.3em] uppercase opacity-70">
+            <span className="text-[8px] tracking-[0.3em] uppercase opacity-70">
               NEW YORK
             </span>
           </div>
-        </div>
-
-        {/* Row 2 Logos */}
-        <div className="flex flex-wrap items-center justify-around gap-x-8 gap-y-6 sm:gap-x-12 opacity-75 hover:opacity-100 transition-opacity">
-          {/* loop */}
-          <div className="font-bold text-xl sm:text-2xl text-white/80 tracking-tight lowercase">
+        );
+      case "loop":
+        return (
+          <div key={idx} className="font-bold text-2xl sm:text-3xl text-white/85 tracking-tight lowercase shrink-0">
             loop
           </div>
-
-          {/* PLEO */}
-          <div className="font-extrabold text-lg sm:text-xl text-white/80 tracking-widest uppercase">
+        );
+      case "pleo":
+        return (
+          <div key={idx} className="font-extrabold text-xl sm:text-2xl text-white/85 tracking-widest uppercase shrink-0">
             PLEO
           </div>
-
-          {/* FUTURE PLAY */}
-          <div className="w-8 h-8 rounded-full border border-white/70 flex items-center justify-center text-[7px] font-extrabold text-white/80 uppercase text-center leading-none">
+        );
+      case "futureplay":
+        return (
+          <div key={idx} className="w-9 h-9 rounded-full border border-white/70 flex items-center justify-center text-[7px] font-extrabold text-white/85 uppercase text-center leading-none shrink-0">
             FUTURE
             <br />
             PLAY
           </div>
-
-          {/* NAVAN */}
-          <div className="font-extrabold text-lg sm:text-xl text-white/80 tracking-[0.2em] uppercase">
+        );
+      case "navan":
+        return (
+          <div key={idx} className="font-extrabold text-xl sm:text-2xl text-white/85 tracking-[0.2em] uppercase shrink-0">
             nAvAn
           </div>
-
-          {/* MIXTILES */}
-          <div className="flex items-center gap-1.5 font-extrabold text-lg sm:text-xl text-white/80 tracking-wider uppercase">
+        );
+      case "mixtiles":
+        return (
+          <div key={idx} className="flex items-center gap-1.5 font-extrabold text-xl sm:text-2xl text-white/85 tracking-wider uppercase shrink-0">
             <div className="flex gap-0.5">
-              <div className="w-1.5 h-1.5 bg-white/80" />
-              <div className="w-1.5 h-1.5 bg-white/80" />
+              <div className="w-1.5 h-1.5 bg-[#00B4FF]" />
+              <div className="w-1.5 h-1.5 bg-[#FF1493]" />
             </div>
             <span>MIXTILES</span>
           </div>
-
-          {/* Flying Tiger */}
-          <div className="flex flex-col items-center leading-none text-white/80">
-            <span className="font-bold text-base sm:text-lg lowercase">
+        );
+      case "flyingtiger":
+        return (
+          <div key={idx} className="flex flex-col items-center leading-none text-white/85 shrink-0">
+            <span className="font-bold text-lg sm:text-xl lowercase">
               Flying Tiger
             </span>
-            <span className="text-[8px] opacity-70 lowercase">
+            <span className="text-[9px] opacity-70 lowercase">
               copenhagen
             </span>
           </div>
-
-          {/* Allianz */}
-          <div className="flex items-center gap-2 font-bold text-lg sm:text-xl text-white/80">
+        );
+      case "allianz":
+        return (
+          <div key={idx} className="flex items-center gap-2 font-bold text-xl sm:text-2xl text-white/85 shrink-0">
             <span>Allianz</span>
-            <div className="w-5 h-5 rounded-full border border-white/80 flex items-center justify-center text-[9px]">
+            <div className="w-5 h-5 rounded-full border border-[#00B4FF] flex items-center justify-center text-[9px] text-[#00B4FF]">
               |||
             </div>
           </div>
-
-          {/* amazon */}
-          <div className="font-bold text-xl sm:text-2xl text-white/80 tracking-tighter lowercase relative">
+        );
+      case "amazon":
+        return (
+          <div key={idx} className="font-bold text-2xl sm:text-3xl text-white/85 tracking-tighter lowercase shrink-0">
             amazon
           </div>
-
-          {/* Johnson & Johnson */}
-          <div className="font-serif italic font-bold text-lg sm:text-xl text-white/80 tracking-tight">
+        );
+      case "johnson":
+        return (
+          <div key={idx} className="font-serif italic font-bold text-xl sm:text-2xl text-white/85 tracking-tight shrink-0">
             Johnson&Johnson
           </div>
-
-          {/* TRUE CLASSIC */}
-          <div className="font-black text-base sm:text-lg text-white/80 tracking-widest uppercase">
+        );
+      case "trueclassic":
+        return (
+          <div key={idx} className="font-black text-lg sm:text-xl text-white/85 tracking-widest uppercase shrink-0">
             TRUE CLASSIC
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <section className="w-full bg-[#060B18] py-10 sm:py-12 border-y border-white/10 overflow-hidden select-none">
+      <div className="flex flex-col gap-8 sm:gap-10">
+        {/* Row 1: Flowing Right to Left (Line 1) */}
+        <div className="w-full overflow-hidden flex">
+          <div className="animate-marquee flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
+            {duplicatedRow1.map((logo, idx) => renderLogo(logo, idx))}
+          </div>
+        </div>
+
+        {/* Row 2: Flowing Right to Left (Line 2) */}
+        <div className="w-full overflow-hidden flex">
+          <div className="animate-marquee-slow flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
+            {duplicatedRow2.map((logo, idx) => renderLogo(logo, idx))}
           </div>
         </div>
       </div>

@@ -8,29 +8,29 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: "What packages do you offer?",
+      question: "How does your AI + Human hybrid creative process work?",
       answer:
-        "We offer comprehensive direct response creative packages tailored to your growth goals, including UGC creator bundles, hybrid studio + creator shoots, full-service paid social media management, and localization packages for global scaling.",
+        "We combine proprietary AI script writing and voice synthesis with seasoned native human creators. This allows us to produce high-converting ad variations 10x faster than traditional agencies while preserving genuine, authentic human connection.",
     },
     {
-      question: "Do you offer an ongoing subscription?",
+      question: "What direct response creative packages do you offer?",
       answer:
-        "Yes! We offer monthly creative testing retainers that consistently deliver a steady pipeline of high-converting ad variations, fresh creator concepts, and iterative data-backed variations to combat ad fatigue.",
+        "We offer comprehensive performance creative retainers, including UGC creator bundles, hybrid studio + creator shoots, AI localized global campaigns, and high-velocity testing packages engineered specifically for scaling brands.",
     },
     {
-      question: "Can you work with my existing content?",
+      question: "Can you re-engineer our existing content and raw footage?",
       answer:
-        "Absolutely. Our team excels at auditing your existing raw footage, brand assets, and historical creative to re-hook, re-edit, and re-engineer them into winning performance ad formats.",
+        "Yes! Our growth editors audit your historical creative and raw assets to re-hook, re-edit, and re-frame them using data-backed psychological hooks, lowering your CPA without needing fresh shoots.",
     },
     {
-      question: "Can I customize the content packages?",
+      question: "How quickly do we get new creative test batches?",
       answer:
-        "Yes, every brand operates at a different scale. We can customize the volume of UGC concepts, studio shoots, language localizations, and ad formats to align precisely with your monthly ad spend.",
+        "Our system operates at high velocity. Retainer clients receive fresh batches of modular ad concepts every single week, ensuring your media buyers always have winning creatives ready to deploy.",
     },
     {
-      question: "Can I send you the scripts for the video ads?",
+      question: "Do you handle global localization across multiple languages?",
       answer:
-        "Of course! You can provide your own scripts or collaborate with our seasoned direct-response copywriters who craft data-backed hooks and psychological angles designed specifically to lower CPA.",
+        "Absolutely. We localize your top-performing concepts into English, Spanish, German, French, Italian, Dutch, and Portuguese using native talent and AI voice cloning so you can scale globally instantly.",
     },
   ];
 
@@ -39,18 +39,25 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-[#6035D0] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 select-none">
-      <div className="max-w-[940px] mx-auto">
+    <section className="w-full bg-[#080D1A] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 select-none border-t border-white/10 relative overflow-hidden">
+      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-[#4B00B5]/15 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-[940px] mx-auto relative z-10">
         {/* Section Heading */}
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white font-black text-3xl sm:text-4xl lg:text-[42px] tracking-tight text-center mb-14 sm:mb-18"
+          className="text-center mb-14 sm:mb-18"
         >
-          Frequently Asked Questions
-        </motion.h2>
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#00B4FF] mb-3 border border-[#00B4FF]/30">
+            <span>CLEAR ANSWERS</span>
+          </div>
+          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[44px] tracking-tight uppercase">
+            FREQUENTLY ASKED <span className="gocreative-gradient-text">QUESTIONS</span>
+          </h2>
+        </motion.div>
 
         {/* FAQ Stack */}
         <div className="flex flex-col gap-4">
@@ -69,16 +76,26 @@ export default function FAQSection() {
                 }}
                 whileHover={{ scale: 1.01 }}
                 onClick={() => toggleFAQ(idx)}
-                className="bg-[#EBE7FC] hover:bg-white text-[#111827] rounded-3xl sm:rounded-[28px] px-6 sm:px-8 py-4 sm:py-5 shadow-lg transition-colors duration-200 cursor-pointer overflow-hidden"
+                className={`rounded-3xl sm:rounded-[28px] px-6 sm:px-8 py-5 shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border ${
+                  isOpen
+                    ? "bg-[#141E38] border-[#00B4FF] shadow-[0_0_30px_rgba(0,180,255,0.2)]"
+                    : "bg-[#0E172A]/90 border-white/15 hover:border-white/40"
+                }`}
               >
                 {/* Question Header */}
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-extrabold text-base sm:text-lg tracking-tight">
+                  <h3
+                    className={`font-extrabold text-base sm:text-lg tracking-tight transition-colors ${
+                      isOpen ? "text-[#00B4FF]" : "text-white group-hover:text-[#00B4FF]"
+                    }`}
+                  >
                     {faq.question}
                   </h3>
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-base shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-45 bg-[#6035D0]" : ""
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-base shrink-0 transition-all duration-300 ${
+                      isOpen
+                        ? "rotate-45 gocreative-gradient-bg text-white shadow-[0_0_15px_rgba(255,20,147,0.6)]"
+                        : "bg-[#1E293B] text-[#00B4FF] border border-[#00B4FF]/30"
                     }`}
                   >
                     +
@@ -97,7 +114,7 @@ export default function FAQSection() {
                         ease: [0.16, 1, 0.3, 1],
                       }}
                     >
-                      <div className="mt-3 pt-3 border-t border-[#D9D1F7] text-[#374151] text-sm sm:text-[15px] leading-relaxed font-medium">
+                      <div className="mt-4 pt-4 border-t border-white/10 text-white/80 text-sm sm:text-[15px] leading-relaxed font-medium">
                         <p>{faq.answer}</p>
                       </div>
                     </motion.div>

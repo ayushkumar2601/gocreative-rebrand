@@ -6,50 +6,52 @@ import { motion } from "framer-motion";
 export default function ShipCreativeSection() {
   const cards = [
     {
-      bg: "bg-[#D4F252]",
-      textColor: "text-[#111827]",
-      descColor: "text-[#111827]/95",
-      iconBg: "bg-[#181818]",
-      iconColor: "text-white",
-      title: "Research-\nDriven\nStrategy",
-      description:
-        "We turn performance data and audience psychology into creative hypotheses that actually scale.",
-    },
-    {
-      bg: "bg-[#5B3DE8]",
+      bg: "bg-[#FF1493]",
       textColor: "text-white",
       descColor: "text-white/95",
+      iconBg: "bg-[#060B18]",
+      iconColor: "text-[#00B4FF]",
+      title: "AI & Research\nDriven Strategy",
+      description:
+        "We turn performance data and audience psychology into creative hypotheses that scale exponentially with AI insights.",
+    },
+    {
+      bg: "bg-[#00B4FF]",
+      textColor: "text-[#060B18]",
+      descColor: "text-[#060B18]/90",
       iconBg: "bg-white",
-      iconColor: "text-[#5B3DE8]",
+      iconColor: "text-[#00B4FF]",
       title: "Hybrid\nProduction\nModel",
       description:
-        "High-polish studio content for brand control. Authentic creator-led content for platform-native performance.",
+        "High-polish studio content for brand authority combined with authentic creator-led videos for platform-native virality.",
     },
     {
-      bg: "bg-[#F07641]",
+      bg: "bg-[#4B00B5]",
       textColor: "text-white",
       descColor: "text-white/95",
-      iconBg: "bg-white",
-      iconColor: "text-[#F07641]",
-      title: "Paid Media\nManagement",
+      iconBg: "bg-[#FF1493]",
+      iconColor: "text-white",
+      title: "Omnichannel\nPaid Media",
       description:
-        "Strategic campaign management across Meta, TikTok, YouTube, and beyond.",
+        "Strategic campaign management and continuous algorithmic optimization across Meta, TikTok, YouTube, and connected TV.",
     },
     {
-      bg: "bg-[#EAE4FC]",
-      textColor: "text-[#111827]",
-      descColor: "text-[#111827]/90",
-      iconBg: "bg-[#5B3DE8]",
-      iconColor: "text-white",
-      title: "AI-Powered\nWorkflow",
+      bg: "gocreative-gradient-bg",
+      textColor: "text-white",
+      descColor: "text-white/95",
+      iconBg: "bg-[#060B18]",
+      iconColor: "text-[#00B4FF]",
+      title: "AI-Powered\nPost-Production",
       description:
-        "AI-assisted research, scripting, and post-production to deliver more ad variants, faster.",
+        "Proprietary AI workflows for rapid iteration, smart captioning, dynamic localizations, and high-converting ad hooks.",
     },
   ];
 
   return (
-    <section className="w-full bg-[#181818] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="max-w-[1340px] mx-auto">
+    <section className="w-full bg-[#060B18] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden relative border-t border-white/10">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4B00B5]/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-[1340px] mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -58,11 +60,14 @@ export default function ShipCreativeSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-14 sm:mb-20"
         >
-          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[46px] tracking-tight leading-tight">
-            Ship creative that drives real growth
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#FF1493] mb-4 border border-[#FF1493]/30">
+            <span>PERFORMANCE CREATIVE</span>
+          </div>
+          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[46px] tracking-tight leading-tight uppercase">
+            SHIP CREATIVE THAT DRIVES <span className="gocreative-gradient-text">REAL GROWTH</span>
           </h2>
           <p className="text-white/75 text-base sm:text-lg mt-3 font-normal">
-            We combine creative strategy with cutting-edge AI tools to deliver:
+            We combine creative strategy with cutting-edge AI tools and hyper-tested formats to deliver:
           </p>
         </motion.div>
 
@@ -80,23 +85,25 @@ export default function ShipCreativeSection() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               whileHover={{
-                y: -10,
-                scale: 1.015,
+                y: -12,
+                scale: 1.025,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className={`${card.bg} ${card.textColor} rounded-[32px] p-8 sm:p-9 min-h-[410px] sm:min-h-[440px] flex flex-col justify-between shadow-xl cursor-pointer`}
+              className={`${card.bg} ${card.textColor} rounded-[32px] p-8 sm:p-9 min-h-[410px] sm:min-h-[440px] flex flex-col justify-between shadow-2xl border border-white/20 cursor-pointer relative overflow-hidden group`}
             >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl transform translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+
               {/* Top Section: Play Button & Title */}
-              <div>
+              <div className="relative z-10">
                 {/* Circle Play Button Icon */}
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 10 }}
-                  className={`w-10 h-10 rounded-full ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-sm mb-7`}
+                  className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-white/20`}
                 >
                   <svg
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="w-4 h-4 ml-0.5"
+                    className="w-5 h-5 ml-0.5"
                   >
                     <polygon points="5 3 19 12 5 21 5 3" />
                   </svg>
@@ -110,7 +117,7 @@ export default function ShipCreativeSection() {
 
               {/* Bottom Description */}
               <p
-                className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8`}
+                className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8 relative z-10`}
               >
                 {card.description}
               </p>
