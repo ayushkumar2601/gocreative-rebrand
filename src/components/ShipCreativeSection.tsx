@@ -26,7 +26,7 @@ export default function ShipCreativeSection() {
         "High-polish studio content for brand authority combined with authentic creator-led videos for platform-native virality.",
     },
     {
-      bg: "bg-[#4B00B5]",
+      bg: "bg-[#6035D0]",
       textColor: "text-white",
       descColor: "text-white/95",
       iconBg: "bg-[#FF1493]",
@@ -48,7 +48,7 @@ export default function ShipCreativeSection() {
   ];
 
   return (
-    <section className="w-full bg-[#060B18] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden relative border-t border-white/10">
+    <section className="w-full bg-[#060B18] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden relative border-t border-white/10 select-none">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4B00B5]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-[1340px] mx-auto relative z-10">
@@ -86,41 +86,57 @@ export default function ShipCreativeSection() {
               }}
               whileHover={{
                 y: -12,
-                scale: 1.025,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className={`${card.bg} ${card.textColor} rounded-[32px] p-8 sm:p-9 min-h-[410px] sm:min-h-[440px] flex flex-col justify-between shadow-2xl border border-white/20 cursor-pointer relative overflow-hidden group`}
+              className="relative group rounded-[36px] p-[3px] transition-all duration-500"
             >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl transform translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+              {/* Outer Ambient Glow Effect around Card on Hover */}
+              <div className="absolute -inset-2 rounded-[42px] gocreative-gradient-bg opacity-0 group-hover:opacity-65 transition-opacity duration-500 blur-xl pointer-events-none" />
 
-              {/* Top Section: Play Button & Title */}
-              <div className="relative z-10">
-                {/* Circle Play Button Icon */}
-                <motion.div
-                  whileHover={{ scale: 1.15, rotate: 10 }}
-                  className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-white/20`}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5 ml-0.5"
-                  >
-                    <polygon points="5 3 19 12 5 21 5 3" />
-                  </svg>
-                </motion.div>
-
-                {/* Card Title with line breaks */}
-                <h3 className="text-2xl sm:text-3xl lg:text-[30px] font-black leading-[1.08] tracking-tight whitespace-pre-line">
-                  {card.title}
-                </h3>
+              {/* Rotating Pink-Blue Gradient Border Wrapper */}
+              <div className="absolute inset-0 rounded-[36px] overflow-hidden pointer-events-none">
+                {/* Static base border */}
+                <div className="absolute inset-0 bg-white/20 rounded-[36px] group-hover:opacity-0 transition-opacity duration-300" />
+                {/* Rotating gradient beam that flows continuously around the card on hover */}
+                <div className="absolute -top-[100%] -left-[100%] w-[300%] h-[300%] bg-[conic-gradient(from_0deg,#FF1493,#4B00B5,#00B4FF,#FF1493)] animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              {/* Bottom Description */}
-              <p
-                className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8 relative z-10`}
+              {/* Inner Card Content */}
+              <div
+                className={`${card.bg} ${card.textColor} rounded-[33px] p-8 sm:p-9 min-h-[410px] sm:min-h-[440px] flex flex-col justify-between shadow-2xl relative z-10 overflow-hidden h-full`}
               >
-                {card.description}
-              </p>
+                {/* Subtle top glare highlight inside card */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-white/15 rounded-full blur-2xl transform translate-x-12 -translate-y-12 group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+
+                {/* Top Section: Play Button & Title */}
+                <div className="relative z-10">
+                  {/* Circle Play Button Icon */}
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 10 }}
+                    className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-white/20`}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-5 h-5 ml-0.5"
+                    >
+                      <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                  </motion.div>
+
+                  {/* Card Title with line breaks */}
+                  <h3 className="text-2xl sm:text-3xl lg:text-[30px] font-black leading-[1.08] tracking-tight whitespace-pre-line">
+                    {card.title}
+                  </h3>
+                </div>
+
+                {/* Bottom Description */}
+                <p
+                  className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8 relative z-10`}
+                >
+                  {card.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

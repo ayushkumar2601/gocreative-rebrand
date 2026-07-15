@@ -20,7 +20,7 @@ export default function GrowthSystemSection() {
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
-          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#00B4FF] mb-4">
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#00B4FF] mb-4 border border-[#00B4FF]/30">
             <span>TECH-POWERED ECOSYSTEM</span>
           </div>
           <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[44px] uppercase tracking-tight leading-tight">
@@ -35,167 +35,189 @@ export default function GrowthSystemSection() {
         {/* DESKTOP CIRCUIT BOARD ARCHITECTURE DIAGRAM (LG+) */}
         {/* ============================================================= */}
         <div className="hidden lg:block relative w-full h-[620px] select-none">
-          {/* SVG Connection Circuit Lines & Arrows */}
+          {/* SVG Connection Circuit Lines & Glowing Animated Sticks */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none z-0"
             viewBox="0 0 1180 620"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Top Horizontal Arrow Line (Creators to Paid Media) */}
+            <defs>
+              <linearGradient id="gocreative-glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FF1493" />
+                <stop offset="50%" stopColor="#4B00B5" />
+                <stop offset="100%" stopColor="#00B4FF" />
+              </linearGradient>
+              <filter id="neon-stick-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3.5" result="blur1" />
+                <feGaussianBlur stdDeviation="9" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* --- BASE STATIC CIRCUIT TRACKS (Subtle Background Wires) --- */}
+            {/* Top Horizontal Line */}
+            <line x1="310" y1="135" x2="855" y2="135" stroke="#00B4FF" strokeWidth="2" strokeOpacity="0.25" />
+            <circle cx="855" cy="135" r="10" fill="#00B4FF" fillOpacity="0.3" />
+            <path d="M851 130L857 135L851 140" stroke="#080D1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+            {/* Bottom Horizontal Line */}
+            <line x1="870" y1="485" x2="325" y2="485" stroke="#FF1493" strokeWidth="2" strokeOpacity="0.25" />
+            <circle cx="325" cy="485" r="10" fill="#FF1493" fillOpacity="0.3" />
+            <path d="M329 480L323 485L329 490" stroke="#080D1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+            {/* Left Vertical Line 1: Concept Input (UP) */}
+            <line x1="180" y1="375" x2="180" y2="195" stroke="#FF1493" strokeWidth="2" strokeOpacity="0.25" />
+            <circle cx="180" cy="195" r="9" fill="#FF1493" fillOpacity="0.3" />
+
+            {/* Left Vertical Line 2: Asset Support (DOWN) */}
+            <line x1="265" y1="190" x2="265" y2="370" stroke="#00B4FF" strokeWidth="2" strokeDasharray="6 6" strokeOpacity="0.25" />
+            <circle cx="265" cy="370" r="9" fill="#00B4FF" fillOpacity="0.3" />
+
+            {/* Right Vertical Line 1: Attribution (UP) */}
+            <line x1="915" y1="375" x2="915" y2="195" stroke="#FF1493" strokeWidth="2" strokeDasharray="6 6" strokeOpacity="0.25" />
+            <circle cx="915" cy="195" r="9" fill="#FF1493" fillOpacity="0.3" />
+
+            {/* Right Vertical Line 2: Data Feed (DOWN) */}
+            <line x1="1000" y1="190" x2="1000" y2="370" stroke="#00B4FF" strokeWidth="2" strokeOpacity="0.25" />
+            <circle cx="1000" cy="370" r="9" fill="#00B4FF" fillOpacity="0.3" />
+
+            {/* Diagonal Lines to Center Hub */}
+            <line x1="300" y1="150" x2="510" y2="250" stroke="#4B00B5" strokeWidth="2" strokeOpacity="0.3" />
+            <line x1="670" y1="250" x2="880" y2="150" stroke="#00B4FF" strokeWidth="2" strokeOpacity="0.3" />
+            <line x1="300" y1="470" x2="510" y2="370" stroke="#FF1493" strokeWidth="2" strokeOpacity="0.3" />
+            <line x1="670" y1="370" x2="880" y2="470" stroke="#4B00B5" strokeWidth="2" strokeOpacity="0.3" />
+
+            {/* ========================================================= */}
+            {/* --- GLOWING GRADIENT FLOWING STICKS ON ALL TRACKS --- */}
+            {/* ========================================================= */}
+
+            {/* Top Horizontal Flowing Sticks */}
             <line
               x1="310"
               y1="135"
               x2="855"
               y2="135"
-              stroke="#00B4FF"
-              strokeWidth="2.5"
-            />
-            {/* Right arrowhead for top line */}
-            <circle
-              cx="855"
-              cy="135"
-              r="12"
-              fill="#00B4FF"
-            />
-            <path
-              d="M851 130L857 135L851 140"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
 
-            {/* Bottom Horizontal Arrow Line (Measurement to Creative Strategy) */}
+            {/* Bottom Horizontal Flowing Sticks */}
             <line
               x1="870"
               y1="485"
               x2="325"
               y2="485"
-              stroke="#FF1493"
-              strokeWidth="2.5"
-            />
-            {/* Left arrowhead for bottom line */}
-            <circle
-              cx="325"
-              cy="485"
-              r="12"
-              fill="#FF1493"
-            />
-            <path
-              d="M329 480L323 485L329 490"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
 
-            {/* Left Vertical Line 1: Concept Input (Solid arrow UP) */}
+            {/* Left Vertical UP Flowing Stick */}
             <line
               x1="180"
               y1="375"
               x2="180"
               y2="195"
-              stroke="#FF1493"
-              strokeWidth="2.5"
-            />
-            <circle cx="180" cy="195" r="11" fill="#FF1493" />
-            <path
-              d="M176 198L180 193L184 198"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick-slow"
             />
 
-            {/* Left Vertical Line 2: Asset Support (Dashed arrow DOWN) */}
+            {/* Left Vertical DOWN Flowing Stick */}
             <line
               x1="265"
               y1="190"
               x2="265"
               y2="370"
-              stroke="#00B4FF"
-              strokeWidth="2"
-              strokeDasharray="6 6"
-            />
-            <circle cx="265" cy="370" r="11" fill="#00B4FF" />
-            <path
-              d="M261 367L265 372L269 367"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
 
-            {/* Right Vertical Line 1: Attribution (Dashed arrow UP) */}
+            {/* Right Vertical UP Flowing Stick */}
             <line
               x1="915"
               y1="375"
               x2="915"
               y2="195"
-              stroke="#FF1493"
-              strokeWidth="2"
-              strokeDasharray="6 6"
-            />
-            <circle cx="915" cy="195" r="11" fill="#FF1493" />
-            <path
-              d="M911 198L915 193L919 198"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick-slow"
             />
 
-            {/* Right Vertical Line 2: Data Feed (Solid arrow DOWN) */}
+            {/* Right Vertical DOWN Flowing Stick */}
             <line
               x1="1000"
               y1="190"
               x2="1000"
               y2="370"
-              stroke="#00B4FF"
-              strokeWidth="2.5"
-            />
-            <circle cx="1000" cy="370" r="11" fill="#00B4FF" />
-            <path
-              d="M996 367L1000 372L1004 367"
-              stroke="#080D1A"
-              strokeWidth="2.5"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4"
               strokeLinecap="round"
-              strokeLinejoin="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
 
-            {/* Diagonal Lines to Center Hub */}
+            {/* Diagonal Flowing Sticks Into/Out of Center Engine */}
             <line
               x1="300"
               y1="150"
               x2="510"
               y2="250"
-              stroke="#4B00B5"
-              strokeWidth="2"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
             <line
-              x1="880"
-              y1="150"
-              x2="670"
-              y2="250"
-              stroke="#00B4FF"
-              strokeWidth="2"
+              x1="670"
+              y1="250"
+              x2="880"
+              y2="150"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick-reverse"
             />
             <line
               x1="300"
               y1="470"
               x2="510"
               y2="370"
-              stroke="#FF1493"
-              strokeWidth="2"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick-slow"
             />
             <line
-              x1="880"
-              y1="470"
-              x2="670"
-              y2="370"
-              stroke="#4B00B5"
-              strokeWidth="2"
+              x1="670"
+              y1="370"
+              x2="880"
+              y2="470"
+              stroke="url(#gocreative-glow-grad)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              filter="url(#neon-stick-glow)"
+              className="animate-circuit-stick"
             />
           </svg>
 
@@ -203,16 +225,20 @@ export default function GrowthSystemSection() {
           {/* CENTER HUB: GROWTH CREATIVE INTEGRATION ENGINE */}
           {/* ========================================================= */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-48 h-48 rounded-full gocreative-gradient-bg text-white flex flex-col items-center justify-center text-center shadow-[0_0_50px_rgba(255,20,147,0.5)] border-[6px] border-white/30 transform hover:scale-105 transition-transform duration-300">
-              <span className="font-extrabold text-2xl leading-tight">
-                GoCreative
-              </span>
-              <span className="font-extrabold text-xl leading-tight text-white/90">
-                AI Growth
-              </span>
-              <span className="text-[11px] font-bold text-white/80 mt-1.5 uppercase tracking-wider bg-black/30 px-3 py-0.5 rounded-full">
-                Integration Engine
-              </span>
+            <div className="w-48 h-48 rounded-full gocreative-gradient-bg text-white flex flex-col items-center justify-center text-center shadow-[0_0_60px_rgba(255,20,147,0.7)] border-[6px] border-white/40 transform hover:scale-105 transition-transform duration-300 relative group">
+              {/* Pulsing ambient halo ring */}
+              <div className="absolute inset-0 rounded-full gocreative-gradient-bg opacity-40 blur-xl group-hover:opacity-75 transition-opacity" />
+              <div className="relative z-10 flex flex-col items-center">
+                <span className="font-black text-2xl leading-tight drop-shadow">
+                  GoCreative
+                </span>
+                <span className="font-extrabold text-xl leading-tight text-white/95">
+                  AI Growth
+                </span>
+                <span className="text-[11px] font-bold text-white mt-2 uppercase tracking-wider bg-black/40 px-3.5 py-1 rounded-full border border-white/20">
+                  Integration Engine
+                </span>
+              </div>
             </div>
           </div>
 
@@ -222,42 +248,42 @@ export default function GrowthSystemSection() {
 
           {/* Amplification Pill Badge (Top Horizontal Line) */}
           <div className="absolute top-[117px] left-1/2 -translate-x-1/2 z-20">
-            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-5 py-1.5 rounded-full shadow-lg border border-[#00B4FF]/40 tracking-wide">
+            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-5 py-1.5 rounded-full shadow-xl border border-[#00B4FF]/50 tracking-wide">
               Amplification
             </div>
           </div>
 
           {/* Performance Insight Pill Badge (Bottom Horizontal Line) */}
           <div className="absolute top-[467px] left-1/2 -translate-x-1/2 z-20">
-            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-5 py-1.5 rounded-full shadow-lg border border-[#FF1493]/40 tracking-wide">
+            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-5 py-1.5 rounded-full shadow-xl border border-[#FF1493]/50 tracking-wide">
               Performance Insight
             </div>
           </div>
 
           {/* Concept Input Pill Badge (Left Vertical UP line) */}
           <div className="absolute top-[280px] left-[135px] z-20">
-            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#FF1493]/40">
+            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-[#FF1493]/50">
               Concept Input
             </div>
           </div>
 
           {/* Asset Support Pill Badge (Left Vertical DOWN line) */}
           <div className="absolute top-[340px] left-[215px] z-20">
-            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#00B4FF]/40">
+            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-[#00B4FF]/50">
               Asset Support
             </div>
           </div>
 
           {/* Attribution Pill Badge (Right Vertical UP line) */}
           <div className="absolute top-[340px] right-[215px] z-20">
-            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#FF1493]/40">
+            <div className="bg-[#0A1F44] text-[#FF1493] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-[#FF1493]/50">
               Attribution
             </div>
           </div>
 
           {/* Data Feed Pill Badge (Right Vertical DOWN line) */}
           <div className="absolute top-[280px] right-[135px] z-20">
-            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#00B4FF]/40">
+            <div className="bg-[#0A1F44] text-[#00B4FF] text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-[#00B4FF]/50">
               Data Feed
             </div>
           </div>
@@ -267,9 +293,8 @@ export default function GrowthSystemSection() {
           {/* ========================================================= */}
 
           {/* 1. TOP-LEFT: Creators & Influencers */}
-          <div className="absolute top-4 left-6 w-[310px] bg-[#141E38]/90 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/15 z-10 hover:border-[#FF1493] transition-all">
+          <div className="absolute top-4 left-6 w-[310px] bg-[#141E38]/95 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/20 z-10 hover:border-[#FF1493] transition-all">
             <div className="flex items-center gap-3 mb-3">
-              {/* Icon */}
               <div className="w-9 h-9 rounded-xl bg-[#FF1493]/20 text-[#FF1493] flex items-center justify-center border border-[#FF1493]/40">
                 <svg
                   viewBox="0 0 24 24"
@@ -287,7 +312,7 @@ export default function GrowthSystemSection() {
                 Creators & Influencers
               </h3>
             </div>
-            <p className="text-white/75 text-[13.5px] leading-relaxed">
+            <p className="text-white/80 text-[13.5px] leading-relaxed">
               We have developed industry-leading best practices to ensure
               creative and paid social optimization work in synergy to scale ad
               spend profitably.
@@ -295,9 +320,8 @@ export default function GrowthSystemSection() {
           </div>
 
           {/* 2. TOP-RIGHT: Paid Media */}
-          <div className="absolute top-4 right-6 w-[310px] bg-[#141E38]/90 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/15 z-10 hover:border-[#00B4FF] transition-all">
+          <div className="absolute top-4 right-6 w-[310px] bg-[#141E38]/95 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/20 z-10 hover:border-[#00B4FF] transition-all">
             <div className="flex items-center gap-3 mb-3">
-              {/* Icon */}
               <div className="w-9 h-9 rounded-xl bg-[#00B4FF]/20 text-[#00B4FF] flex items-center justify-center border border-[#00B4FF]/40">
                 <svg
                   viewBox="0 0 24 24"
@@ -315,16 +339,15 @@ export default function GrowthSystemSection() {
                 Paid Media
               </h3>
             </div>
-            <p className="text-white/75 text-[13.5px] leading-relaxed">
+            <p className="text-white/80 text-[13.5px] leading-relaxed">
               Strategic media buying across Meta, TikTok, YouTube, and beyond.
               Optimized budget allocation and continuous performance monitoring.
             </p>
           </div>
 
           {/* 3. BOTTOM-LEFT: Creative Strategy */}
-          <div className="absolute bottom-4 left-6 w-[310px] bg-[#141E38]/90 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/15 z-10 hover:border-[#FF1493] transition-all">
+          <div className="absolute bottom-4 left-6 w-[310px] bg-[#141E38]/95 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/20 z-10 hover:border-[#FF1493] transition-all">
             <div className="flex items-center gap-3 mb-3">
-              {/* Icon */}
               <div className="w-9 h-9 rounded-xl bg-[#FF1493]/20 text-[#FF1493] flex items-center justify-center border border-[#FF1493]/40">
                 <svg
                   viewBox="0 0 24 24"
@@ -343,7 +366,7 @@ export default function GrowthSystemSection() {
                 Creative Strategy
               </h3>
             </div>
-            <p className="text-white/75 text-[13.5px] leading-relaxed">
+            <p className="text-white/80 text-[13.5px] leading-relaxed">
               Research-driven concepts produced at scale. Hybrid studio and
               creator production delivers volume, variety, and platform-native
               formats.
@@ -351,9 +374,8 @@ export default function GrowthSystemSection() {
           </div>
 
           {/* 4. BOTTOM-RIGHT: Measurement */}
-          <div className="absolute bottom-4 right-6 w-[310px] bg-[#141E38]/90 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/15 z-10 hover:border-[#00B4FF] transition-all">
+          <div className="absolute bottom-4 right-6 w-[310px] bg-[#141E38]/95 backdrop-blur-xl rounded-3xl p-7 shadow-2xl border border-white/20 z-10 hover:border-[#00B4FF] transition-all">
             <div className="flex items-center gap-3 mb-3">
-              {/* Icon */}
               <div className="w-9 h-9 rounded-xl bg-[#00B4FF]/20 text-[#00B4FF] flex items-center justify-center border border-[#00B4FF]/40">
                 <svg
                   viewBox="0 0 24 24"
@@ -371,7 +393,7 @@ export default function GrowthSystemSection() {
                 Measurement
               </h3>
             </div>
-            <p className="text-white/75 text-[13.5px] leading-relaxed">
+            <p className="text-white/80 text-[13.5px] leading-relaxed">
               Performance analysis that closes the loop. Real-time data informs
               creative strategy and media optimization for continuous
               improvement.
@@ -384,16 +406,32 @@ export default function GrowthSystemSection() {
         {/* ============================================================= */}
         <div className="lg:hidden flex flex-col gap-6 items-center">
           {/* Center Hub Banner on Mobile */}
-          <div className="w-full max-w-[340px] gocreative-gradient-bg text-white rounded-3xl py-6 px-4 text-center shadow-xl border border-white/20">
-            <h3 className="font-extrabold text-2xl">GoCreative AI</h3>
-            <p className="text-xs text-white/90 mt-1 uppercase tracking-wider font-semibold">
+          <div className="w-full max-w-[360px] gocreative-gradient-bg text-white rounded-3xl py-7 px-6 text-center shadow-[0_0_40px_rgba(255,20,147,0.5)] border border-white/30 relative">
+            <h3 className="font-black text-2xl">GoCreative AI</h3>
+            <p className="text-xs text-white mt-1 uppercase tracking-wider font-extrabold">
               Integration Engine
             </p>
           </div>
 
+          {/* Animated Glowing Connection Sticks for Mobile */}
+          <div className="w-full h-12 flex justify-center items-center relative overflow-hidden my-[-12px]">
+            <svg className="w-full h-12" viewBox="0 0 300 48" fill="none">
+              <defs>
+                <linearGradient id="mob-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FF1493" />
+                  <stop offset="50%" stopColor="#4B00B5" />
+                  <stop offset="100%" stopColor="#00B4FF" />
+                </linearGradient>
+              </defs>
+              <line x1="150" y1="0" x2="150" y2="48" stroke="url(#mob-glow)" strokeWidth="4" className="animate-circuit-stick" strokeLinecap="round" />
+              <line x1="60" y1="0" x2="60" y2="48" stroke="url(#mob-glow)" strokeWidth="3" className="animate-circuit-stick-slow" strokeLinecap="round" />
+              <line x1="240" y1="0" x2="240" y2="48" stroke="url(#mob-glow)" strokeWidth="3" className="animate-circuit-stick" strokeLinecap="round" />
+            </svg>
+          </div>
+
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Card 1 */}
-            <div className="bg-[#141E38]/90 rounded-3xl p-6 shadow-md border border-white/15">
+            <div className="bg-[#141E38]/95 rounded-3xl p-6 shadow-xl border border-white/20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="text-[#FF1493]">
                   <svg
@@ -411,7 +449,7 @@ export default function GrowthSystemSection() {
                   Creators & Influencers
                 </h3>
               </div>
-              <p className="text-white/75 text-sm leading-relaxed">
+              <p className="text-white/80 text-sm leading-relaxed">
                 We have developed industry-leading best practices to ensure
                 creative and paid social optimization work in synergy to scale ad
                 spend profitably.
@@ -419,7 +457,7 @@ export default function GrowthSystemSection() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-[#141E38]/90 rounded-3xl p-6 shadow-md border border-white/15">
+            <div className="bg-[#141E38]/95 rounded-3xl p-6 shadow-xl border border-white/20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="text-[#00B4FF]">
                   <svg
@@ -437,7 +475,7 @@ export default function GrowthSystemSection() {
                   Paid Media
                 </h3>
               </div>
-              <p className="text-white/75 text-sm leading-relaxed">
+              <p className="text-white/80 text-sm leading-relaxed">
                 Strategic media buying across Meta, TikTok, YouTube, and beyond.
                 Optimized budget allocation and continuous performance
                 monitoring.
@@ -445,7 +483,7 @@ export default function GrowthSystemSection() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-[#141E38]/90 rounded-3xl p-6 shadow-md border border-white/15">
+            <div className="bg-[#141E38]/95 rounded-3xl p-6 shadow-xl border border-white/20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="text-[#FF1493]">
                   <svg
@@ -463,7 +501,7 @@ export default function GrowthSystemSection() {
                   Creative Strategy
                 </h3>
               </div>
-              <p className="text-white/75 text-sm leading-relaxed">
+              <p className="text-white/80 text-sm leading-relaxed">
                 Research-driven concepts produced at scale. Hybrid studio and
                 creator production delivers volume, variety, and platform-native
                 formats.
@@ -471,7 +509,7 @@ export default function GrowthSystemSection() {
             </div>
 
             {/* Card 4 */}
-            <div className="bg-[#141E38]/90 rounded-3xl p-6 shadow-md border border-white/15">
+            <div className="bg-[#141E38]/95 rounded-3xl p-6 shadow-xl border border-white/20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="text-[#00B4FF]">
                   <svg
@@ -490,7 +528,7 @@ export default function GrowthSystemSection() {
                   Measurement
                 </h3>
               </div>
-              <p className="text-white/75 text-sm leading-relaxed">
+              <p className="text-white/80 text-sm leading-relaxed">
                 Performance analysis that closes the loop. Real-time data informs
                 creative strategy and media optimization for continuous
                 improvement.

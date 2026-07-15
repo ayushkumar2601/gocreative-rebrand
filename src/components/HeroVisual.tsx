@@ -151,7 +151,7 @@ export default function HeroVisual() {
         {/* Phone Screen Container */}
         <div className="relative w-full h-full bg-[#0A1F44] rounded-[30px] sm:rounded-[36px] overflow-hidden flex flex-col justify-between">
           {/* Top Notch / Status Bar */}
-          <div className="relative z-30 w-full pt-3 px-6 flex items-center justify-between text-white text-[10px] font-semibold">
+          <div className="relative z-30 w-full pt-3 px-6 flex items-center justify-between text-white text-[10px] font-semibold pointer-events-none">
             <span>9:41</span>
             <div className="w-20 h-4 bg-black rounded-full mx-auto" />
             <div className="flex items-center gap-1">
@@ -160,29 +160,21 @@ export default function HeroVisual() {
             </div>
           </div>
 
-          {/* Main Video Background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#141E38] via-[#2D164E] to-[#0A1F44] flex flex-col items-center justify-center">
-            {/* Simulated vibrant video visual */}
-            <div className="absolute inset-0 opacity-90">
-              <div className="w-full h-full relative flex flex-col items-center justify-center">
-                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-[#FF1493] via-[#4B00B5] to-[#00B4FF] border-4 border-white/20 shadow-2xl relative overflow-hidden flex items-center justify-center">
-                  <div className="w-full h-full bg-[#A37B62] relative flex flex-col items-center justify-center">
-                    <div className="w-16 h-8 bg-[#1F1E1D] rounded-full mb-3" />
-                    <div className="flex gap-4">
-                      <div className="w-3 h-3 rounded-full bg-white" />
-                      <div className="w-3 h-3 rounded-full bg-white" />
-                    </div>
-                    {/* Microphone in hand illustration */}
-                    <div className="absolute bottom-0 w-8 h-10 bg-gray-800 rounded-t-full border border-gray-600" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Main Instagram Reel Video (Edge-to-Edge Autoplay Loop) */}
+          <div className="absolute inset-0 z-10 bg-black overflow-hidden rounded-[30px] sm:rounded-[36px]">
+            <video
+              src="/hero-reel.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover absolute inset-0"
+            />
           </div>
 
-          {/* Floating Purple Crosshair Target Stamp (Top Left Inside Screen) */}
-          <div className="absolute top-10 left-3 z-30 transform -rotate-12 scale-90 sm:scale-100">
-            <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#0A1F44]/95 border-2 border-[#FF1493] flex items-center justify-center relative shadow-xl">
+          {/* Floating Purple Crosshair Target Stamp (Top Left Inside Screen, subtle overlay) */}
+          <div className="absolute top-10 left-2 z-30 transform -rotate-12 scale-75 sm:scale-85 pointer-events-none opacity-85">
+            <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#0A1F44]/90 border-2 border-[#FF1493] flex items-center justify-center relative shadow-xl">
               {/* Rotating outer circle text */}
               <div className="absolute inset-1 rounded-full border border-dashed border-[#00B4FF]/40 animate-spin-slow" />
               <svg
@@ -206,11 +198,11 @@ export default function HeroVisual() {
                 </text>
               </svg>
               {/* Center Crosshair Icon */}
-              <div className="w-8 h-8 rounded-full gocreative-gradient-bg text-white flex items-center justify-center shadow">
+              <div className="w-7 h-7 rounded-full gocreative-gradient-bg text-white flex items-center justify-center shadow">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
-                  className="w-4 h-4"
+                  className="w-3.5 h-3.5"
                   stroke="currentColor"
                   strokeWidth="2.5"
                 >
@@ -224,24 +216,8 @@ export default function HeroVisual() {
             </div>
           </div>
 
-          {/* Subtitle Sticker Overlay */}
-          <div className="relative z-30 mb-14 px-4 flex flex-col items-center gap-1.5 text-center">
-            <div className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl shadow-lg border border-black/5">
-              <p className="text-[11px] sm:text-xs font-black uppercase tracking-tight text-[#0A1F44] leading-tight">
-                THE SECRET TO PROVEN ROI
-                <br />
-                IS HYBRID CREATIVE...
-              </p>
-            </div>
-            <div className="gocreative-gradient-bg px-3 py-0.5 rounded-lg shadow-md">
-              <span className="text-xs font-black uppercase tracking-wide text-white">
-                WOW
-              </span>
-            </div>
-          </div>
-
           {/* Phone Bottom Navigation Bar */}
-          <div className="relative z-30 w-full pb-3 pt-2 px-6 bg-black/50 backdrop-blur-md flex items-center justify-between text-white">
+          <div className="relative z-30 w-full pb-3 pt-2 px-6 bg-black/70 backdrop-blur-md flex items-center justify-between text-white pointer-events-none">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
               <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" />
             </svg>
