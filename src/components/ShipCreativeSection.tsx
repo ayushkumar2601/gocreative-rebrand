@@ -2,45 +2,54 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import BorderGlow from "./BorderGlow";
 
 export default function ShipCreativeSection() {
   const cards = [
     {
-      bg: "bg-[#FF1493]",
-      textColor: "text-white",
-      descColor: "text-white/95",
+      bgColor: "#FC68B3",
+      textColor: "text-[#060B18]",
+      descColor: "text-[#060B18]/90",
       iconBg: "bg-[#060B18]",
-      iconColor: "text-[#00B4FF]",
+      iconColor: "text-[#FC68B3]",
+      glowColor: "330 96% 70%",
+      colors: ["#FF1493", "#FC68B3", "#D5D5F1"],
       title: "AI & Research\nDriven Strategy",
       description:
         "We turn performance data and audience psychology into creative hypotheses that scale exponentially with AI insights.",
     },
     {
-      bg: "bg-[#00B4FF]",
+      bgColor: "#3DFDFF",
       textColor: "text-[#060B18]",
       descColor: "text-[#060B18]/90",
-      iconBg: "bg-white",
-      iconColor: "text-[#00B4FF]",
+      iconBg: "bg-[#060B18]",
+      iconColor: "text-[#3DFDFF]",
+      glowColor: "181 100% 62%",
+      colors: ["#3DFDFF", "#00B4FF", "#D5D5F1"],
       title: "Hybrid\nProduction\nModel",
       description:
         "High-polish studio content for brand authority combined with authentic creator-led videos for platform-native virality.",
     },
     {
-      bg: "bg-[#6035D0]",
-      textColor: "text-white",
-      descColor: "text-white/95",
-      iconBg: "bg-[#FF1493]",
-      iconColor: "text-white",
+      bgColor: "#FF8A48",
+      textColor: "text-[#060B18]",
+      descColor: "text-[#060B18]/90",
+      iconBg: "bg-[#060B18]",
+      iconColor: "text-[#FF8A48]",
+      glowColor: "22 100% 64%",
+      colors: ["#FF8A48", "#FF1493", "#F5DF4D"],
       title: "Omnichannel\nPaid Media",
       description:
         "Strategic campaign management and continuous algorithmic optimization across Meta, TikTok, YouTube, and connected TV.",
     },
     {
-      bg: "gocreative-gradient-bg",
-      textColor: "text-white",
-      descColor: "text-white/95",
+      bgColor: "#2AC20E",
+      textColor: "text-[#060B18]",
+      descColor: "text-[#060B18]/90",
       iconBg: "bg-[#060B18]",
-      iconColor: "text-[#00B4FF]",
+      iconColor: "text-[#2AC20E]",
+      glowColor: "111 87% 41%",
+      colors: ["#2AC20E", "#3DFDFF", "#F5DF4D"],
       title: "AI-Powered\nPost-Production",
       description:
         "Proprietary AI workflows for rapid iteration, smart captioning, dynamic localizations, and high-converting ad hooks.",
@@ -71,7 +80,7 @@ export default function ShipCreativeSection() {
           </p>
         </motion.div>
 
-        {/* 4 Colorful Pillar Cards Grid */}
+        {/* 4 Colorful Pillar Cards Grid with BorderGlow */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {cards.map((card, idx) => (
             <motion.div
@@ -88,55 +97,57 @@ export default function ShipCreativeSection() {
                 y: -12,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className="relative group rounded-[36px] p-[3px] transition-all duration-500"
+              className="h-full"
             >
-              {/* Outer Ambient Glow Effect around Card on Hover */}
-              <div className="absolute -inset-2 rounded-[42px] gocreative-gradient-bg opacity-0 group-hover:opacity-65 transition-opacity duration-500 blur-xl pointer-events-none" />
-
-              {/* Rotating Pink-Blue Gradient Border Wrapper */}
-              <div className="absolute inset-0 rounded-[36px] overflow-hidden pointer-events-none">
-                {/* Static base border */}
-                <div className="absolute inset-0 bg-white/20 rounded-[36px] group-hover:opacity-0 transition-opacity duration-300" />
-                {/* Rotating gradient beam that flows continuously around the card on hover */}
-                <div className="absolute -top-[100%] -left-[100%] w-[300%] h-[300%] bg-[conic-gradient(from_0deg,#FF1493,#4B00B5,#00B4FF,#FF1493)] animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              {/* Inner Card Content */}
-              <div
-                className={`${card.bg} ${card.textColor} rounded-[33px] p-8 sm:p-9 min-h-[410px] sm:min-h-[440px] flex flex-col justify-between shadow-2xl relative z-10 overflow-hidden h-full`}
+              <BorderGlow
+                className="w-full h-full min-h-[410px] sm:min-h-[440px] shadow-2xl transition-shadow duration-300"
+                edgeSensitivity={35}
+                glowColor={card.glowColor}
+                backgroundColor={card.bgColor}
+                borderRadius={36}
+                glowRadius={45}
+                glowIntensity={1.3}
+                coneSpread={28}
+                animated={true}
+                colors={card.colors}
               >
-                {/* Subtle top glare highlight inside card */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-white/15 rounded-full blur-2xl transform translate-x-12 -translate-y-12 group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
-
-                {/* Top Section: Play Button & Title */}
-                <div className="relative z-10">
-                  {/* Circle Play Button Icon */}
-                  <motion.div
-                    whileHover={{ scale: 1.15, rotate: 10 }}
-                    className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-white/20`}
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="w-5 h-5 ml-0.5"
-                    >
-                      <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
-                  </motion.div>
-
-                  {/* Card Title with line breaks */}
-                  <h3 className="text-2xl sm:text-3xl lg:text-[30px] font-black leading-[1.08] tracking-tight whitespace-pre-line">
-                    {card.title}
-                  </h3>
-                </div>
-
-                {/* Bottom Description */}
-                <p
-                  className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8 relative z-10`}
+                {/* Inner Card Content */}
+                <div
+                  className={`${card.textColor} p-8 sm:p-9 flex flex-col justify-between h-full relative z-10`}
                 >
-                  {card.description}
-                </p>
-              </div>
+                  {/* Subtle top glare highlight inside card */}
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full blur-2xl transform translate-x-12 -translate-y-12 pointer-events-none" />
+
+                  {/* Top Section: Play Button & Title */}
+                  <div className="relative z-10">
+                    {/* Circle Play Button Icon */}
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-lg mb-7 border border-black/10`}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-5 h-5 ml-0.5"
+                      >
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                      </svg>
+                    </motion.div>
+
+                    {/* Card Title with line breaks */}
+                    <h3 className="text-2xl sm:text-3xl lg:text-[30px] font-black leading-[1.08] tracking-tight whitespace-pre-line">
+                      {card.title}
+                    </h3>
+                  </div>
+
+                  {/* Bottom Description */}
+                  <p
+                    className={`${card.descColor} text-[15px] sm:text-base leading-[1.6] font-medium pt-8 relative z-10`}
+                  >
+                    {card.description}
+                  </p>
+                </div>
+              </BorderGlow>
             </motion.div>
           ))}
         </div>
