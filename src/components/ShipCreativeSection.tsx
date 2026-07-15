@@ -13,7 +13,7 @@ export default function ShipCreativeSection() {
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "330 96% 70%",
+      glowColor: "330 100% 85%",
       colors: ["#FF1493", "#C084FC", "#D5D5F1"],
       title: "AI & Research\nDriven Strategy",
       description:
@@ -26,7 +26,7 @@ export default function ShipCreativeSection() {
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "270 96% 70%",
+      glowColor: "275 100% 85%",
       colors: ["#C084FC", "#6035D0", "#3DFDFF"],
       title: "Hybrid\nProduction\nModel",
       description:
@@ -39,7 +39,7 @@ export default function ShipCreativeSection() {
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "240 96% 70%",
+      glowColor: "245 100% 85%",
       colors: ["#6035D0", "#00B4FF", "#3DFDFF"],
       title: "Omnichannel\nPaid Media",
       description:
@@ -52,7 +52,7 @@ export default function ShipCreativeSection() {
       descColor: "text-white/90",
       iconBg: "bg-white/15 backdrop-blur-md border border-white/25",
       iconColor: "text-white",
-      glowColor: "190 100% 62%",
+      glowColor: "190 100% 85%",
       colors: ["#00B4FF", "#3DFDFF", "#D5D5F1"],
       title: "AI-Powered\nPost-Production",
       description:
@@ -105,12 +105,12 @@ export default function ShipCreativeSection() {
             >
               <BorderGlow
                 className="w-full h-full min-h-[410px] sm:min-h-[440px] shadow-2xl transition-shadow duration-300"
-                edgeSensitivity={45}
+                edgeSensitivity={55}
                 glowColor={card.glowColor}
                 backgroundColor={card.bgColor}
                 borderRadius={36}
                 glowRadius={50}
-                glowIntensity={1.5}
+                glowIntensity={2.5}
                 coneSpread={42}
                 animated={true}
                 colors={card.colors}
