@@ -103,13 +103,12 @@ export default function HomePage() {
       {/* 4. OUR WORK (Reels section of our existing work) */}
       <PortfolioShowcase />
 
-      {/* 5. SERVICES (Ship creative that drives real growth & Workflow) */}
-      <ShipCreativeSection />
+      {/* 5. OUR IMPACT & CASE STUDIES (Real Brands. Real Results.) */}
+      <CaseStudiesSection />
+
+      {/* 6. WORKFLOW & SERVICES */}
       <ProgressWorkflowSection />
       <VisualSplitGrid />
-
-      {/* 6. CASE STUDIES AND RESULTS COMBINED */}
-      <CaseStudiesSection />
       <MetricsGrid />
 
       {/* 7. TESTIMONIALS & LOCALIZATION */}

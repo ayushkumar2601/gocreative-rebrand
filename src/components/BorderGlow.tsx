@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useCallback, useEffect, type ReactNode } from 'react';
 import './BorderGlow.css';
 

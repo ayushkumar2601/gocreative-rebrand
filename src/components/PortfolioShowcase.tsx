@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import BorderGlow from "./BorderGlow";
 
 interface WorkCard {
   id: number;
@@ -11,6 +12,8 @@ interface WorkCard {
   roas: string;
   brand: string;
   videoUrl: string;
+  borderGlowHsl: string;
+  borderGlowColors: string[];
 }
 
 export default function PortfolioShowcase() {
@@ -22,15 +25,12 @@ export default function PortfolioShowcase() {
   const isInView = useInView(sectionRef, { amount: 0.25 });
   const centerVideoRef = useRef<HTMLVideoElement>(null);
 
-  // Auto-play and handle sound for the center video right when section enters view
   useEffect(() => {
     const video = centerVideoRef.current;
     if (!video) return;
 
     if (isInView) {
-      video.play().catch(() => {
-        // Browser autoplay policies require mute if no prior interaction
-      });
+      video.play().catch(() => {});
       video.muted = isCenterMuted;
     } else {
       video.pause();
@@ -49,7 +49,6 @@ export default function PortfolioShowcase() {
     { name: "Apps & Services", icon: "" },
   ];
 
-  // Exactly 5 Reel Cards with wider dimensions
   const allCards: WorkCard[] = [
     {
       id: 1,
@@ -59,6 +58,8 @@ export default function PortfolioShowcase() {
       roas: "ROAS 6.3x",
       brand: "Skincare Brand",
       videoUrl: "/hero-reel.mp4",
+      borderGlowHsl: "330 100 54",
+      borderGlowColors: ["#FF1493", "#D91499", "#4B00B5"],
     },
     {
       id: 2,
@@ -68,6 +69,8 @@ export default function PortfolioShowcase() {
       roas: "ROAS 4.7x",
       brand: "Sneaker Brand",
       videoUrl: "/hero-reel.mp4",
+      borderGlowHsl: "315 100 48",
+      borderGlowColors: ["#D91499", "#9D14C4", "#4B00B5"],
     },
     {
       id: 3,
@@ -76,7 +79,9 @@ export default function PortfolioShowcase() {
       views: "3.2M+",
       roas: "ROAS 7.8x",
       brand: "Beauty Brand",
-      videoUrl: "/hero-reel.mp4", // CENTER HERO REEL (idx === 2)
+      videoUrl: "/hero-reel.mp4",
+      borderGlowHsl: "286 100 42",
+      borderGlowColors: ["#9D14C4", "#FF1493", "#00B4FF"],
     },
     {
       id: 4,
@@ -86,6 +91,8 @@ export default function PortfolioShowcase() {
       roas: "ROAS 5.1x",
       brand: "Food Brand",
       videoUrl: "/hero-reel.mp4",
+      borderGlowHsl: "210 100 45",
+      borderGlowColors: ["#0073E6", "#4B00B5", "#00B4FF"],
     },
     {
       id: 5,
@@ -95,6 +102,8 @@ export default function PortfolioShowcase() {
       roas: "ROAS 6.9x",
       brand: "Wellness Brand",
       videoUrl: "/hero-reel.mp4",
+      borderGlowHsl: "197 100 50",
+      borderGlowColors: ["#00B4FF", "#0073E6", "#4B00B5"],
     },
   ];
 
@@ -109,13 +118,11 @@ export default function PortfolioShowcase() {
       ref={sectionRef}
       className="w-full bg-[#030611] text-white py-24 sm:py-32 relative overflow-hidden border-t border-white/10 select-none"
     >
-      {/* Full Dark Background with ONLY Gradient Glowing Orbs (No Grids) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[750px] bg-gradient-to-tr from-[#4B00B5]/25 via-[#FF1493]/15 to-[#00B4FF]/20 rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[#FF1493]/12 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-1/4 w-[650px] h-[650px] bg-[#00B4FF]/12 rounded-full blur-[170px] pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +143,6 @@ export default function PortfolioShowcase() {
           </p>
         </motion.div>
 
-        {/* Category Filter Bar */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -165,20 +171,11 @@ export default function PortfolioShowcase() {
               </button>
             );
           })}
-          
-          {/* Scroll Right Arrow Indicator Pill */}
-          <div className="w-10 h-10 rounded-full bg-[#0C152E] border border-white/20 flex items-center justify-center text-white/70 shrink-0 ml-1 shadow-md">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
         </motion.div>
 
-        {/* 5 Wider Reel / Ad Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-7 mb-16 items-stretch">
           <AnimatePresence mode="popLayout">
             {filteredCards.map((card, idx) => {
-              // Center card in the 5-card row (index 2 when showing all 5)
               const isCenter = idx === 2 && filteredCards.length >= 5;
 
               return (
@@ -195,100 +192,102 @@ export default function PortfolioShowcase() {
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => setHoveredId(card.id)}
                   onMouseLeave={() => setHoveredId(null)}
-                  className={`group relative w-full h-[490px] sm:h-[530px] lg:h-[560px] bg-[#0A1024] rounded-[32px] overflow-hidden border transition-all duration-500 flex flex-col justify-between cursor-pointer shadow-2xl ${
-                    isCenter
-                      ? "border-2 border-[#FF1493] shadow-[0_0_45px_rgba(255,20,147,0.45)] z-20"
-                      : "border-white/15 hover:border-[#00B4FF]/80 hover:shadow-[0_0_35px_rgba(0,180,255,0.3)] z-10"
-                  }`}
+                  className="w-full h-[490px] sm:h-[530px] lg:h-[560px] flex"
                 >
-                  {/* Background Video (Reel Preview) */}
-                  <div className="absolute inset-0 bg-black overflow-hidden z-0">
-                    <video
-                      ref={isCenter ? centerVideoRef : undefined}
-                      src={card.videoUrl}
-                      loop
-                      muted={isCenter ? isCenterMuted : hoveredId !== card.id}
-                      playsInline
-                      autoPlay={isCenter || isInView}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    {/* Gradient Overlay for High Contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/95 z-1 pointer-events-none" />
-                  </div>
+                  <BorderGlow
+                    edgeSensitivity={35}
+                    glowColor={card.borderGlowHsl}
+                    backgroundColor="#0A1024"
+                    borderRadius={32}
+                    glowRadius={38}
+                    glowIntensity={isCenter ? 1.4 : 1.1}
+                    coneSpread={30}
+                    colors={card.borderGlowColors}
+                    className="w-full h-full group transition-all duration-500 shadow-2xl"
+                  >
+                    <div className="w-full h-full flex flex-col justify-between rounded-[inherit] overflow-hidden">
+                      <div className="absolute inset-0 bg-black overflow-hidden rounded-[inherit] z-0">
+                        <video
+                          ref={isCenter ? centerVideoRef : undefined}
+                          src={card.videoUrl}
+                          loop
+                          muted={isCenter ? isCenterMuted : hoveredId !== card.id}
+                          playsInline
+                          autoPlay={isCenter || isInView}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/95 z-1 pointer-events-none" />
+                      </div>
 
-                  {/* Top Bar: Center Mute Toggle OR Play Button */}
-                  <div className="relative z-20 flex justify-between items-center p-4 sm:p-5">
-                    {isCenter ? (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsCenterMuted(!isCenterMuted);
-                        }}
-                        className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
-                      >
-                        <span>{isCenterMuted ? "🔇" : "🔊"}</span>
-                        <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
-                      </button>
-                    ) : (
-                      <div className="w-fit ml-auto" />
-                    )}
+                      <div className="relative z-20 flex justify-between items-center p-4 sm:p-5">
+                        {isCenter ? (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsCenterMuted(!isCenterMuted);
+                            }}
+                            className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
+                          >
+                            <span>{isCenterMuted ? "🔇" : "🔊"}</span>
+                            <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
+                          </button>
+                        ) : (
+                          <div className="w-fit ml-auto" />
+                        )}
 
-                    <div
-                      className={`w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
-                        isCenter
-                          ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
-                          : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
-                      }`}
-                    >
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                        <div
+                          className={`w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
+                            isCenter
+                              ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
+                              : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
+                          }`}
+                        >
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
+                        <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                          </svg>
+                          <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
+                        </div>
+                        <span className="text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
+                          Views
+                        </span>
+
+                        <div
+                          className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4.5 ${
+                            isCenter
+                              ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
+                              : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
+                          }`}
+                        >
+                          <span className="font-black text-base sm:text-[17px] text-white tracking-wide">
+                            {card.roas}
+                          </span>
+                        </div>
+
+                        <div className="w-full flex items-center justify-between text-left pt-2 border-t border-white/10">
+                          <span className="text-xs sm:text-sm font-extrabold text-white/90 truncate">
+                            {card.brand}
+                          </span>
+                          <span className="text-xs font-bold text-white/50 shrink-0 ml-2">
+                            {card.type}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Bottom Stats & Brand Details Overlay */}
-                  <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
-                    {/* Eye Icon + View Count */}
-                    <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                      </svg>
-                      <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
-                    </div>
-                    <span className="text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
-                      Views
-                    </span>
-
-                    {/* ROAS Pill Box */}
-                    <div
-                      className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4.5 ${
-                        isCenter
-                          ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
-                          : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
-                      }`}
-                    >
-                      <span className="font-black text-base sm:text-[17px] text-white tracking-wide">
-                        {card.roas}
-                      </span>
-                    </div>
-
-                    {/* Brand & Ad Type Footer Line */}
-                    <div className="w-full flex items-center justify-between text-left pt-2 border-t border-white/10">
-                      <span className="text-xs sm:text-sm font-extrabold text-white/90 truncate">
-                        {card.brand}
-                      </span>
-                      <span className="text-xs font-bold text-white/50 shrink-0 ml-2">
-                        {card.type}
-                      </span>
-                    </div>
-                  </div>
+                  </BorderGlow>
                 </motion.div>
               );
             })}
           </AnimatePresence>
         </div>
 
-        {/* Bottom CTA Bar & Inquiry Section */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -296,7 +295,6 @@ export default function PortfolioShowcase() {
           transition={{ duration: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/15"
         >
-          {/* Left Pill Button */}
           <a
             href="/work"
             className="inline-flex items-center gap-3 bg-[#0C152E]/90 hover:bg-[#101E42] text-white font-extrabold text-sm px-8 py-4.5 rounded-full border border-[#FF1493]/40 hover:border-[#00B4FF] shadow-[0_0_25px_rgba(255,20,147,0.25)] transition-all transform hover:scale-105 group cursor-pointer"
@@ -313,7 +311,6 @@ export default function PortfolioShowcase() {
             </svg>
           </a>
 
-          {/* Right Text Prompt */}
           <div className="text-center sm:text-right">
             <p className="text-white/80 font-bold text-sm sm:text-base">
               Want similar results for your brand?

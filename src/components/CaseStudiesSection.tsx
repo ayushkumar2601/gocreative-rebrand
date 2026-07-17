@@ -1,191 +1,385 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import BorderGlow from "./BorderGlow";
+
+interface CaseStudyCard {
+  id: number;
+  tag: string;
+  brand: string;
+  category: string;
+  challenge: string;
+  metrics: {
+    value: string;
+    label: string;
+    icon: string;
+  }[];
+  // Glow and Color Gradient configuration for the Left-to-Right progression
+  glowColor: string;
+  borderColor: string;
+  borderHoverColor: string;
+  headerGradient: string;
+  tagGradient: string;
+  waveColor: string;
+  // React Bits BorderGlow dynamic cursor-tracking configuration
+  borderGlowHsl: string;
+  borderGlowColors: string[];
+}
 
 export default function CaseStudiesSection() {
-  const [activeSlide, setActiveSlide] = useState(2);
+  const [activeTab, setActiveTab] = useState("All Case Studies");
+
+  const tabs = [
+    { name: "All Case Studies", icon: ":::" },
+    { name: "D2C Brands", icon: "🛍" },
+    { name: "Performance Marketing", icon: "📈" },
+    { name: "Creative & Content", icon: "✎" },
+    { name: "Growth Strategy", icon: "⚡" },
+  ];
+
+  const caseStudies: CaseStudyCard[] = [
+    {
+      id: 1,
+      tag: "Skincare",
+      brand: "Juhst",
+      category: "Performance Marketing",
+      challenge: "Low ROAS and high CAC across paid campaigns",
+      metrics: [
+        { value: "5.6X", label: "ROAS Achieved", icon: "📈" },
+        { value: "-62%", label: "CAC Reduced", icon: "👤" },
+        { value: "+214%", label: "Revenue Growth", icon: "₹" },
+      ],
+      // Leftmost: Pinkish Glow (#FF1493)
+      glowColor: "rgba(255, 20, 147, 0.28)",
+      borderColor: "border-[#FF1493]/40",
+      borderHoverColor: "group-hover:border-[#FF1493]",
+      headerGradient: "from-[#FF1493]/35 via-[#1E1B4B] to-[#0A1024]",
+      tagGradient: "from-[#FF1493] to-[#D91499]",
+      waveColor: "#FF1493",
+      borderGlowHsl: "330 100 54",
+      borderGlowColors: ["#FF1493", "#D91499", "#4B00B5"],
+    },
+    {
+      id: 2,
+      tag: "Health & Wellness",
+      brand: "Nabhi Sutra",
+      category: "Meta Ads + Creative",
+      challenge: "Low repeat rate and inconsistent ad performance",
+      metrics: [
+        { value: "3.8X", label: "ROAS Achieved", icon: "📈" },
+        { value: "+47%", label: "Repeat Rate", icon: "🔄" },
+        { value: "+158%", label: "Revenue Growth", icon: "₹" },
+      ],
+      // Mid-Left: Pink-Purple Glow (#D91499)
+      glowColor: "rgba(217, 20, 153, 0.26)",
+      borderColor: "border-[#D91499]/40",
+      borderHoverColor: "group-hover:border-[#D91499]",
+      headerGradient: "from-[#D91499]/35 via-[#1E1B4B] to-[#0A1024]",
+      tagGradient: "from-[#D91499] to-[#9D14C4]",
+      waveColor: "#D91499",
+      borderGlowHsl: "315 100 48",
+      borderGlowColors: ["#D91499", "#9D14C4", "#4B00B5"],
+    },
+    {
+      id: 3,
+      tag: "Food & Beverage",
+      brand: "Jaggercane",
+      category: "Performance Marketing",
+      challenge: "Scaling profitably while keeping MER above benchmark",
+      metrics: [
+        { value: "4.9X", label: "ROAS Achieved", icon: "📈" },
+        { value: "+91%", label: "MER Improvement", icon: "📊" },
+        { value: "+187%", label: "Revenue Growth", icon: "₹" },
+      ],
+      // Center: Deep Purple Gradient Glow (#9D14C4)
+      glowColor: "rgba(157, 20, 196, 0.3)",
+      borderColor: "border-[#9D14C4]/45",
+      borderHoverColor: "group-hover:border-[#9D14C4]",
+      headerGradient: "from-[#9D14C4]/35 via-[#1E1B4B] to-[#0A1024]",
+      tagGradient: "from-[#9D14C4] to-[#4B00B5]",
+      waveColor: "#9D14C4",
+      borderGlowHsl: "286 100 42",
+      borderGlowColors: ["#9D14C4", "#FF1493", "#00B4FF"],
+    },
+    {
+      id: 4,
+      tag: "Fashion",
+      brand: "Fae Beauty",
+      category: "Creative & Content",
+      challenge: "Low engagement and weak creative strategy",
+      metrics: [
+        { value: "2.3X", label: "Engagement", icon: "💜" },
+        { value: "-36%", label: "CPA Reduced", icon: "📞" },
+        { value: "+121%", label: "Revenue Growth", icon: "₹" },
+      ],
+      // Mid-Right: Purple-Blue Glow (#0073E6)
+      glowColor: "rgba(0, 115, 230, 0.26)",
+      borderColor: "border-[#0073E6]/40",
+      borderHoverColor: "group-hover:border-[#0073E6]",
+      headerGradient: "from-[#0073E6]/35 via-[#0F172A] to-[#0A1024]",
+      tagGradient: "from-[#4B00B5] to-[#0073E6]",
+      waveColor: "#0073E6",
+      borderGlowHsl: "210 100 45",
+      borderGlowColors: ["#0073E6", "#4B00B5", "#00B4FF"],
+    },
+    {
+      id: 5,
+      tag: "Education",
+      brand: "Promote Education",
+      category: "Lead Generation",
+      challenge: "High CPL and low quality counselling leads",
+      metrics: [
+        { value: "-55%", label: "CPL Reduced", icon: "📞" },
+        { value: "+3.4X", label: "Qualified Leads", icon: "👤" },
+        { value: "+162%", label: "Admissions Growth", icon: "₹" },
+      ],
+      // Rightmost: Electric Blue Glow (#00B4FF)
+      glowColor: "rgba(0, 180, 255, 0.3)",
+      borderColor: "border-[#00B4FF]/45",
+      borderHoverColor: "group-hover:border-[#00B4FF]",
+      headerGradient: "from-[#00B4FF]/38 via-[#0F172A] to-[#0A1024]",
+      tagGradient: "from-[#0073E6] to-[#00B4FF]",
+      waveColor: "#00B4FF",
+      borderGlowHsl: "197 100 50",
+      borderGlowColors: ["#00B4FF", "#0073E6", "#4B00B5"],
+    },
+  ];
+
+  const filteredStudies =
+    activeTab === "All Case Studies"
+      ? caseStudies
+      : caseStudies.filter((cs) => {
+          if (activeTab === "D2C Brands") return cs.tag === "Skincare" || cs.tag === "Food & Beverage" || cs.tag === "Fashion";
+          if (activeTab === "Performance Marketing") return cs.category.includes("Performance") || cs.category.includes("Meta");
+          if (activeTab === "Creative & Content") return cs.category.includes("Creative");
+          if (activeTab === "Growth Strategy") return cs.category.includes("Lead") || cs.category.includes("Performance");
+          return true;
+        });
 
   return (
-    <section id="case-studies" className="w-full bg-[#060B18] text-white py-24 sm:py-32 overflow-hidden select-none border-t border-white/10 relative">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#00B4FF]/10 rounded-full blur-[160px] pointer-events-none" />
+    <section id="case-studies" className="w-full bg-[#030611] text-white py-24 sm:py-32 relative overflow-hidden select-none border-t border-white/10">
+      {/* FULL DARK BACKGROUND with ONLY Gradient Ambient Glows (Pink on Leftmost -> Blue on Rightmost) */}
+      <div className="absolute top-1/3 -left-20 w-[650px] h-[650px] bg-[#FF1493]/16 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[700px] bg-[#4B00B5]/18 rounded-full blur-[190px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-20 w-[650px] h-[650px] bg-[#00B4FF]/16 rounded-full blur-[180px] pointer-events-none" />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
+          className="text-center max-w-4xl mx-auto mb-10 sm:mb-14"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#00B4FF] mb-4 border border-[#00B4FF]/30">
-            <span>CLIENT SUCCESS</span>
+          <div className="inline-flex items-center gap-2 bg-[#0A1226]/90 px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest text-[#FF1493] mb-5 border border-[#FF1493]/40 shadow-lg">
+            <span>OUR IMPACT</span>
           </div>
-          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[46px] tracking-tight uppercase">
-            CASE STUDIES & <span className="gocreative-gradient-text">RESULTS</span>
+          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[54px] leading-[1.08] tracking-tight mb-4">
+            Real Brands. <span className="gocreative-gradient-text">Real Results.</span>
           </h2>
-          <p className="text-white/75 text-sm sm:text-base mt-2.5 font-normal">
-            See how our AI & performance creative transforms acquisition metrics across industries
+          <p className="text-white/75 text-base sm:text-lg font-medium max-w-2xl mx-auto">
+            Data-backed growth stories from brands that trusted our system and saw <span className="text-[#A5B4FC] font-bold">compounding results.</span>
           </p>
         </motion.div>
 
-        {/* 3-Card Carousel Showcase Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
-          {/* LEFT SIDE CARD: N26 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-4 flex justify-end"
-          >
-            <div className="w-full max-w-[390px] h-[430px] sm:h-[470px] rounded-[28px] border border-white/20 bg-[#141E38]/90 backdrop-blur-xl shadow-2xl overflow-hidden relative flex flex-col justify-end p-6 sm:p-7 transition-all hover:border-[#00B4FF] group">
-              {/* Background Mockup: Fintech N26 */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1E293B] via-[#0F172A] to-[#060B18] -z-10 flex flex-col justify-between p-4">
-                <div className="opacity-20 text-5xl font-black text-[#00B4FF] tracking-widest mt-8 group-hover:scale-110 transition-transform duration-500">
-                  N26
-                </div>
-              </div>
+        {/* Category Filter Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-6 pt-2 mb-12 no-scrollbar justify-start xl:justify-center scroll-smooth"
+        >
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.name;
+            return (
+              <button
+                key={tab.name}
+                onClick={() => setActiveTab(tab.name)}
+                className={`flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-tight whitespace-nowrap transition-all duration-300 cursor-pointer shrink-0 border ${
+                  isActive
+                    ? "bg-gradient-to-r from-[#FF1493]/25 via-[#4B00B5]/30 to-[#00B4FF]/25 text-white border-[#FF1493] shadow-[0_0_25px_rgba(255,20,147,0.4)] scale-105"
+                    : "bg-[#0C152E]/80 hover:bg-[#121E42] text-white/80 hover:text-white border-white/15 hover:border-[#00B4FF]/60"
+                }`}
+              >
+                <span className={isActive ? "text-[#FF1493] font-black" : "text-white/60 font-black"}>
+                  {tab.icon}
+                </span>
+                <span>{tab.name}</span>
+              </button>
+            );
+          })}
+        </motion.div>
 
-              {/* Content */}
-              <div className="relative z-10 flex flex-col items-start">
-                {/* Badge */}
-                <div className="bg-[#00B4FF] text-[#060B18] text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-[0_0_15px_rgba(0,180,255,0.4)]">
-                  65% LOWER COST PER MOBILE REGISTRATION
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-black text-white leading-tight mb-2.5 group-hover:text-[#00B4FF] transition-colors">
-                  N26 Cuts Acquisition Costs With Lo-Fi UGC Creative
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/80 text-xs sm:text-[13px] leading-relaxed mb-5">
-                  How N26 reduced acquisition costs by 65% through diversified
-                  UGC on Meta platforms using GoCreative testing frameworks.
-                </p>
-
-                {/* Read More Button */}
-                <a
-                  href="#case-n26"
-                  className="gocreative-gradient-bg hover:opacity-90 text-white font-bold text-xs px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 transition-all shadow-[0_4px_15px_rgba(255,20,147,0.4)] transform hover:scale-105"
+        {/* 5 Case Study Cards wrapped in React Bits BorderGlow */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16 items-stretch">
+          <AnimatePresence mode="popLayout">
+            {filteredStudies.map((study, idx) => (
+              <motion.div
+                key={study.id}
+                layout
+                initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.45, delay: idx * 0.05 }}
+                className="w-full h-full flex"
+              >
+                <BorderGlow
+                  edgeSensitivity={35}
+                  glowColor={study.borderGlowHsl}
+                  backgroundColor="#0A1024"
+                  borderRadius={28}
+                  glowRadius={35}
+                  glowIntensity={1.2}
+                  coneSpread={30}
+                  colors={study.borderGlowColors}
+                  className="w-full h-full group hover:scale-[1.02] transition-transform duration-500 shadow-2xl"
                 >
-                  <span>Read More</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
+                  <div className="w-full h-full flex flex-col justify-between rounded-[inherit] overflow-hidden">
+                    {/* Internal Glow Blob right inside top of card */}
+                    <div
+                      className="absolute top-0 right-0 w-44 h-44 rounded-full blur-[55px] pointer-events-none transition-opacity duration-500 opacity-60 group-hover:opacity-100"
+                      style={{ background: study.glowColor }}
+                    />
 
-          {/* CENTER HERO CARD: 8Sheep Organics */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-4 flex justify-center z-20"
-          >
-            <div className="w-full max-w-[450px] h-[480px] sm:h-[530px] rounded-[32px] border-2 border-[#FF1493] bg-[#141E38] shadow-[0_0_50px_rgba(255,20,147,0.3)] overflow-hidden relative flex flex-col justify-end p-7 sm:p-8 transform scale-100 lg:scale-105 group hover:border-[#00B4FF] transition-all">
-              {/* Background Mockup */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#311E43] via-[#1E1B4B] to-[#060B18] -z-10 flex flex-col justify-between p-6">
-                <div className="opacity-25 text-4xl font-serif font-bold text-[#FF1493] tracking-widest mt-12 text-center group-hover:scale-110 transition-transform duration-500">
-                  8 sheep organics
-                </div>
-              </div>
+                    {/* Top Half / Hero Gradient Header */}
+                    <div className={`relative h-[180px] sm:h-[195px] w-full bg-gradient-to-br ${study.headerGradient} overflow-hidden flex items-center justify-center p-6 shrink-0`}>
+                      {/* Category Badge on Top Left with Color Progression */}
+                      <div className={`absolute top-3.5 left-3.5 z-20 bg-gradient-to-r ${study.tagGradient} text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-lg`}>
+                        {study.tag}
+                      </div>
 
-              {/* Content */}
-              <div className="relative z-10 flex flex-col items-start">
-                {/* Pink Badge */}
-                <div className="bg-[#FF1493] text-white text-[10px] sm:text-xs font-black uppercase tracking-wider px-3.5 py-1 rounded-full mb-3.5 shadow-[0_0_20px_rgba(255,20,147,0.6)]">
-                  20% INCREASE IN ROAS AT SCALE
-                </div>
+                      {/* Brand Typography Graphic Overlay */}
+                      <div className="absolute inset-0 bg-black/35 z-10" />
+                      <div className="relative z-10 text-center transform group-hover:scale-110 transition-transform duration-500">
+                        <span className="text-3xl font-black tracking-wider text-white opacity-95 drop-shadow-md">
+                          {study.brand.toUpperCase()}
+                        </span>
+                      </div>
+                    </div>
 
-                {/* Title */}
-                <h3 className="text-2xl sm:text-[27px] font-black text-white leading-[1.12] mb-3 group-hover:text-[#FF1493] transition-colors">
-                  How 8Sheep Scaled E-Commerce Revenue Using AI Paid Social
-                </h3>
+                    {/* Middle Brand Details & Challenge Block */}
+                    <div className="p-5 flex flex-col items-start text-left flex-grow relative z-10">
+                      <h3 className="font-black text-xl sm:text-2xl text-white group-hover:text-white transition-colors leading-tight">
+                        {study.brand}
+                      </h3>
+                      <span className="text-xs font-bold text-[#A5B4FC] mt-0.5 mb-3">
+                        {study.category}
+                      </span>
 
-                {/* Description */}
-                <p className="text-white/90 text-xs sm:text-sm leading-relaxed mb-6">
-                  How the organic skincare brand found winning ads that scaled
-                  profitably through high-velocity iteration and smart AI hooks.
-                </p>
+                      <span className="text-xs font-extrabold text-[#FF1493] uppercase tracking-wider">
+                        Challenge:
+                      </span>
+                      <p className="text-xs text-white/75 leading-relaxed font-normal mt-1">
+                        {study.challenge}
+                      </p>
+                    </div>
 
-                {/* Read More Button */}
-                <a
-                  href="#case-8sheep"
-                  className="gocreative-gradient-bg hover:opacity-95 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full inline-flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(255,20,147,0.5)] transform hover:scale-105"
-                >
-                  <span>Read Full Study</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
+                    {/* Bottom 3 Metrics Grid + Wave Chart */}
+                    <div className="bg-[#060C1D] border-t border-white/10 p-4 pt-4 mt-auto flex flex-col justify-between relative z-10 shrink-0">
+                      {/* 3 Circle Metrics */}
+                      <div className="grid grid-cols-3 gap-2 text-center pb-3">
+                        {study.metrics.map((m, mIdx) => (
+                          <div key={mIdx} className="flex flex-col items-center">
+                            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/80 mb-1.5 text-xs shadow-inner">
+                              {m.icon}
+                            </div>
+                            <span className="font-black text-base sm:text-lg text-white leading-tight">
+                              {m.value}
+                            </span>
+                            <span className="text-[9px] font-bold text-white/60 uppercase mt-0.5 leading-none">
+                              {m.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
 
-          {/* RIGHT SIDE CARD: Wise */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-4 flex justify-start"
-          >
-            <div className="w-full max-w-[390px] h-[430px] sm:h-[470px] rounded-[28px] border border-white/20 bg-[#141E38]/90 backdrop-blur-xl shadow-2xl overflow-hidden relative flex flex-col justify-end p-6 sm:p-7 transition-all hover:border-[#FF1493] group">
-              {/* Background Mockup: Wise */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1E1B4B] via-[#0F172A] to-[#060B18] -z-10 flex flex-col justify-between p-4">
-                <div className="opacity-20 text-5xl font-black text-[#FF1493] tracking-widest mt-8 text-right group-hover:scale-110 transition-transform duration-500">
-                  wise
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 flex flex-col items-start">
-                {/* Badge */}
-                <div className="bg-[#00B4FF] text-[#060B18] text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-[0_0_15px_rgba(0,180,255,0.4)]">
-                  100% INCREASE IN CONVERSION RATE
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-black text-white leading-tight mb-2.5 group-hover:text-[#00B4FF] transition-colors">
-                  Wise Doubles TikTok Conversions Through Creative Strategy
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/80 text-xs sm:text-[13px] leading-relaxed mb-5">
-                  How Wise cut costs and doubled conversions on TikTok with
-                  localization and a TikTok-first GoCreative strategy.
-                </p>
-
-                {/* Read More Button */}
-                <a
-                  href="#case-wise"
-                  className="gocreative-gradient-bg hover:opacity-90 text-white font-bold text-xs px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 transition-all shadow-[0_4px_15px_rgba(255,20,147,0.4)] transform hover:scale-105"
-                >
-                  <span>Read More</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
+                      {/* Sparkline Wave Chart with Card's Specific Glow Color */}
+                      <div className="w-full pt-2 border-t border-white/10 flex items-center justify-center">
+                        <svg
+                          viewBox="0 0 200 40"
+                          fill="none"
+                          className="w-full h-8 opacity-90 transition-all duration-500"
+                        >
+                          <path
+                            d="M0 32 C 15 32, 20 18, 35 24 C 50 30, 55 12, 70 18 C 85 24, 90 8, 105 14 C 120 20, 125 6, 140 12 C 155 18, 160 4, 175 10 C 190 16, 195 6, 200 6"
+                            stroke={study.waveColor}
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M0 32 C 15 32, 20 18, 35 24 C 50 30, 55 12, 70 18 C 85 24, 90 8, 105 14 C 120 20, 125 6, 140 12 C 155 18, 160 4, 175 10 C 190 16, 195 6, 200 6 L 200 40 L 0 40 Z"
+                            fill={`url(#waveGradient-${study.id})`}
+                            opacity="0.3"
+                          />
+                          <defs>
+                            <linearGradient id={`waveGradient-${study.id}`} x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor={study.waveColor} />
+                              <stop offset="100%" stopColor="transparent" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </BorderGlow>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
-        {/* Carousel Dots Indicators */}
-        <div className="flex items-center justify-center gap-2.5 mt-14 sm:mt-16">
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((dotIndex) => (
-            <button
-              key={dotIndex}
-              onClick={() => setActiveSlide(dotIndex)}
-              aria-label={`Go to slide ${dotIndex + 1}`}
-              className={`h-2.5 transition-all duration-300 rounded-full ${
-                dotIndex === activeSlide
-                  ? "w-8 gocreative-gradient-bg shadow-[0_0_10px_rgba(255,20,147,0.8)]"
-                  : "w-2.5 bg-white/30 hover:bg-white/60"
-              }`}
-            />
-          ))}
-        </div>
+        {/* Bottom Horizontal Strategy Call Banner Box wrapped in BorderGlow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-[900px] mx-auto"
+        >
+          <BorderGlow
+            edgeSensitivity={35}
+            glowColor="330 100 54"
+            backgroundColor="#0A1226"
+            borderRadius={32}
+            glowRadius={40}
+            glowIntensity={1.2}
+            coneSpread={30}
+            colors={["#FF1493", "#4B00B5", "#00B4FF"]}
+            className="w-full shadow-2xl transition-all duration-300 group"
+          >
+            <div className="w-full p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden rounded-[inherit]">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#FF1493]/15 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[#00B4FF]/15 via-transparent to-transparent pointer-events-none" />
+
+              {/* Left Side: Icon + Text */}
+              <div className="flex items-center gap-5 relative z-10 text-center sm:text-left">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FF1493] to-[#4B00B5] flex items-center justify-center text-white text-2xl shadow-[0_0_25px_rgba(255,20,147,0.5)] shrink-0 group-hover:scale-110 transition-transform">
+                  📈
+                </div>
+                <div>
+                  <h3 className="font-black text-xl sm:text-2xl text-white leading-tight">
+                    Your brand could be next.
+                  </h3>
+                  <p className="text-white/75 text-sm sm:text-base font-medium mt-0.5">
+                    Let&apos;s build your growth story together.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Side: Book Strategy Call Button */}
+              <a
+                href="#book"
+                className="relative z-10 bg-transparent hover:bg-white/10 text-white font-extrabold text-sm px-7 py-4 rounded-full border border-[#FF1493]/80 hover:border-[#00B4FF] flex items-center gap-3 transition-all shrink-0 shadow-[0_0_20px_rgba(255,20,147,0.25)] transform hover:scale-105 cursor-pointer"
+              >
+                <span>Book Strategy Call</span>
+                <span className="text-[#FF1493] group-hover:text-[#00B4FF] text-base font-black transition-colors">→</span>
+              </a>
+            </div>
+          </BorderGlow>
+        </motion.div>
       </div>
     </section>
   );
