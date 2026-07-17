@@ -186,7 +186,13 @@ export default function ClientTicker() {
   };
 
   return (
-    <section className="w-full bg-[#060B18] py-10 sm:py-12 border-y border-white/10 overflow-hidden select-none">
+    <section className="w-full bg-[#060B18] py-12 sm:py-16 border-y border-white/10 overflow-hidden select-none relative">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-10">
+        <p className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
+          Trusted by <span className="text-[#00B4FF] font-black">100+ High-Growth Brands</span> &amp; Scale-Ups Worldwide
+        </p>
+      </div>
+
       <div className="flex flex-col gap-8 sm:gap-10">
         {/* Row 1: Flowing Right to Left (Line 1) */}
         <div className="w-full overflow-hidden flex">
@@ -195,9 +201,9 @@ export default function ClientTicker() {
           </div>
         </div>
 
-        {/* Row 2: Flowing Right to Left (Line 2) */}
+        {/* Row 2: Flowing Left to Right (Line 2 - Reverse) */}
         <div className="w-full overflow-hidden flex">
-          <div className="animate-marquee-slow flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
+          <div className="animate-marquee-reverse flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
             {duplicatedRow2.map((logo, idx) => renderLogo(logo, idx))}
           </div>
         </div>

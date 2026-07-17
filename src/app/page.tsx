@@ -5,16 +5,17 @@ import PartnerLogos from "@/components/PartnerLogos";
 import HeroVisual from "@/components/HeroVisual";
 import ClientTicker from "@/components/ClientTicker";
 import GrowthSystemSection from "@/components/GrowthSystemSection";
+import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ShipCreativeSection from "@/components/ShipCreativeSection";
 import ProgressWorkflowSection from "@/components/ProgressWorkflowSection";
+import VisualSplitGrid from "@/components/VisualSplitGrid";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 import MetricsGrid from "@/components/MetricsGrid";
-import PortfolioShowcase from "@/components/PortfolioShowcase";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import LocalizationSection from "@/components/LocalizationSection";
-import CaseStudiesSection from "@/components/CaseStudiesSection";
 import FAQSection from "@/components/FAQSection";
 import BottomCTASection from "@/components/BottomCTASection";
-import VisualSplitGrid from "@/components/VisualSplitGrid";
+import LeadCaptureSection from "@/components/LeadCaptureSection";
 import GlobalTeamMarquee from "@/components/GlobalTeamMarquee";
 import Footer from "@/components/Footer";
 
@@ -27,7 +28,7 @@ export default function HomePage() {
       {/* Floating Purple Capsule Navbar */}
       <Navbar />
 
-      {/* Main Hero Section Content */}
+      {/* 1. HERO MAIN FIRST SECTION - Intro video playing on right & major headlines on left */}
       <main className="flex-1 w-full max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 pt-6 sm:pt-10 lg:pt-14 pb-16 lg:pb-24 flex items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headline, Description, CTA & Badges */}
@@ -56,7 +57,7 @@ export default function HomePage() {
             {/* CTA Button */}
             <div className="mb-6 flex flex-wrap items-center gap-4">
               <a
-                href="#partner"
+                href="#book"
                 className="inline-flex items-center gap-3 gocreative-gradient-bg hover:opacity-95 rounded-full px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-[#4B00B5]/25 transition-all duration-300 transform hover:scale-105 group border border-white/30"
               >
                 <span>Partner with GoCreative</span>
@@ -75,7 +76,7 @@ export default function HomePage() {
                 </svg>
               </a>
               <a
-                href="#system"
+                href="#profit-loop"
                 className="inline-flex items-center gap-2 bg-white/90 hover:bg-white text-[#0A1F44] font-bold px-6 py-4 rounded-full border border-gray-200 shadow-sm transition-all text-sm hover:border-[#00B4FF]"
               >
                 <span>Explore The System</span>
@@ -93,46 +94,35 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Bottom Client Logo Ticker Strip */}
+      {/* 2. CLIENTS BANNERS (Trusted by us or something) in 2 lines running continuously */}
       <ClientTicker />
 
-      {/* Section 2a: The Complete Growth Creative System (Lavender Circuit Architecture Diagram) */}
+      {/* 3. THE PROFIT LOOP (AI Growth Integration Engine Diagram) */}
       <GrowthSystemSection />
 
-      {/* Section 2b: Ship creative that drives real growth (Dark Section with 4 Colorful Pillar Cards) */}
-      <ShipCreativeSection />
-
-      {/* Section 2c: We Run The Whole Show - Here's How (Vibrant Stepped 3-Card Workflow Staircase) */}
-      <ProgressWorkflowSection />
-
-      {/* Section 3a: 2x2 Checkerboard Metrics Banner Grid */}
-      <MetricsGrid />
-
-      {/* Section 3b: Move fast, test smarter (Dark Portfolio Showcase with 4 Industry iPhones) */}
+      {/* 4. OUR WORK (Reels section of our existing work) */}
       <PortfolioShowcase />
 
-      {/* Section 3c: Trusted by the Experts (Electric Purple Testimonials Grid) */}
-      <TestimonialsSection />
-
-      {/* Section 4a: Leverage the power of localization (Lavender Dotted Globe with 7 Language Avatars) */}
-      <LocalizationSection />
-
-      {/* Section 4b: Case Studies (Dark 3-Card Interactive Carousel) */}
-      <CaseStudiesSection />
-
-      {/* Section 4c: Frequently Asked Questions (Electric Purple Interactive Accordion) */}
-      <FAQSection />
-
-      {/* Section 5a: Lower your CAC with data-driven ads (Warm Cream CTA Banner with Clapper & Camera Icons) */}
-      <BottomCTASection />
-
-      {/* Section 5b: One concept ≠ one ad & Ad accounts we're obsessed with (2-Column Visual Split Grid) */}
+      {/* 5. SERVICES (Ship creative that drives real growth & Workflow) */}
+      <ShipCreativeSection />
+      <ProgressWorkflowSection />
       <VisualSplitGrid />
 
-      {/* Section 5c: YOUR GLOBAL CREATIVE TEAM Infinite Scrolling Marquee */}
-      <GlobalTeamMarquee />
+      {/* 6. CASE STUDIES AND RESULTS COMBINED */}
+      <CaseStudiesSection />
+      <MetricsGrid />
 
-      {/* Section 5d: Creative Milkshake Complete Footer */}
+      {/* 7. TESTIMONIALS & LOCALIZATION */}
+      <TestimonialsSection />
+      <LocalizationSection />
+
+      {/* 8. FINAL CTA AND FORM SECTION TO COLLECT LEADS */}
+      <BottomCTASection />
+      <FAQSection />
+      <LeadCaptureSection />
+
+      {/* 9. FOOTER SECTION */}
+      <GlobalTeamMarquee />
       <Footer />
     </div>
   );

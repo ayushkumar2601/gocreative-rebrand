@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="w-full gocreative-gradient-bg py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-white/20">
+    <section id="testimonials" className="w-full gocreative-gradient-bg py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-white/20">
       <div className="absolute inset-0 bg-black/10 pointer-events-none" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
 

@@ -3,280 +3,326 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
-interface MockupCardProps {
-  card: {
-    category: string;
-    title: string;
-    subText: string;
-    cardTitle: string;
-  };
-  isCenter: boolean;
-  isInView: boolean;
-  isUserMuted: boolean;
-  setIsUserMuted: (val: boolean) => void;
-}
-
-function MockupPhone({
-  card,
-  isCenter,
-  isInView,
-  isUserMuted,
-  setIsUserMuted,
-}: MockupCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isInView) {
-      // Section is in view: play the video
-      video.play().catch(() => {
-        // Autoplay policy or interaction required
-      });
-
-      if (isCenter && !isUserMuted) {
-        video.muted = false;
-      } else {
-        video.muted = true;
-      }
-    } else {
-      // Scrolled out of view: switch audio off and pause
-      video.muted = true;
-      video.pause();
-    }
-  }, [isInView, isCenter, isUserMuted]);
-
-  return (
-    <div
-      className={`w-full ${
-        isCenter
-          ? "max-w-[335px] sm:max-w-[365px] h-[550px] sm:h-[620px] lg:h-[650px] border-[7px] border-[#FF1493] shadow-[0_0_45px_rgba(255,20,147,0.45)]"
-          : "max-w-[310px] sm:max-w-[335px] h-[510px] sm:h-[570px] lg:h-[600px] border-[6px] border-[#1E293B] group-hover:border-[#00B4FF]/80 shadow-2xl"
-      } rounded-[42px] sm:rounded-[48px] bg-[#060B18] transition-all duration-500 overflow-hidden relative flex flex-col justify-between p-3`}
-    >
-      {/* Speaker Notch */}
-      <div className="relative z-30 w-full pt-3 px-6 flex items-center justify-between text-white text-[11px] font-semibold pointer-events-none">
-        <span>9:41</span>
-        <div className="w-22 h-4.5 bg-black rounded-full mx-auto" />
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-white" />
-          <span className="w-2.5 h-2.5 rounded-full bg-white/70" />
-        </div>
-      </div>
-
-      {/* Main Instagram Reel Video inside Mockup */}
-      <div className="absolute inset-0 z-10 bg-black overflow-hidden rounded-[34px] sm:rounded-[40px]">
-        <video
-          ref={videoRef}
-          src="/hero-reel.mp4"
-          loop
-          playsInline
-          muted={!isCenter || isUserMuted || !isInView}
-          className="w-full h-full object-cover absolute inset-0"
-        />
-      </div>
-
-      {/* Simple Mute/Unmute Button at the Top of the Video (Center Video Only) */}
-      {isCenter && (
-        <div className="absolute top-12 right-4 z-40">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsUserMuted(!isUserMuted);
-            }}
-            className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
-          >
-            <span className="text-sm">
-              {isUserMuted || !isInView ? "🔇" : "🔊"}
-            </span>
-            <span>{isUserMuted || !isInView ? "Unmute" : "Mute"}</span>
-          </button>
-        </div>
-      )}
-
-      {/* Bottom Performance Card Overlay inside Video Screen */}
-      <div className="relative z-30 px-3 pb-3 pointer-events-none">
-        <div className="bg-black/85 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-2xl flex flex-col gap-2">
-          <div className="flex justify-between items-center">
-            <span className="gocreative-gradient-bg px-2.5 py-0.5 rounded text-[9px] font-extrabold uppercase text-white tracking-wider">
-              {card.cardTitle}
-            </span>
-            <span className="text-xs font-black text-[#00B4FF]">
-              {card.subText}
-            </span>
-          </div>
-          <p className="text-sm font-black text-white leading-tight">
-            {card.title}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+interface WorkCard {
+  id: number;
+  category: string;
+  type: string;
+  views: string;
+  roas: string;
+  brand: string;
+  videoUrl: string;
 }
 
 export default function PortfolioShowcase() {
-  const [startIndex, setStartIndex] = useState(0);
-  const [isUserMuted, setIsUserMuted] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All Work");
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isCenterMuted, setIsCenterMuted] = useState(true);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.35 });
+  const isInView = useInView(sectionRef, { amount: 0.25 });
+  const centerVideoRef = useRef<HTMLVideoElement>(null);
 
-  const cards = [
+  // Auto-play and handle sound for the center video right when section enters view
+  useEffect(() => {
+    const video = centerVideoRef.current;
+    if (!video) return;
+
+    if (isInView) {
+      video.play().catch(() => {
+        // Browser autoplay policies require mute if no prior interaction
+      });
+      video.muted = isCenterMuted;
+    } else {
+      video.pause();
+    }
+  }, [isInView, isCenterMuted]);
+
+  const categories = [
+    { name: "All Work", icon: ":::" },
+    { name: "Video Ads", icon: "►" },
+    { name: "Image Ads", icon: "🖼" },
+    { name: "Beauty", icon: "" },
+    { name: "Fashion", icon: "" },
+    { name: "Health & Wellness", icon: "" },
+    { name: "Food & Drink", icon: "" },
+    { name: "Home & Living", icon: "" },
+    { name: "Apps & Services", icon: "" },
+  ];
+
+  // Exactly 5 Reel Cards with wider dimensions
+  const allCards: WorkCard[] = [
     {
-      category: "FINANCE",
-      title: "Instant Global Transfers",
-      subText: "+ 82% Conversion Rate",
-      cardTitle: "GOCREATIVE PAY",
+      id: 1,
+      category: "Beauty",
+      type: "Video Ad",
+      views: "2.1M+",
+      roas: "ROAS 6.3x",
+      brand: "Skincare Brand",
+      videoUrl: "/hero-reel.mp4",
     },
     {
-      category: "SAAS & B2B",
-      title: "ROAS Performance",
-      subText: "+340% Scale Boost",
-      cardTitle: "AUTOGROWTH AI",
+      id: 2,
+      category: "Fashion",
+      type: "Video Ad",
+      views: "1.8M+",
+      roas: "ROAS 4.7x",
+      brand: "Sneaker Brand",
+      videoUrl: "/hero-reel.mp4",
     },
     {
-      category: "GAMING & APPS",
-      title: "Top 10 App Store",
-      subText: "Viral Creator Campaign",
-      cardTitle: "HEROES CLASH",
+      id: 3,
+      category: "Beauty",
+      type: "Video Ad",
+      views: "3.2M+",
+      roas: "ROAS 7.8x",
+      brand: "Beauty Brand",
+      videoUrl: "/hero-reel.mp4", // CENTER HERO REEL (idx === 2)
     },
     {
-      category: "E-COMMERCE",
-      title: "Glow AI Serum",
-      subText: "3.8x ROAS Average",
-      cardTitle: "STYLEST SERUM",
+      id: 4,
+      category: "Food & Drink",
+      type: "Video Ad",
+      views: "1.2M+",
+      roas: "ROAS 5.1x",
+      brand: "Food Brand",
+      videoUrl: "/hero-reel.mp4",
+    },
+    {
+      id: 5,
+      category: "Health & Wellness",
+      type: "Video Ad",
+      views: "2.6M+",
+      roas: "ROAS 6.9x",
+      brand: "Wellness Brand",
+      videoUrl: "/hero-reel.mp4",
     },
   ];
 
-  const handlePrev = () => {
-    setStartIndex((prev) => (prev - 1 + cards.length) % cards.length);
-  };
-
-  const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % cards.length);
-  };
-
-  // Select 3 cards to show on medium/large screens
-  const displayedCards = [
-    cards[startIndex % cards.length],
-    cards[(startIndex + 1) % cards.length],
-    cards[(startIndex + 2) % cards.length],
-  ];
+  const filteredCards =
+    activeCategory === "All Work" || activeCategory === "Video Ads" || activeCategory === "Image Ads"
+      ? allCards
+      : allCards.filter((card) => card.category === activeCategory);
 
   return (
     <section
-      id="portfolio"
+      id="work"
       ref={sectionRef}
-      className="w-full bg-[#080D1A] text-white py-24 sm:py-32 relative overflow-hidden border-t border-white/10 select-none"
+      className="w-full bg-[#030611] text-white py-24 sm:py-32 relative overflow-hidden border-t border-white/10 select-none"
     >
-      <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Full Dark Background with ONLY Gradient Glowing Orbs (No Grids) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[750px] bg-gradient-to-tr from-[#4B00B5]/25 via-[#FF1493]/15 to-[#00B4FF]/20 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[#FF1493]/12 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 left-1/4 w-[650px] h-[650px] bg-[#00B4FF]/12 rounded-full blur-[170px] pointer-events-none" />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto mb-14 sm:mb-18"
+          className="text-center max-w-4xl mx-auto mb-10 sm:mb-14"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#FF1493] mb-4 border border-[#FF1493]/30">
-            <span>DATA-BACKED CREATIVE</span>
+          <div className="inline-flex items-center gap-2 bg-[#0A1226]/90 px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest text-[#FF1493] mb-5 border border-[#FF1493]/40 shadow-lg">
+            <span>OUR WORK</span>
           </div>
-          <h2 className="text-white font-black text-2xl sm:text-3xl lg:text-[40px] leading-tight tracking-tight uppercase">
-            MOVE FAST, TEST SMARTER, WITH <span className="gocreative-gradient-text">AI CREATIVE</span> AND MEDIA EXECUTION
+          <h2 className="text-white font-black text-3xl sm:text-4xl lg:text-[54px] leading-[1.08] tracking-tight mb-4">
+            Don&apos;t Take Our Word For It.
+            <br />
+            Our Work <span className="text-[#FF1493]">Speaks</span> <span className="gocreative-gradient-text">Louder.</span>
           </h2>
-          <p className="text-white/75 text-sm sm:text-base mt-3 font-normal">
-            We combine creative strategy with cutting-edge algorithmic paid media tactics to deliver exponential ROI.
+          <p className="text-white/70 text-base sm:text-lg font-medium">
+            Real brands. Real results. Real growth.
           </p>
         </motion.div>
 
-        {/* Carousel / Showcase Container with Navigation Arrows */}
-        <div className="relative flex items-center justify-between gap-2 sm:gap-6">
-          {/* Left Navigation Arrow Button */}
-          <motion.button
-            whileHover={{ scale: 1.15 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handlePrev}
-            aria-label="Previous slide"
-            className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#00B4FF] hover:bg-[#00B4FF]/80 text-[#060B18] flex items-center justify-center shadow-[0_0_25px_rgba(0,180,255,0.6)] z-30 shrink-0 cursor-pointer"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3.5"
-              className="w-6 h-6 ml-0.5"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        {/* Category Filter Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-6 pt-2 mb-12 no-scrollbar justify-start xl:justify-center scroll-smooth"
+        >
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.name;
+            return (
+              <button
+                key={cat.name}
+                onClick={() => setActiveCategory(cat.name)}
+                className={`flex items-center gap-2 px-4.5 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-tight whitespace-nowrap transition-all duration-300 cursor-pointer shrink-0 border ${
+                  isActive
+                    ? "bg-gradient-to-r from-[#FF1493]/25 to-[#FF1493]/10 text-[#FF1493] border-[#FF1493] shadow-[0_0_22px_rgba(255,20,147,0.4)] scale-105"
+                    : "bg-[#0C152E]/80 hover:bg-[#121E42] text-white/80 hover:text-white border-white/15 hover:border-[#00B4FF]/60"
+                }`}
+              >
+                {cat.icon && (
+                  <span className={isActive ? "text-[#FF1493] font-black" : "text-white/60 font-black"}>
+                    {cat.icon}
+                  </span>
+                )}
+                <span>{cat.name}</span>
+              </button>
+            );
+          })}
+          
+          {/* Scroll Right Arrow Indicator Pill */}
+          <div className="w-10 h-10 rounded-full bg-[#0C152E] border border-white/20 flex items-center justify-center text-white/70 shrink-0 ml-1 shadow-md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </motion.button>
+          </div>
+        </motion.div>
 
-          {/* 3 Industry Smartphone Mockups Grid */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 items-center justify-items-center py-6">
-            <AnimatePresence mode="popLayout">
-              {displayedCards.map((card, idx) => {
-                // Index 1 is the central phone on desktop (and active highlight)
-                const isCenter = idx === 1;
+        {/* 5 Wider Reel / Ad Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-7 mb-16 items-stretch">
+          <AnimatePresence mode="popLayout">
+            {filteredCards.map((card, idx) => {
+              // Center card in the 5-card row (index 2 when showing all 5)
+              const isCenter = idx === 2 && filteredCards.length >= 5;
 
-                return (
-                  <motion.div
-                    key={`${card.category}-${idx}-${startIndex}`}
-                    initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                    animate={{
-                      opacity: 1,
-                      scale: isCenter ? 1.05 : 0.96,
-                      y: isCenter ? -10 : 0,
-                    }}
-                    exit={{ opacity: 0, scale: 0.92, y: 20 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className={`w-full flex flex-col items-center group ${
-                      !isCenter ? "hidden md:flex opacity-85" : "flex"
-                    }`}
-                  >
-                    {/* Category Header Badge */}
+              return (
+                <motion.div
+                  key={card.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.92, y: 24 }}
+                  animate={{
+                    opacity: 1,
+                    scale: isCenter ? 1.05 : 1,
+                    y: isCenter ? -8 : 0,
+                  }}
+                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  onMouseEnter={() => setHoveredId(card.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  className={`group relative w-full h-[490px] sm:h-[530px] lg:h-[560px] bg-[#0A1024] rounded-[32px] overflow-hidden border transition-all duration-500 flex flex-col justify-between cursor-pointer shadow-2xl ${
+                    isCenter
+                      ? "border-2 border-[#FF1493] shadow-[0_0_45px_rgba(255,20,147,0.45)] z-20"
+                      : "border-white/15 hover:border-[#00B4FF]/80 hover:shadow-[0_0_35px_rgba(0,180,255,0.3)] z-10"
+                  }`}
+                >
+                  {/* Background Video (Reel Preview) */}
+                  <div className="absolute inset-0 bg-black overflow-hidden z-0">
+                    <video
+                      ref={isCenter ? centerVideoRef : undefined}
+                      src={card.videoUrl}
+                      loop
+                      muted={isCenter ? isCenterMuted : hoveredId !== card.id}
+                      playsInline
+                      autoPlay={isCenter || isInView}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Gradient Overlay for High Contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/95 z-1 pointer-events-none" />
+                  </div>
+
+                  {/* Top Bar: Center Mute Toggle OR Play Button */}
+                  <div className="relative z-20 flex justify-between items-center p-4 sm:p-5">
+                    {isCenter ? (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsCenterMuted(!isCenterMuted);
+                        }}
+                        className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
+                      >
+                        <span>{isCenterMuted ? "🔇" : "🔊"}</span>
+                        <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
+                      </button>
+                    ) : (
+                      <div className="w-fit ml-auto" />
+                    )}
+
                     <div
-                      className={`${
+                      className={`w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
                         isCenter
-                          ? "gocreative-gradient-bg shadow-[0_0_20px_rgba(255,20,147,0.5)] scale-110"
-                          : "bg-[#1E293B] border border-white/20"
-                      } text-white font-black text-xs sm:text-[13px] uppercase tracking-wider px-5 py-2 rounded-full shadow-xl mb-6 transition-all duration-300`}
+                          ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
+                          : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
+                      }`}
                     >
-                      {card.category}
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Bottom Stats & Brand Details Overlay */}
+                  <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
+                    {/* Eye Icon + View Count */}
+                    <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                      </svg>
+                      <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
+                    </div>
+                    <span className="text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
+                      Views
+                    </span>
+
+                    {/* ROAS Pill Box */}
+                    <div
+                      className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4.5 ${
+                        isCenter
+                          ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
+                          : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
+                      }`}
+                    >
+                      <span className="font-black text-base sm:text-[17px] text-white tracking-wide">
+                        {card.roas}
+                      </span>
                     </div>
 
-                    {/* Smartphone Mockup with Scroll Triggered Playback */}
-                    <MockupPhone
-                      card={card}
-                      isCenter={isCenter}
-                      isInView={isInView}
-                      isUserMuted={isUserMuted}
-                      setIsUserMuted={setIsUserMuted}
-                    />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-
-          {/* Right Navigation Arrow Button */}
-          <motion.button
-            whileHover={{ scale: 1.15 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleNext}
-            aria-label="Next slide"
-            className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#00B4FF] hover:bg-[#00B4FF]/80 text-[#060B18] flex items-center justify-center shadow-[0_0_25px_rgba(0,180,255,0.6)] z-30 shrink-0 cursor-pointer"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3.5"
-              className="w-6 h-6 mr-0.5"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </motion.button>
+                    {/* Brand & Ad Type Footer Line */}
+                    <div className="w-full flex items-center justify-between text-left pt-2 border-t border-white/10">
+                      <span className="text-xs sm:text-sm font-extrabold text-white/90 truncate">
+                        {card.brand}
+                      </span>
+                      <span className="text-xs font-bold text-white/50 shrink-0 ml-2">
+                        {card.type}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
+
+        {/* Bottom CTA Bar & Inquiry Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/15"
+        >
+          {/* Left Pill Button */}
+          <a
+            href="/work"
+            className="inline-flex items-center gap-3 bg-[#0C152E]/90 hover:bg-[#101E42] text-white font-extrabold text-sm px-8 py-4.5 rounded-full border border-[#FF1493]/40 hover:border-[#00B4FF] shadow-[0_0_25px_rgba(255,20,147,0.25)] transition-all transform hover:scale-105 group cursor-pointer"
+          >
+            <span className="gocreative-gradient-text font-black">View More Work</span>
+            <svg
+              className="w-4.5 h-4.5 text-[#00B4FF] transform group-hover:translate-x-1.5 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          {/* Right Text Prompt */}
+          <div className="text-center sm:text-right">
+            <p className="text-white/80 font-bold text-sm sm:text-base">
+              Want similar results for your brand?
+            </p>
+            <a href="#book" className="text-sm sm:text-base font-black hover:underline inline-block mt-0.5">
+              Let&apos;s build your <span className="gocreative-gradient-text">growth engine.</span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

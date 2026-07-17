@@ -7,7 +7,7 @@ export default function CaseStudiesSection() {
   const [activeSlide, setActiveSlide] = useState(2);
 
   return (
-    <section className="w-full bg-[#060B18] text-white py-24 sm:py-32 overflow-hidden select-none border-t border-white/10 relative">
+    <section id="case-studies" className="w-full bg-[#060B18] text-white py-24 sm:py-32 overflow-hidden select-none border-t border-white/10 relative">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#00B4FF]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
