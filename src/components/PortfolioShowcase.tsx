@@ -198,86 +198,99 @@ export default function PortfolioShowcase() {
                     edgeSensitivity={35}
                     glowColor={card.borderGlowHsl}
                     backgroundColor="#0A1024"
-                    borderRadius={32}
+                    borderRadius={46}
                     glowRadius={38}
                     glowIntensity={isCenter ? 1.4 : 1.1}
                     coneSpread={30}
                     colors={card.borderGlowColors}
                     className="w-full h-full group transition-all duration-500 shadow-2xl"
                   >
-                    <div className="w-full h-full flex flex-col justify-between rounded-[inherit] overflow-hidden">
-                      <div className="absolute inset-0 bg-black overflow-hidden rounded-[inherit] z-0">
-                        <video
-                          ref={isCenter ? centerVideoRef : undefined}
-                          src={card.videoUrl}
-                          loop
-                          muted={isCenter ? isCenterMuted : hoveredId !== card.id}
-                          playsInline
-                          autoPlay={isCenter || isInView}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/95 z-1 pointer-events-none" />
+                    {/* iPhone Mockup Body */}
+                    <div className="w-full h-full flex flex-col justify-between rounded-[inherit] overflow-hidden bg-[#1A1C23] p-[6px] sm:p-[8px] border border-[#2A2D3A] relative shadow-[inset_0_0_15px_rgba(255,255,255,0.05)]">
+                      
+                      {/* Dynamic Island */}
+                      <div className="absolute top-[18px] sm:top-[22px] left-1/2 -translate-x-1/2 w-[90px] h-[26px] bg-black rounded-full z-40 flex items-center justify-end px-2.5 border border-white/5 shadow-lg">
+                        {/* Camera Lens */}
+                        <div className="w-3 h-3 rounded-full bg-[#111] shadow-[inset_0_0_4px_rgba(255,255,255,0.4)] relative overflow-hidden flex items-center justify-center">
+                           <div className="w-1.5 h-1.5 rounded-full bg-blue-900/60 blur-[0.5px]" />
+                        </div>
                       </div>
 
-                      <div className="relative z-20 flex justify-between items-center p-4 sm:p-5">
-                        {isCenter ? (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setIsCenterMuted(!isCenterMuted);
-                            }}
-                            className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
+                      {/* Screen Content */}
+                      <div className="w-full h-full bg-black rounded-[36px] sm:rounded-[40px] overflow-hidden relative flex flex-col justify-between border border-black/50 shadow-inner">
+                        <div className="absolute inset-0 bg-black overflow-hidden rounded-[inherit] z-0">
+                          <video
+                            ref={isCenter ? centerVideoRef : undefined}
+                            src={card.videoUrl}
+                            loop
+                            muted={isCenter ? isCenterMuted : hoveredId !== card.id}
+                            playsInline
+                            autoPlay={isCenter || isInView}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/95 z-1 pointer-events-none" />
+                        </div>
+
+                        <div className="relative z-20 flex justify-between items-center p-4 sm:p-5 pt-10 sm:pt-11">
+                          {isCenter ? (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setIsCenterMuted(!isCenterMuted);
+                              }}
+                              className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-[11px] sm:text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
+                            >
+                              <span>{isCenterMuted ? "🔇" : "🔊"}</span>
+                              <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
+                            </button>
+                          ) : (
+                            <div className="w-fit ml-auto" />
+                          )}
+
+                          <div
+                            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
+                              isCenter
+                                ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
+                                : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
+                            }`}
                           >
-                            <span>{isCenterMuted ? "🔇" : "🔊"}</span>
-                            <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
-                          </button>
-                        ) : (
-                          <div className="w-fit ml-auto" />
-                        )}
-
-                        <div
-                          className={`w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
-                            isCenter
-                              ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
-                              : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
-                          }`}
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
-                        <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
-                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                          </svg>
-                          <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
-                        </div>
-                        <span className="text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
-                          Views
-                        </span>
-
-                        <div
-                          className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4.5 ${
-                            isCenter
-                              ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
-                              : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
-                          }`}
-                        >
-                          <span className="font-black text-base sm:text-[17px] text-white tracking-wide">
-                            {card.roas}
-                          </span>
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
                         </div>
 
-                        <div className="w-full flex items-center justify-between text-left pt-2 border-t border-white/10">
-                          <span className="text-xs sm:text-sm font-extrabold text-white/90 truncate">
-                            {card.brand}
+                        <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
+                          <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
+                              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                            </svg>
+                            <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
+                          </div>
+                          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
+                            Views
                           </span>
-                          <span className="text-xs font-bold text-white/50 shrink-0 ml-2">
-                            {card.type}
-                          </span>
+
+                          <div
+                            className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4 sm:mb-4.5 ${
+                              isCenter
+                                ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
+                                : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
+                            }`}
+                          >
+                            <span className="font-black text-[15px] sm:text-[17px] text-white tracking-wide">
+                              {card.roas}
+                            </span>
+                          </div>
+
+                          <div className="w-full flex items-center justify-between text-left pt-2.5 sm:pt-3 border-t border-white/15">
+                            <span className="text-[11px] sm:text-xs font-extrabold text-white/90 truncate">
+                              {card.brand}
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] font-bold text-white/50 shrink-0 ml-2 uppercase tracking-wide">
+                              {card.type}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
