@@ -25,6 +25,7 @@ interface CaseStudyCard {
   // React Bits BorderGlow dynamic cursor-tracking configuration
   borderGlowHsl: string;
   borderGlowColors: string[];
+  domain: string | null;
 }
 
 export default function CaseStudiesSection() {
@@ -59,6 +60,7 @@ export default function CaseStudiesSection() {
       waveColor: "#FF1493",
       borderGlowHsl: "330 100 54",
       borderGlowColors: ["#FF1493", "#D91499", "#4B00B5"],
+      domain: "juhst.com",
     },
     {
       id: 2,
@@ -80,6 +82,7 @@ export default function CaseStudiesSection() {
       waveColor: "#D91499",
       borderGlowHsl: "315 100 48",
       borderGlowColors: ["#D91499", "#9D14C4", "#4B00B5"],
+      domain: "nabhisutra.com",
     },
     {
       id: 3,
@@ -101,6 +104,7 @@ export default function CaseStudiesSection() {
       waveColor: "#9D14C4",
       borderGlowHsl: "286 100 42",
       borderGlowColors: ["#9D14C4", "#FF1493", "#00B4FF"],
+      domain: "jaggercane.com",
     },
     {
       id: 4,
@@ -122,6 +126,7 @@ export default function CaseStudiesSection() {
       waveColor: "#0073E6",
       borderGlowHsl: "210 100 45",
       borderGlowColors: ["#0073E6", "#4B00B5", "#00B4FF"],
+      domain: "faebeauty.in",
     },
     {
       id: 5,
@@ -143,6 +148,7 @@ export default function CaseStudiesSection() {
       waveColor: "#00B4FF",
       borderGlowHsl: "197 100 50",
       borderGlowColors: ["#00B4FF", "#0073E6", "#4B00B5"],
+      domain: "promoteducation.com",
     },
   ];
 
@@ -251,12 +257,29 @@ export default function CaseStudiesSection() {
                         {study.tag}
                       </div>
 
-                      {/* Brand Typography Graphic Overlay */}
+                      {/* Brand Logo Graphic Overlay */}
                       <div className="absolute inset-0 bg-black/35 z-10" />
-                      <div className="relative z-10 text-center transform group-hover:scale-110 transition-transform duration-500">
-                        <span className="text-3xl font-black tracking-wider text-white opacity-95 drop-shadow-md">
-                          {study.brand.toUpperCase()}
-                        </span>
+                      <div className="relative z-10 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 w-full h-full p-8">
+                        {study.domain ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img 
+                            src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=256`} 
+                            alt={study.brand} 
+                            onError={(e) => {
+                              // Fallback to text if image fails to load
+                              e.currentTarget.style.display = 'none';
+                              const span = document.createElement('span');
+                              span.className = 'text-3xl font-black tracking-wider text-white opacity-95 drop-shadow-md uppercase text-center';
+                              span.innerText = study.brand;
+                              e.currentTarget.parentElement?.appendChild(span);
+                            }}
+                            className="max-h-full max-w-[80%] object-contain drop-shadow-2xl" 
+                          />
+                        ) : (
+                          <span className="text-3xl font-black tracking-wider text-white opacity-95 drop-shadow-md uppercase text-center">
+                            {study.brand}
+                          </span>
+                        )}
                       </div>
                     </div>
 

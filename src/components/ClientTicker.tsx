@@ -1,189 +1,81 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+
+const allBrands = [
+  { name: "Nabhi Sutra", domain: "nabhisutra.com" },
+  { name: "Curryit", domain: "curryit.in" },
+  { name: "Jaggercane", domain: "jaggercane.com" },
+  { name: "Whimsy India", domain: "whimsyindia.com" },
+  { name: "Menoveda", domain: "menoveda.com" },
+  { name: "Daughter Earth", domain: "daughter.earth" },
+  { name: "The Wellness Shop", domain: "thewellnessshop.in" },
+  { name: "Bumberry", domain: "bumberry.com" },
+  { name: "Analogy Design", domain: "analogydesign.co" },
+  { name: "Terrafit", domain: "terrafit.in" },
+  { name: "Juhst", domain: "juhst.com" },
+  { name: "Promote Education", domain: "promoteducation.com" },
+  { name: "Your Wishlist", domain: "yourwishlist.co.in" },
+  { name: "DP Supariwala", domain: "dpsupariwala.com" },
+  { name: "Mango People Kids", domain: null },
+  { name: "Kaari Katha", domain: "kaarikatha.com" },
+  { name: "Poptagg", domain: null },
+  { name: "Givo", domain: "givo.com" },
+  { name: "Hue And Shades", domain: "hueandshades.com" },
+  { name: "Pakhi India", domain: null },
+  { name: "Islands of Loom", domain: "islandsofloom.com" },
+  { name: "The Glow Company", domain: "theglowcompany.co" },
+  { name: "Lively Living", domain: "livelyliving.com.au" },
+  { name: "Project Montessori", domain: "au.projectmontessori.com" },
+  { name: "Gingiber", domain: "gingiber.com" },
+  { name: "Chris Riley Medium", domain: "chrisrileymedium.com" },
+  { name: "Seedful", domain: "seedful.co.uk" },
+  { name: "Lureaux", domain: "lureaux.com" },
+  { name: "Exalt", domain: "exalt.co.uk" },
+  { name: "Hormone Health Advantage", domain: "hormonehealthadvantage.com" },
+  { name: "Grill Your Ass Off", domain: "grillyourassoff.com" },
+  { name: "Fly A Flag", domain: "flyaflag.com" },
+  { name: "AM Fishing", domain: "amfishingtx.com" },
+  { name: "Buff Clucks", domain: "buffclucks.com" },
+  { name: "Carplounge", domain: "carplounge.co.uk" },
+  { name: "Review Boost Card", domain: "reviewboostcard.com" },
+];
+
+const row1Logos = allBrands.slice(0, 18);
+const row2Logos = allBrands.slice(18);
+
+const LogoItem = ({ item, idx }: { item: { name: string; domain: string | null }, idx: number }) => {
+  const [imgError, setImgError] = useState(false);
+  const showImg = item.domain && !imgError;
+
+  return (
+    <div key={`${item.name}-${idx}`} className="flex flex-col items-center justify-center shrink-0 min-w-[140px] h-24 transition-all duration-300 gap-3 group">
+      {showImg ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://www.google.com/s2/favicons?domain=${item.domain}&sz=256`}
+            alt={item.name}
+            onError={() => setImgError(true)}
+            className="w-14 h-14 sm:w-16 sm:h-16 object-contain rounded-[12px] bg-white/5 p-1.5 border border-white/10 shadow-lg group-hover:scale-110 transition-transform duration-300"
+          />
+          <span className="text-[10px] sm:text-[11px] text-white/75 font-bold uppercase tracking-widest text-center group-hover:text-white transition-colors">
+            {item.name}
+          </span>
+        </>
+      ) : (
+        <span className="font-extrabold text-sm sm:text-base text-white/90 tracking-wider uppercase text-center">
+          {item.name}
+        </span>
+      )}
+    </div>
+  );
+};
 
 export default function ClientTicker() {
-  const row1Logos = [
-    { name: "nectar", type: "nectar" },
-    { name: "UBISOFT", type: "ubisoft" },
-    { name: "BEN&JERRY'S", type: "benjerry" },
-    { name: "COACH", type: "coach" },
-    { name: "SkinnyFit", type: "skinnyfit" },
-    { name: "Deutsche Bank", type: "deutsche" },
-    { name: "fiverr.", type: "fiverr" },
-    { name: "elementor", type: "elementor" },
-    { name: "VSHRED", type: "vshred" },
-    { name: "IL MAKIAGE", type: "ilmakiage" },
-  ];
-
-  const row2Logos = [
-    { name: "loop", type: "loop" },
-    { name: "PLEO", type: "pleo" },
-    { name: "FUTURE PLAY", type: "futureplay" },
-    { name: "NAVAN", type: "navan" },
-    { name: "MIXTILES", type: "mixtiles" },
-    { name: "Flying Tiger", type: "flyingtiger" },
-    { name: "Allianz", type: "allianz" },
-    { name: "amazon", type: "amazon" },
-    { name: "Johnson&Johnson", type: "johnson" },
-    { name: "TRUE CLASSIC", type: "trueclassic" },
-  ];
-
   // Duplicate arrays for seamless 100% infinite marquee loops
   const duplicatedRow1 = [...row1Logos, ...row1Logos, ...row1Logos];
   const duplicatedRow2 = [...row2Logos, ...row2Logos, ...row2Logos];
-
-  const renderLogo = (item: { name: string; type: string }, idx: number) => {
-    switch (item.type) {
-      case "nectar":
-        return (
-          <div key={idx} className="flex items-center gap-1.5 text-white/85 font-bold text-xl sm:text-2xl tracking-tight lowercase shrink-0">
-            <span>nectar</span>
-            <div className="w-2.5 h-2.5 bg-[#00B4FF] rounded-xs transform rotate-45 shadow-[0_0_8px_rgba(0,180,255,0.6)]" />
-          </div>
-        );
-      case "ubisoft":
-        return (
-          <div key={idx} className="flex items-center gap-1.5 text-white/85 font-black text-xl sm:text-2xl tracking-wider uppercase shrink-0">
-            <span>UBISOFT</span>
-          </div>
-        );
-      case "benjerry":
-        return (
-          <div key={idx} className="font-extrabold text-lg sm:text-xl tracking-normal text-white/85 uppercase font-serif shrink-0">
-            BEN&JERRY&apos;S
-          </div>
-        );
-      case "coach":
-        return (
-          <div key={idx} className="w-10 h-10 rounded-full border border-white/70 flex items-center justify-center text-[9px] font-bold text-white/85 uppercase text-center leading-tight shrink-0">
-            COACH
-          </div>
-        );
-      case "skinnyfit":
-        return (
-          <div key={idx} className="flex items-center gap-1 font-bold text-xl sm:text-2xl text-white/85 tracking-tight shrink-0">
-            <span>SkinnyFit</span>
-            <span className="text-base text-[#FF1493]">♡</span>
-          </div>
-        );
-      case "deutsche":
-        return (
-          <div key={idx} className="flex items-center gap-2 font-semibold text-lg sm:text-xl text-white/85 shrink-0">
-            <span>Deutsche Bank</span>
-            <div className="w-4 h-4 border border-[#00B4FF] flex items-center justify-center">
-              <div className="w-2.5 h-0.5 bg-[#00B4FF] transform -rotate-45" />
-            </div>
-          </div>
-        );
-      case "fiverr":
-        return (
-          <div key={idx} className="font-black text-2xl sm:text-3xl text-white/85 tracking-tighter lowercase shrink-0">
-            fiverr<span className="text-[#00B4FF]">.</span>
-          </div>
-        );
-      case "elementor":
-        return (
-          <div key={idx} className="flex items-center gap-1.5 font-bold text-xl sm:text-2xl text-white/85 lowercase shrink-0">
-            <div className="w-4 h-4 rounded-full border-2 border-[#FF1493] flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-[#FF1493] rounded-full" />
-            </div>
-            <span>elementor</span>
-          </div>
-        );
-      case "vshred":
-        return (
-          <div key={idx} className="font-black text-xl sm:text-2xl text-white/85 italic tracking-wider uppercase shrink-0">
-            VSHRED
-          </div>
-        );
-      case "ilmakiage":
-        return (
-          <div key={idx} className="flex flex-col items-center leading-none text-white/85 shrink-0">
-            <span className="font-serif font-bold text-lg sm:text-xl tracking-[0.18em] uppercase">
-              IL MAKIAGE
-            </span>
-            <span className="text-[8px] tracking-[0.3em] uppercase opacity-70">
-              NEW YORK
-            </span>
-          </div>
-        );
-      case "loop":
-        return (
-          <div key={idx} className="font-bold text-2xl sm:text-3xl text-white/85 tracking-tight lowercase shrink-0">
-            loop
-          </div>
-        );
-      case "pleo":
-        return (
-          <div key={idx} className="font-extrabold text-xl sm:text-2xl text-white/85 tracking-widest uppercase shrink-0">
-            PLEO
-          </div>
-        );
-      case "futureplay":
-        return (
-          <div key={idx} className="w-9 h-9 rounded-full border border-white/70 flex items-center justify-center text-[7px] font-extrabold text-white/85 uppercase text-center leading-none shrink-0">
-            FUTURE
-            <br />
-            PLAY
-          </div>
-        );
-      case "navan":
-        return (
-          <div key={idx} className="font-extrabold text-xl sm:text-2xl text-white/85 tracking-[0.2em] uppercase shrink-0">
-            nAvAn
-          </div>
-        );
-      case "mixtiles":
-        return (
-          <div key={idx} className="flex items-center gap-1.5 font-extrabold text-xl sm:text-2xl text-white/85 tracking-wider uppercase shrink-0">
-            <div className="flex gap-0.5">
-              <div className="w-1.5 h-1.5 bg-[#00B4FF]" />
-              <div className="w-1.5 h-1.5 bg-[#FF1493]" />
-            </div>
-            <span>MIXTILES</span>
-          </div>
-        );
-      case "flyingtiger":
-        return (
-          <div key={idx} className="flex flex-col items-center leading-none text-white/85 shrink-0">
-            <span className="font-bold text-lg sm:text-xl lowercase">
-              Flying Tiger
-            </span>
-            <span className="text-[9px] opacity-70 lowercase">
-              copenhagen
-            </span>
-          </div>
-        );
-      case "allianz":
-        return (
-          <div key={idx} className="flex items-center gap-2 font-bold text-xl sm:text-2xl text-white/85 shrink-0">
-            <span>Allianz</span>
-            <div className="w-5 h-5 rounded-full border border-[#00B4FF] flex items-center justify-center text-[9px] text-[#00B4FF]">
-              |||
-            </div>
-          </div>
-        );
-      case "amazon":
-        return (
-          <div key={idx} className="font-bold text-2xl sm:text-3xl text-white/85 tracking-tighter lowercase shrink-0">
-            amazon
-          </div>
-        );
-      case "johnson":
-        return (
-          <div key={idx} className="font-serif italic font-bold text-xl sm:text-2xl text-white/85 tracking-tight shrink-0">
-            Johnson&Johnson
-          </div>
-        );
-      case "trueclassic":
-        return (
-          <div key={idx} className="font-black text-lg sm:text-xl text-white/85 tracking-widest uppercase shrink-0">
-            TRUE CLASSIC
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
 
   return (
     <section className="w-full bg-[#060B18] py-6 sm:py-8 border-y border-white/10 overflow-hidden select-none relative">
@@ -197,14 +89,18 @@ export default function ClientTicker() {
         {/* Row 1: Flowing Right to Left (Line 1) */}
         <div className="w-full overflow-hidden flex">
           <div className="animate-marquee flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
-            {duplicatedRow1.map((logo, idx) => renderLogo(logo, idx))}
+            {duplicatedRow1.map((item, idx) => (
+              <LogoItem key={`r1-${idx}`} item={item} idx={idx} />
+            ))}
           </div>
         </div>
 
         {/* Row 2: Flowing Left to Right (Line 2 - Reverse) */}
         <div className="w-full overflow-hidden flex">
           <div className="animate-marquee-reverse flex items-center gap-14 sm:gap-20 pr-14 sm:pr-20">
-            {duplicatedRow2.map((logo, idx) => renderLogo(logo, idx))}
+            {duplicatedRow2.map((item, idx) => (
+              <LogoItem key={`r2-${idx}`} item={item} idx={idx} />
+            ))}
           </div>
         </div>
       </div>
