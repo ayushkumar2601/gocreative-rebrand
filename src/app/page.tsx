@@ -108,7 +108,7 @@ export default function HomePage() {
       <TestimonialsSection />
 
       {/* 8. FINAL CTA AND FORM SECTION TO COLLECT LEADS */}
-      <BottomCTASection />
+      {/* <BottomCTASection /> */}
       <FAQSection />
       <LeadCaptureSection />
 
