@@ -319,25 +319,57 @@ export default function CaseStudiesSection() {
                         ))}
                       </div>
 
-                      {/* Sparkline Wave Chart with Card's Specific Glow Color */}
-                      <div className="w-full pt-2 border-t border-white/10 flex items-center justify-center">
+                      {/* Advanced Animated Sparkline Chart */}
+                      <div className="w-full pt-3 pb-1 border-t border-white/10 flex flex-col items-center justify-center relative group">
                         <svg
-                          viewBox="0 0 200 40"
+                          viewBox="0 0 200 50"
                           fill="none"
-                          className="w-full h-8 opacity-90 transition-all duration-500"
+                          className="w-full h-10 opacity-90 transition-opacity duration-300 group-hover:opacity-100"
                         >
-                          <path
-                            d="M0 32 C 15 32, 20 18, 35 24 C 50 30, 55 12, 70 18 C 85 24, 90 8, 105 14 C 120 20, 125 6, 140 12 C 155 18, 160 4, 175 10 C 190 16, 195 6, 200 6"
+                          {/* Grid Background */}
+                          <path d="M0 10 L 200 10" stroke="white" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="3 3" />
+                          <path d="M0 25 L 200 25" stroke="white" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="3 3" />
+                          <path d="M0 40 L 200 40" stroke="white" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="3 3" />
+
+                          {/* Gradient Area Fill (Animated Opacity) */}
+                          <motion.path
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 0.3 }}
+                            transition={{ duration: 1, delay: 0.6 }}
+                            viewport={{ once: true }}
+                            d="M0 42 C 15 42, 20 28, 35 34 C 50 40, 55 22, 70 28 C 85 34, 90 18, 105 24 C 120 30, 125 16, 140 22 C 155 28, 160 14, 175 20 C 190 26, 195 16, 200 16 L 200 50 L 0 50 Z"
+                            fill={`url(#waveGradient-${study.id})`}
+                          />
+
+                          {/* Main Animated Neon Line */}
+                          <motion.path
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            whileInView={{ pathLength: 1, opacity: 1 }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                            d="M0 42 C 15 42, 20 28, 35 34 C 50 40, 55 22, 70 28 C 85 34, 90 18, 105 24 C 120 30, 125 16, 140 22 C 155 28, 160 14, 175 20 C 190 26, 195 16, 200 16"
                             stroke={study.waveColor}
                             strokeWidth="2.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            style={{ filter: `drop-shadow(0px 2px 4px ${study.waveColor}90)` }}
                           />
-                          <path
-                            d="M0 32 C 15 32, 20 18, 35 24 C 50 30, 55 12, 70 18 C 85 24, 90 8, 105 14 C 120 20, 125 6, 140 12 C 155 18, 160 4, 175 10 C 190 16, 195 6, 200 6 L 200 40 L 0 40 Z"
-                            fill={`url(#waveGradient-${study.id})`}
-                            opacity="0.3"
+
+                          {/* Glowing Endpoint Dot */}
+                          <motion.circle
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 1.3, type: "spring" }}
+                            viewport={{ once: true }}
+                            cx="200"
+                            cy="16"
+                            r="3.5"
+                            fill="white"
+                            stroke={study.waveColor}
+                            strokeWidth="1.5"
+                            style={{ filter: `drop-shadow(0px 0px 6px ${study.waveColor})` }}
                           />
+
                           <defs>
                             <linearGradient id={`waveGradient-${study.id}`} x1="0" y1="0" x2="0" y2="1">
                               <stop offset="0%" stopColor={study.waveColor} />

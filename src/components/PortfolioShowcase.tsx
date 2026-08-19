@@ -260,34 +260,12 @@ export default function PortfolioShowcase() {
                           </div>
                         </div>
 
-                        <div className="relative z-20 flex flex-col items-center justify-end p-5 pb-6 mt-auto text-center">
-                          <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-md mb-2 group-hover:border-[#00B4FF] transition-all">
-                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF1493]">
-                              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                            </svg>
-                            <span className="font-extrabold text-sm sm:text-base text-white">{card.views}</span>
-                          </div>
-                          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-[#A5B4FC] tracking-wider mb-4">
-                            Views
-                          </span>
-
-                          <div
-                            className={`w-full py-2.5 px-4 rounded-2xl border transition-all shadow-xl mb-4 sm:mb-4.5 ${
-                              isCenter
-                                ? "bg-gradient-to-r from-[#FF1493]/25 to-[#4B00B5]/30 border-[#FF1493]/70"
-                                : "bg-[#111A36]/90 backdrop-blur-xl border-white/20 group-hover:bg-[#FF1493]/20 group-hover:border-[#FF1493]/60"
-                            }`}
-                          >
-                            <span className="font-black text-[15px] sm:text-[17px] text-white tracking-wide">
-                              {card.roas}
-                            </span>
-                          </div>
-
-                          <div className="w-full flex items-center justify-between text-left pt-2.5 sm:pt-3 border-t border-white/15">
-                            <span className="text-[11px] sm:text-xs font-extrabold text-white/90 truncate">
+                        <div className="relative z-20 flex flex-col justify-end p-5 pb-6 mt-auto">
+                          <div className="w-full flex items-center justify-between text-left">
+                            <span className="text-xs sm:text-sm font-extrabold text-white/90 truncate drop-shadow-md">
                               {card.brand}
                             </span>
-                            <span className="text-[10px] sm:text-[11px] font-bold text-white/50 shrink-0 ml-2 uppercase tracking-wide">
+                            <span className="text-[10px] sm:text-[11px] font-bold text-white/70 shrink-0 ml-2 uppercase tracking-wide drop-shadow-md">
                               {card.type}
                             </span>
                           </div>
