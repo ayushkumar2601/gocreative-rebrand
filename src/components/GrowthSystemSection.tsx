@@ -4,7 +4,7 @@ import React from "react";
 
 export default function GrowthSystemSection() {
   return (
-    <section id="profit-loop" className="w-full bg-[#080D1A] text-white py-24 sm:py-32 relative overflow-hidden select-none">
+    <section id="profit-loop" className="w-full bg-[#080D1A] text-white py-12 sm:py-16 relative overflow-hidden select-none">
       {/* Futuristic Grid & Ambient Orbs Background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-30"

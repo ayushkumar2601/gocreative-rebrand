@@ -116,7 +116,7 @@ export default function PortfolioShowcase() {
     <section
       id="work"
       ref={sectionRef}
-      className="w-full bg-[#030611] text-white py-24 sm:py-32 relative overflow-hidden border-t border-white/10 select-none"
+      className="w-full bg-[#030611] text-white py-12 sm:py-16 relative overflow-hidden border-t border-white/10 select-none"
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[750px] bg-gradient-to-tr from-[#4B00B5]/25 via-[#FF1493]/15 to-[#00B4FF]/20 rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[#FF1493]/12 rounded-full blur-[160px] pointer-events-none" />

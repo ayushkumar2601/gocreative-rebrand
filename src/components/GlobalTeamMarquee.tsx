@@ -6,7 +6,7 @@ export default function GlobalTeamMarquee() {
   const repeatItems = Array.from({ length: 8 });
 
   return (
-    <section className="w-full bg-[#060B18] py-5 sm:py-6 border-t border-b border-white/15 overflow-hidden select-none shadow-[0_0_30px_rgba(0,180,255,0.1)]">
+    <section className="w-full bg-[#060B18] py-2 sm:py-3 border-t border-b border-white/15 overflow-hidden select-none shadow-[0_0_30px_rgba(0,180,255,0.1)]">
       <div className="animate-marquee flex items-center gap-10 whitespace-nowrap">
         {repeatItems.map((_, i) => (
           <div

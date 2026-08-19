@@ -186,7 +186,7 @@ export default function ClientTicker() {
   };
 
   return (
-    <section className="w-full bg-[#060B18] py-12 sm:py-16 border-y border-white/10 overflow-hidden select-none relative">
+    <section className="w-full bg-[#060B18] py-6 sm:py-8 border-y border-white/10 overflow-hidden select-none relative">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-10">
         <p className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
           Trusted by <span className="text-[#00B4FF] font-black">100+ High-Growth Brands</span> &amp; Scale-Ups Worldwide

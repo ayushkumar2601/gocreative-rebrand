@@ -125,7 +125,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section id="testimonials" className="w-full gocreative-gradient-bg py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-white/20">
+    <section id="testimonials" className="w-full gocreative-gradient-bg py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-white/20">
       {/* Retaining the exact older background gradient (gocreative-gradient-bg) with subtle ambient light */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />

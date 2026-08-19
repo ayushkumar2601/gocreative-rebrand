@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function BottomCTASection() {
   return (
-    <section className="w-full bg-[#060B18] py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden select-none border-t border-white/15">
+    <section className="w-full bg-[#060B18] py-14 sm:py-18 px-4 sm:px-6 relative overflow-hidden select-none border-t border-white/15">
       {/* Ambient Glowing Orbs */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF1493]/15 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#00B4FF]/15 rounded-full blur-[160px] pointer-events-none" />

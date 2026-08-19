@@ -7,12 +7,8 @@ import ClientTicker from "@/components/ClientTicker";
 import GrowthSystemSection from "@/components/GrowthSystemSection";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ShipCreativeSection from "@/components/ShipCreativeSection";
-import ProgressWorkflowSection from "@/components/ProgressWorkflowSection";
-import VisualSplitGrid from "@/components/VisualSplitGrid";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import MetricsGrid from "@/components/MetricsGrid";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import LocalizationSection from "@/components/LocalizationSection";
 import FAQSection from "@/components/FAQSection";
 import BottomCTASection from "@/components/BottomCTASection";
 import LeadCaptureSection from "@/components/LeadCaptureSection";
@@ -29,7 +25,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* 1. HERO MAIN FIRST SECTION - Intro video playing on right & major headlines on left */}
-      <main className="flex-1 w-full max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 pt-6 sm:pt-10 lg:pt-14 pb-16 lg:pb-24 flex items-center">
+      <main className="flex-1 w-full max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 pt-3 sm:pt-5 lg:pt-7 pb-8 lg:pb-12 flex items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headline, Description, CTA & Badges */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left z-10">
@@ -107,13 +103,9 @@ export default function HomePage() {
       <CaseStudiesSection />
 
       {/* 6. WORKFLOW & SERVICES */}
-      <ProgressWorkflowSection />
-      <VisualSplitGrid />
-      <MetricsGrid />
 
       {/* 7. TESTIMONIALS & LOCALIZATION */}
       <TestimonialsSection />
-      <LocalizationSection />
 
       {/* 8. FINAL CTA AND FORM SECTION TO COLLECT LEADS */}
       <BottomCTASection />

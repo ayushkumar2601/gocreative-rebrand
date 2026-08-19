@@ -61,7 +61,7 @@ export default function ShipCreativeSection() {
   ];
 
   return (
-    <section id="services" className="w-full bg-[#060B18] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden relative border-t border-white/10 select-none">
+    <section id="services" className="w-full bg-[#060B18] text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden relative border-t border-white/10 select-none">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4B00B5]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-[1340px] mx-auto relative z-10">

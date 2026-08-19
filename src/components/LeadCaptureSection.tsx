@@ -26,7 +26,7 @@ export default function LeadCaptureSection() {
   };
 
   return (
-    <section id="book" className="w-full bg-[#060B18] py-24 sm:py-32 relative overflow-hidden text-white select-none">
+    <section id="book" className="w-full bg-[#060B18] py-12 sm:py-16 relative overflow-hidden text-white select-none">
       {/* Background Ambient Glow & Grid */}
       <div className="absolute top-1/3 left-1/4 w-[550px] h-[550px] rounded-full bg-[#4B00B5]/20 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[#00B4FF]/15 blur-[160px] pointer-events-none" />

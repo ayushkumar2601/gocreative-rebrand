@@ -158,7 +158,7 @@ export default function CaseStudiesSection() {
         });
 
   return (
-    <section id="case-studies" className="w-full bg-[#030611] text-white py-24 sm:py-32 relative overflow-hidden select-none border-t border-white/10">
+    <section id="case-studies" className="w-full bg-[#030611] text-white py-12 sm:py-16 relative overflow-hidden select-none border-t border-white/10">
       {/* FULL DARK BACKGROUND with ONLY Gradient Ambient Glows (Pink on Leftmost -> Blue on Rightmost) */}
       <div className="absolute top-1/3 -left-20 w-[650px] h-[650px] bg-[#FF1493]/16 rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[700px] bg-[#4B00B5]/18 rounded-full blur-[190px] pointer-events-none" />

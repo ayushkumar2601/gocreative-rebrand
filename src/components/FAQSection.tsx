@@ -39,7 +39,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-[#080D1A] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 select-none border-t border-white/10 relative overflow-hidden">
+    <section className="w-full bg-[#080D1A] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 select-none border-t border-white/10 relative overflow-hidden">
       <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-[#4B00B5]/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-[940px] mx-auto relative z-10">
