@@ -8,6 +8,7 @@ import GrowthSystemSection from "@/components/GrowthSystemSection";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ShipCreativeSection from "@/components/ShipCreativeSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import MasonrySection from "@/components/MasonrySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import BottomCTASection from "@/components/BottomCTASection";
@@ -98,6 +99,9 @@ export default function HomePage() {
 
       {/* 4. OUR WORK (Reels section of our existing work) */}
       <PortfolioShowcase />
+
+      {/* 4.5 MASONRY GALLERY */}
+      <MasonrySection />
 
       {/* 5. OUR IMPACT & CASE STUDIES (Real Brands. Real Results.) */}
       <CaseStudiesSection />
