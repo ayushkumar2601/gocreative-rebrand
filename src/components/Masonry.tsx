@@ -46,13 +46,14 @@ const preloadImages = async (urls: string[]): Promise<Record<string, { width: nu
       src =>
         new Promise<void>(resolve => {
           const img = new Image();
-          img.src = src;
+          const safeSrc = encodeURI(src);
+          img.src = safeSrc;
           img.onload = () => {
-            result[src] = { width: img.naturalWidth || img.width, height: img.naturalHeight || img.height };
+            result[src] = { width: img.naturalWidth || 600, height: img.naturalHeight || 600 };
             resolve();
           };
           img.onerror = () => {
-            result[src] = { width: 1, height: 1 };
+            result[src] = { width: 600, height: 600 };
             resolve();
           };
         })
@@ -61,14 +62,17 @@ const preloadImages = async (urls: string[]): Promise<Record<string, { width: nu
   return result;
 };
 
-interface Item {
+export interface MasonryItem {
   id: string;
   img: string;
-  url: string;
+  url?: string;
+  title?: string;
+  category?: string;
   height?: number;
+  isTall?: boolean;
 }
 
-interface GridItem extends Item {
+interface GridItem extends MasonryItem {
   x: number;
   y: number;
   w: number;
@@ -76,7 +80,7 @@ interface GridItem extends Item {
 }
 
 interface MasonryProps {
-  items: Item[];
+  items: MasonryItem[];
   ease?: string;
   duration?: number;
   stagger?: number;
@@ -85,22 +89,24 @@ interface MasonryProps {
   hoverScale?: number;
   blurToFocus?: boolean;
   colorShiftOnHover?: boolean;
+  onItemClick?: (item: MasonryItem) => void;
 }
 
 const Masonry: React.FC<MasonryProps> = ({
   items,
   ease = 'power3.out',
-  duration = 0.6,
+  duration = 1.2,
   stagger = 0.05,
   animateFrom = 'bottom',
   scaleOnHover = true,
-  hoverScale = 0.95,
+  hoverScale = 0.96,
   blurToFocus = true,
-  colorShiftOnHover = false
+  colorShiftOnHover = false,
+  onItemClick,
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
-    [5, 4, 3, 2],
+    ['(min-width:1400px)', '(min-width:1024px)', '(min-width:640px)'],
+    [4, 3, 2],
     1
   );
 
@@ -148,7 +154,7 @@ const Masonry: React.FC<MasonryProps> = ({
   const [maxHeight, setMaxHeight] = useState(0);
 
   const grid = useMemo<GridItem[]>(() => {
-    if (!width || !imagesReady) return [];
+    if (!width) return [];
 
     const colHeights = new Array(columns).fill(0);
     const columnWidth = width / columns;
@@ -158,12 +164,15 @@ const Masonry: React.FC<MasonryProps> = ({
       const x = columnWidth * col;
       
       const size = imageSizes[child.img];
-      const itemHeight = size && size.width > 0 
-        ? (size.height / size.width) * columnWidth 
-        : (child.height ? child.height / 2 : columnWidth); // fallback
+      let itemHeight = columnWidth; // fallback
+      
+      if (size && size.width > 0) {
+        itemHeight = (size.height / size.width) * columnWidth;
+      } else if (child.height) {
+        itemHeight = child.height;
+      }
         
       const y = colHeights[col];
-
       colHeights[col] += itemHeight;
 
       return { ...child, x, y, w: columnWidth, h: itemHeight };
@@ -171,12 +180,12 @@ const Masonry: React.FC<MasonryProps> = ({
 
     setMaxHeight(Math.max(...colHeights));
     return itemsGrid;
-  }, [columns, items, width, imagesReady, imageSizes]);
+  }, [columns, items, width, imageSizes]);
 
   const hasMounted = useRef(false);
 
   useLayoutEffect(() => {
-    if (!imagesReady) return;
+    if (!imagesReady || grid.length === 0) return;
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
@@ -202,11 +211,12 @@ const Masonry: React.FC<MasonryProps> = ({
           opacity: 1,
           ...animationProps,
           ...(blurToFocus && { filter: 'blur(0px)' }),
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: duration,
+          ease: ease,
           delay: index * stagger
         });
       } else {
+        // Ultra-smooth GSAP puzzle transition
         gsap.to(selector, {
           ...animationProps,
           duration: duration,
@@ -220,18 +230,18 @@ const Masonry: React.FC<MasonryProps> = ({
   }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
 
   const handleMouseEnter = (e: React.MouseEvent, item: GridItem) => {
-    const element = e.currentTarget as HTMLElement;
     const selector = `[data-key="${item.id}"]`;
 
     if (scaleOnHover) {
       gsap.to(selector, {
         scale: hoverScale,
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out'
       });
     }
 
     if (colorShiftOnHover) {
+      const element = e.currentTarget as HTMLElement;
       const overlay = element.querySelector('.color-overlay') as HTMLElement;
       if (overlay) {
         gsap.to(overlay, {
@@ -243,18 +253,18 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   const handleMouseLeave = (e: React.MouseEvent, item: GridItem) => {
-    const element = e.currentTarget as HTMLElement;
     const selector = `[data-key="${item.id}"]`;
 
     if (scaleOnHover) {
       gsap.to(selector, {
         scale: 1,
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out'
       });
     }
 
     if (colorShiftOnHover) {
+      const element = e.currentTarget as HTMLElement;
       const overlay = element.querySelector('.color-overlay') as HTMLElement;
       if (overlay) {
         gsap.to(overlay, {
@@ -266,18 +276,33 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="list" style={{ height: maxHeight }}>
+    <div ref={containerRef} className="list transition-all duration-500" style={{ height: maxHeight || '600px' }}>
       {grid.map(item => {
+        const safeImgSrc = encodeURI(item.img);
+
         return (
           <div
             key={item.id}
             data-key={item.id}
             className="item-wrapper"
-            onClick={() => window.open(item.url, '_blank', 'noopener')}
+            onClick={() => {
+              if (onItemClick) {
+                onItemClick(item);
+              } else if (item.url) {
+                window.open(item.url, '_blank', 'noopener');
+              }
+            }}
             onMouseEnter={e => handleMouseEnter(e, item)}
             onMouseLeave={e => handleMouseLeave(e, item)}
           >
-            <div className="item-img" style={{ backgroundImage: `url(${item.img})` }}>
+            <div className="item-img group relative overflow-hidden rounded-xl border border-white/10 shadow-xl transition-all duration-300 w-full h-full bg-[#0A1F44]">
+              <img
+                src={safeImgSrc}
+                alt="Creative asset"
+                className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
               {colorShiftOnHover && (
                 <div
                   className="color-overlay"
@@ -290,7 +315,7 @@ const Masonry: React.FC<MasonryProps> = ({
                     background: 'linear-gradient(45deg, rgba(255,0,150,0.5), rgba(0,150,255,0.5))',
                     opacity: 0,
                     pointerEvents: 'none',
-                    borderRadius: '8px'
+                    borderRadius: '10px'
                   }}
                 />
               )}
