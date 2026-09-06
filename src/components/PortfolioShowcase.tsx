@@ -19,23 +19,46 @@ interface WorkCard {
 export default function PortfolioShowcase() {
   const [activeCategory, setActiveCategory] = useState("All Work");
   const [hoveredId, setHoveredId] = useState<number | null>(null);
-  const [isCenterMuted, setIsCenterMuted] = useState(true);
 
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.25 });
-  const centerVideoRef = useRef<HTMLVideoElement>(null);
+  const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
+  // Ensure all videos play when section is in view
   useEffect(() => {
-    const video = centerVideoRef.current;
-    if (!video) return;
+    Object.values(videoRefs.current).forEach((video) => {
+      if (!video) return;
+      if (isInView) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [isInView]);
 
-    if (isInView) {
-      video.play().catch(() => {});
-      video.muted = isCenterMuted;
-    } else {
-      video.pause();
+  // Handle hover audio un-muting
+  const handleCardHover = (id: number) => {
+    setHoveredId(id);
+    Object.entries(videoRefs.current).forEach(([cardId, videoEl]) => {
+      if (videoEl) {
+        if (Number(cardId) === id) {
+          videoEl.muted = false;
+          videoEl.volume = 1.0;
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.muted = true;
+        }
+      }
+    });
+  };
+
+  const handleCardLeave = (id: number) => {
+    setHoveredId(null);
+    const videoEl = videoRefs.current[id];
+    if (videoEl) {
+      videoEl.muted = true;
     }
-  }, [isInView, isCenterMuted]);
+  };
 
   const categories = [
     { name: "All Work", icon: ":::" },
@@ -139,7 +162,7 @@ export default function PortfolioShowcase() {
             Our Work <span className="text-[#FF1493]">Speaks</span> <span className="gocreative-gradient-text">Louder.</span>
           </h2>
           <p className="text-white/70 text-base sm:text-lg font-medium">
-            Real brands. Real results. Real growth.
+            Real brands. Real results. Real growth. (Hover any video to play voice audio)
           </p>
         </motion.div>
 
@@ -177,6 +200,7 @@ export default function PortfolioShowcase() {
           <AnimatePresence mode="popLayout">
             {filteredCards.map((card, idx) => {
               const isCenter = idx === 2 && filteredCards.length >= 5;
+              const isHovered = hoveredId === card.id;
 
               return (
                 <motion.div
@@ -185,14 +209,14 @@ export default function PortfolioShowcase() {
                   initial={{ opacity: 0, scale: 0.92, y: 24 }}
                   animate={{
                     opacity: 1,
-                    scale: isCenter ? 1.05 : 1,
-                    y: isCenter ? -8 : 0,
+                    scale: isHovered || isCenter ? 1.05 : 1,
+                    y: isHovered || isCenter ? -8 : 0,
                   }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  onMouseEnter={() => setHoveredId(card.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className="w-full h-[490px] sm:h-[530px] lg:h-[560px] flex"
+                  onMouseEnter={() => handleCardHover(card.id)}
+                  onMouseLeave={() => handleCardLeave(card.id)}
+                  className="w-full h-[490px] sm:h-[530px] lg:h-[560px] flex cursor-pointer"
                 >
                   <BorderGlow
                     edgeSensitivity={35}
@@ -200,7 +224,7 @@ export default function PortfolioShowcase() {
                     backgroundColor="#0A1024"
                     borderRadius={46}
                     glowRadius={38}
-                    glowIntensity={isCenter ? 1.4 : 1.1}
+                    glowIntensity={isHovered ? 1.6 : isCenter ? 1.4 : 1.1}
                     coneSpread={30}
                     colors={card.borderGlowColors}
                     className="w-full h-full group transition-all duration-500 shadow-2xl"
@@ -220,43 +244,47 @@ export default function PortfolioShowcase() {
                       <div className="w-full h-full bg-black rounded-[36px] sm:rounded-[40px] overflow-hidden relative flex flex-col justify-between border border-black/50 shadow-inner">
                         <div className="absolute inset-0 bg-black overflow-hidden rounded-[inherit] z-0">
                           <video
-                            ref={isCenter ? centerVideoRef : undefined}
+                            ref={(el) => {
+                              videoRefs.current[card.id] = el;
+                            }}
                             src={card.videoUrl}
                             loop
-                            muted={isCenter ? isCenterMuted : hoveredId !== card.id}
+                            muted={!isHovered}
                             playsInline
-                            autoPlay={isCenter || isInView}
+                            autoPlay
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/95 z-1 pointer-events-none" />
                         </div>
 
+                        {/* Top Audio Indicator Badge */}
                         <div className="relative z-20 flex justify-between items-center p-4 sm:p-5 pt-10 sm:pt-11">
-                          {isCenter ? (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setIsCenterMuted(!isCenterMuted);
-                              }}
-                              className="bg-black/85 backdrop-blur-md hover:bg-black text-white px-3.5 py-1.5 rounded-full border border-white/25 shadow-xl flex items-center gap-2 text-[11px] sm:text-xs font-bold transition-all transform hover:scale-105 cursor-pointer"
-                            >
-                              <span>{isCenterMuted ? "🔇" : "🔊"}</span>
-                              <span>{isCenterMuted ? "Unmute Reel" : "Mute Reel"}</span>
-                            </button>
-                          ) : (
-                            <div className="w-fit ml-auto" />
-                          )}
+                          <div
+                            className={`px-3 py-1.5 rounded-full text-[10px] font-bold backdrop-blur-md border transition-all duration-300 flex items-center gap-1.5 shadow-lg ${
+                              isHovered
+                                ? "bg-[#FF1493] text-white border-[#FF1493] shadow-[0_0_18px_rgba(255,20,147,0.7)] scale-105"
+                                : "bg-black/75 text-white/80 border-white/20"
+                            }`}
+                          >
+                            <span>{isHovered ? "🔊 Voice Playing" : "🔇 Hover for Voice"}</span>
+                          </div>
 
                           <div
                             className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
-                              isCenter
+                              isHovered
                                 ? "bg-[#FF1493] border-[#FF1493] scale-110 shadow-[0_0_15px_rgba(255,20,147,0.6)]"
                                 : "group-hover:bg-[#FF1493] group-hover:border-[#FF1493] group-hover:scale-110"
                             }`}
                           >
-                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
+                            {isHovered ? (
+                              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                              </svg>
+                            ) : (
+                              <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            )}
                           </div>
                         </div>
 

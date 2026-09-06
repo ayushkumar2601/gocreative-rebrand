@@ -94,7 +94,17 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* FLOATING CARD 1: LEFT REELS/CREATOR MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute left-[1%] sm:left-[3%] top-[31%] w-[165px] sm:w-[195px] lg:w-[210px] h-[255px] sm:h-[300px] lg:h-[325px] bg-[#1E1C1F] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/80 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
+      <div
+        className="absolute left-[1%] sm:left-[3%] top-[31%] w-[165px] sm:w-[195px] lg:w-[210px] h-[255px] sm:h-[300px] lg:h-[325px] bg-[#1E1C1F] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/80 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group cursor-pointer"
+        onMouseEnter={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = false; v.volume = 1.0; v.play().catch(() => {}); }
+        }}
+        onMouseLeave={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = true; }
+        }}
+      >
         {/* Live Video Background in Mockup */}
         <video
           src="/videos/reel_video_02.mp4"
@@ -141,7 +151,17 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* CENTER SMARTPHONE MOCKUP (MAIN CREATIVE SHOWCASE) */}
       {/* ========================================================= */}
-      <div className="relative z-20 w-[260px] sm:w-[305px] lg:w-[320px] h-[540px] sm:h-[630px] lg:h-[660px] bg-white rounded-[42px] sm:rounded-[48px] p-2 sm:p-3 shadow-[0_25px_60px_-15px_rgba(75,0,181,0.3)] border border-[#4B00B5]/20 flex flex-col justify-between">
+      <div
+        className="relative z-20 w-[260px] sm:w-[305px] lg:w-[320px] h-[540px] sm:h-[630px] lg:h-[660px] bg-white rounded-[42px] sm:rounded-[48px] p-2 sm:p-3 shadow-[0_25px_60px_-15px_rgba(75,0,181,0.3)] border border-[#4B00B5]/20 flex flex-col justify-between cursor-pointer"
+        onMouseEnter={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = false; v.volume = 1.0; v.play().catch(() => {}); }
+        }}
+        onMouseLeave={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = true; }
+        }}
+      >
         {/* Phone Screen Container */}
         <div className="relative w-full h-full bg-[#0A1F44] rounded-[34px] sm:rounded-[40px] overflow-hidden flex flex-col justify-between">
           {/* Top Notch / Status Bar */}
@@ -243,7 +263,17 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* FLOATING CARD 2: TOP-RIGHT PRODUCTION STUDIO MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute right-[1%] sm:right-[3%] top-[10%] w-[145px] sm:w-[175px] lg:w-[190px] h-[215px] sm:h-[260px] lg:h-[280px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300 group">
+      <div
+        className="absolute right-[1%] sm:right-[3%] top-[10%] w-[145px] sm:w-[175px] lg:w-[190px] h-[215px] sm:h-[260px] lg:h-[280px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300 group cursor-pointer"
+        onMouseEnter={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = false; v.volume = 1.0; v.play().catch(() => {}); }
+        }}
+        onMouseLeave={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = true; }
+        }}
+      >
         {/* Live Video Background in Mockup */}
         <video
           src="/videos/reel_video_03.mp4"
@@ -282,7 +312,17 @@ export default function HeroVisual() {
       {/* ========================================================= */}
       {/* FLOATING CARD 3: BOTTOM-RIGHT BRAND MOCKUP */}
       {/* ========================================================= */}
-      <div className="absolute right-[2%] sm:right-[5%] bottom-[10%] w-[150px] sm:w-[180px] lg:w-[195px] h-[210px] sm:h-[255px] lg:h-[275px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/90 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
+      <div
+        className="absolute right-[2%] sm:right-[5%] bottom-[10%] w-[150px] sm:w-[180px] lg:w-[195px] h-[210px] sm:h-[255px] lg:h-[275px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/90 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group cursor-pointer"
+        onMouseEnter={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = false; v.volume = 1.0; v.play().catch(() => {}); }
+        }}
+        onMouseLeave={(e) => {
+          const v = e.currentTarget.querySelector("video");
+          if (v) { v.muted = true; }
+        }}
+      >
         {/* Live Video Background in Mockup */}
         <video
           src="/videos/reel_video_04.mp4"
