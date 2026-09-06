@@ -159,7 +159,16 @@ const Masonry: React.FC<MasonryProps> = ({
     const colHeights = new Array(columns).fill(0);
     const columnWidth = width / columns;
 
-    const itemsGrid = items.map(child => {
+    // Sort items so that tallest/longest images (highest aspect ratio) are placed FIRST at top of columns (y = 0)
+    const sortedItems = [...items].sort((a, b) => {
+      const sizeA = imageSizes[a.img];
+      const sizeB = imageSizes[b.img];
+      const ratioA = sizeA && sizeA.width > 0 ? sizeA.height / sizeA.width : (a.isTall ? 2.5 : 1.0);
+      const ratioB = sizeB && sizeB.width > 0 ? sizeB.height / sizeB.width : (b.isTall ? 2.5 : 1.0);
+      return ratioB - ratioA; // Descending order: tallest images first
+    });
+
+    const itemsGrid = sortedItems.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = columnWidth * col;
       

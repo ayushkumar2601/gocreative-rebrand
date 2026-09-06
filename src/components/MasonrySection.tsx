@@ -53,7 +53,15 @@ export default function MasonrySection() {
           .replace("/image-assests/", "/image_assets/");
 
         const lowerUrl = imgUrl.toLowerCase();
-        const isTall = lowerUrl.includes("email") || lowerUrl.includes("long") || lowerUrl.includes("abandoned");
+        const isTall =
+          lowerUrl.includes("email") ||
+          lowerUrl.includes("emailer") ||
+          lowerUrl.includes("long") ||
+          lowerUrl.includes("abandoned") ||
+          lowerUrl.includes("abondon") ||
+          lowerUrl.includes("jaggercane") ||
+          lowerUrl.includes("banner") ||
+          lowerUrl.includes("vertical");
 
         const item: MasonryItem = {
           id: `asset-${idx}-${imgUrl}`,
