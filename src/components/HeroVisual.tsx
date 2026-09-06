@@ -97,7 +97,7 @@ export default function HeroVisual() {
       <div className="absolute left-[1%] sm:left-[3%] top-[31%] w-[165px] sm:w-[195px] lg:w-[210px] h-[255px] sm:h-[300px] lg:h-[325px] bg-[#1E1C1F] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/80 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
         {/* Live Video Background in Mockup */}
         <video
-          src="https://qdjukzneogboqpukvpbr.supabase.co/storage/v1/object/public/assets/reel_video_02.mp4"
+          src="/videos/reel_video_02.mp4"
           autoPlay
           loop
           muted
@@ -157,7 +157,7 @@ export default function HeroVisual() {
           {/* Main Instagram Reel Video (Edge-to-Edge Autoplay Loop) */}
           <div className="absolute inset-0 z-10 bg-black overflow-hidden rounded-[34px] sm:rounded-[40px]">
             <video
-              src="https://qdjukzneogboqpukvpbr.supabase.co/storage/v1/object/public/assets/reel_video_01.mp4"
+              src="/videos/reel_video_01.mp4"
               autoPlay
               loop
               muted
@@ -246,7 +246,7 @@ export default function HeroVisual() {
       <div className="absolute right-[1%] sm:right-[3%] top-[10%] w-[145px] sm:w-[175px] lg:w-[190px] h-[215px] sm:h-[260px] lg:h-[280px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-[#00B4FF]/60 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-300 group">
         {/* Live Video Background in Mockup */}
         <video
-          src="https://qdjukzneogboqpukvpbr.supabase.co/storage/v1/object/public/assets/reel_video_03.mp4"
+          src="/videos/reel_video_03.mp4"
           autoPlay
           loop
           muted
@@ -285,7 +285,7 @@ export default function HeroVisual() {
       <div className="absolute right-[2%] sm:right-[5%] bottom-[10%] w-[150px] sm:w-[180px] lg:w-[195px] h-[210px] sm:h-[255px] lg:h-[275px] bg-[#0A1F44] rounded-2xl shadow-2xl overflow-hidden border-2 border-white/90 z-10 transform -rotate-1 hover:rotate-0 transition-transform duration-300 group">
         {/* Live Video Background in Mockup */}
         <video
-          src="https://qdjukzneogboqpukvpbr.supabase.co/storage/v1/object/public/assets/reel_video_04.mp4"
+          src="/videos/reel_video_04.mp4"
           autoPlay
           loop
           muted
